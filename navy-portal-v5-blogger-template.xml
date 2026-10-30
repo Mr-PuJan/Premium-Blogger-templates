@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<meta content='#0f3870' name='theme-color'/>
+<meta content='#0f3870' name='msapplication-navbutton-color'/>
+<meta content='yes' name='apple-mobile-web-app-capable'/>
+<title><data:blog.pageTitle/></title>
+<b:include data='blog' name='all-head-content'/>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='crossorigin' href='https://fonts.gstatic.com' rel='preconnect'/>
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap' rel='stylesheet'/>
+<script type='text/javascript'>
+//<![CDATA[
+document.documentElement.className+=' js';
+try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}
+//]]>
+</script>
+
+<b:skin><![CDATA[
+/* =========================================================
+   NAVY PORTAL v5 - Blogger Template
+   Page-by-page portal layout:
+   1) Navy header (logo, menu, yellow button, search)
+   2) "Selected Articles" featured block
+   3) Label block: tab + big post + 3 rows with dividers
+   4) Two label lists with stars + "See all" button
+   5) "Latest Articles" 2-column cards with corner label
+   6) Footer: logo, text, link columns, social icons, badges, DMCA line
+   Edit colors in :root.
+
+   v5 ADDS: 8 layout ad slots + 3 coded ad slots (in-feed, in-article,
+   sticky bottom), news ticker, topic chips, newsletter band, scroll-reveal
+   and hover animations, skeleton loaders, image lightbox, code-copy
+   buttons, animated mobile menu, print + reduced-motion support.
+   AD SETTINGS and other switches: see the SETTINGS block at the top of
+   the <script> near the end of this file.
+
+   SIDEBAR: off on home/label pages (full width), on for posts.
+   To also show it on the home page, see the "SIDEBAR SWITCH"
+   comment in the Responsive section.
+   ========================================================= */
+:root{
+  --navy:#0f3870;
+  --navy-dark:#0a2a55;
+  --logo:#ffc61a;
+  --accent:#ffc107;
+  --red:#d9411e;
+  --bg:#ffffff;
+  --text:#2b3340;
+  --head:#111111;
+  --title:#2d3340;
+  --link:#0b4f8a;
+  --muted:#6b7785;
+  --line:#dcdfe5;
+  --soft:#f1f4f9;
+  --font:'Roboto',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+}
+:root[data-theme='dark']{
+  --bg:#0d1a2e;
+  --text:#dbe5f3;
+  --head:#f4f7fc;
+  --title:#eef3fb;
+  --link:#8db8ff;
+  --muted:#9fb0c7;
+  --line:#22385a;
+  --soft:#14274a;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--red)}
+img{max-width:100%;height:auto}
+h1,h2,h3,h4{line-height:1.28;margin:0 0 .5em;color:var(--head)}
+.wrap{max-width:984px;margin:0 auto;padding:0 16px}
+.section,.widget{margin:0}
+.brand .widget,.nav .widget{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;left:-9999px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100}
+
+/* ---------- 1) Header ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:var(--navy);color:#fff}
+.bar{display:flex;align-items:center;gap:18px;min-height:68px;flex-wrap:wrap}
+.brand{flex:0 0 auto}
+.logo{display:flex;align-items:center;gap:7px}
+.logo svg{flex:0 0 auto}
+.logo-text{font-size:30px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;line-height:1;margin:0;color:#fff}
+.logo-text a{color:#fff}
+.go{color:var(--logo)}
+.nav{flex:1;display:flex;justify-content:flex-end}
+.menu ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:4px}
+.menu li a{display:block;padding:8px 14px;color:#fff;font-size:16px;font-weight:500}
+.menu li a:hover{color:var(--accent)}
+.menu li:last-child a{background:var(--accent);color:#1b1b1b;border-radius:999px;padding:6px 16px;margin-left:10px}
+.menu li:last-child a:hover{background:#fff;color:var(--navy)}
+.ic-btn{background:transparent;border:0;color:#fff;cursor:pointer;padding:8px;display:flex;align-items:center}
+.ic-btn:hover{color:var(--accent)}
+.menu-btn{display:none;font-size:24px;line-height:1}
+.search-pop{display:none;background:var(--navy-dark);padding:10px 0}
+.search-open .search-pop{display:block}
+.search-pop form{display:flex;background:#fff;border-radius:999px;overflow:hidden;max-width:560px;margin:0 auto}
+.search-pop input{flex:1;border:0;padding:10px 18px;font:inherit;font-size:15px;outline:0;background:transparent;color:#1f2933;min-width:0}
+.search-pop button{border:0;background:var(--accent);padding:0 20px;font-weight:700;cursor:pointer;color:#1b1b1b;font-family:inherit}
+.ad{text-align:center;margin:12px 0}
+
+/* ---------- Layout ---------- */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:54px;padding-top:26px;padding-bottom:44px}
+.sidebar{display:none}
+.page-item .layout,.page-static_page .layout{grid-template-columns:minmax(0,1fr) 324px}
+.page-item .sidebar,.page-static_page .sidebar{display:block}
+
+/* Shared bits */
+.sec-h{font-size:24px;font-weight:700;margin:0 0 18px;color:var(--head)}
+.stars{font-size:17px;color:#555;margin-left:10px;letter-spacing:2px;font-weight:400}
+[data-theme='dark'] .stars{color:#9fb0c7}
+.sec-row{display:flex;justify-content:space-between;align-items:center;margin:0 0 20px}
+.sec-row .sec-h{margin:0}
+.btn-o{border:1px solid var(--navy);color:var(--link);font-size:13px;padding:5px 11px;border-radius:2px;background:transparent;white-space:nowrap;line-height:1.3}
+.btn-o:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn{display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:14px;padding:10px 26px;border:0;cursor:pointer;font-family:inherit;border-radius:2px}
+.btn:hover{background:var(--accent);color:#1b1b1b}
+.tag{display:inline-block;background:var(--navy);color:#fff;font-size:12.5px;font-weight:500;text-transform:uppercase;padding:6px 13px;line-height:1.2;box-shadow:3px 3px 0 rgba(15,56,112,.18)}
+a.tag:hover{background:var(--red);color:#fff}
+.t1{color:var(--title);font-weight:700}
+.t1 a{color:inherit}
+.t1::first-letter{color:var(--red);font-size:1.3em;font-weight:900}
+.t1 a:hover{color:var(--red)}
+.meta2{font-size:13px;color:#444}
+[data-theme='dark'] .meta2{color:var(--muted)}
+.au{color:var(--link);text-decoration:underline}
+.blk{padding-bottom:30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+
+/* ---------- 2) Selected Articles (featured) ---------- */
+.feat{display:grid;grid-template-columns:minmax(0,1.23fr) minmax(0,1fr);gap:37px;align-items:center}
+.feat-img{display:block;aspect-ratio:16/9;background:var(--soft);overflow:hidden}
+.feat-img img{width:100%;height:100%;object-fit:cover;display:block}
+.feat-body{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.feat-body h3{font-size:26px;line-height:1.3;margin:0}
+.feat-body p{margin:0;font-size:15px;line-height:1.55;color:#3d4452;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+[data-theme='dark'] .feat-body p{color:var(--text)}
+
+/* ---------- 3) Label block: tab + big + rows ---------- */
+.tab-head{display:flex;align-items:center;margin:0 0 22px}
+.tab-head:after{content:'';flex:1;height:2px;background:var(--line)}
+.tab{background:var(--navy);color:#fff;font-size:15px;padding:7px 14px;box-shadow:3px 3px 0 rgba(15,56,112,.2)}
+.tab:hover{background:var(--red);color:#fff}
+.bl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.bl-img{display:block;aspect-ratio:16/9;background:var(--soft);overflow:hidden;margin-bottom:14px}
+.bl-img img{width:100%;height:100%;object-fit:cover;display:block}
+.bl h3{font-size:20px;margin:0}
+.bl .rows .row{padding:14px 0;margin:0;border-top:1px solid var(--line)}
+.bl .rows .row:first-child{border-top:0;padding-top:0}
+
+/* Rows (thumb + title) */
+.rows{list-style:none;margin:0;padding:0}
+.row{display:flex;gap:22px;margin-bottom:26px;align-items:flex-start}
+.row-img{flex:0 0 115px;height:80px;background:var(--soft);overflow:hidden;display:block}
+.row-img img{width:100%;height:100%;object-fit:cover;display:block}
+.row-t{font-size:17px;font-weight:700;line-height:1.3;color:var(--head)}
+.row-t:hover{color:var(--red)}
+
+/* ---------- 4) Two label lists ---------- */
+.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+.lbl-head{display:flex;align-items:center;margin-bottom:24px}
+.lbl-head h3{margin:0;font-size:24px;font-weight:500;color:var(--title)}
+.lbl-head .btn-o{margin-left:auto}
+
+/* ---------- 5) Latest Articles: 2-column cards ---------- */
+.cards{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px 56px}
+.pcard{min-width:0}
+.pc-img{position:relative;aspect-ratio:16/9;background:var(--soft);overflow:hidden}
+.pc-img>a{display:block;width:100%;height:100%}
+.pc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.pcard:hover .pc-img img{transform:scale(1.03)}
+.chip-w{position:absolute;top:0;left:0;background:var(--bg);color:#8a929e;font-size:14px;padding:7px 16px 7px 12px;line-height:1.2;z-index:2}
+a.chip-w:hover{color:var(--red)}
+.pc-img>a.chip-w{width:auto;height:auto}
+.pcard h2{font-size:20px;margin:20px 0 8px}
+.pcard .meta2{margin-bottom:10px}
+.pcard p{margin:0;font-size:16px;line-height:1.45;color:#333b49;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+[data-theme='dark'] .pcard p{color:var(--text)}
+.pager{display:flex;justify-content:center;gap:12px;margin:36px 0 0;flex-wrap:wrap}
+.archive-title{font-size:26px;margin:0 0 22px;padding-left:12px;border-left:5px solid var(--accent)}
+
+/* ---------- Single post ---------- */
+.crumbs{font-size:13px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.crumbs .cur{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.post-full h1.post-title{font-size:32px;margin-bottom:8px}
+.post-body{font-size:17px;line-height:1.85;overflow-wrap:anywhere;margin-top:16px}
+.post-body h2,.post-body h3{margin-top:1.6em;scroll-margin-top:90px}
+.post-body img{border-radius:4px}
+.post-body blockquote{margin:1.2em 0;padding:8px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.post-body pre{background:var(--navy-dark);color:#e6eefb;padding:14px;overflow:auto;font-size:14px}
+.post-body table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}
+.post-body td,.post-body th{border:1px solid var(--line);padding:8px 12px}
+.toc{background:var(--soft);padding:12px 18px;margin:18px 0}
+.toc summary{cursor:pointer;font-weight:700;color:var(--head)}
+.toc ol{margin:8px 0 0;padding-left:20px;font-size:15px}
+.toc li.sub{margin-left:16px;list-style:circle}
+.post-labels{margin:22px 0 8px;display:flex;gap:8px;flex-wrap:wrap}
+.share{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;align-items:center}
+.share b{font-size:14px;color:var(--head)}
+.share a{font-size:13px;font-weight:700;padding:6px 14px;background:var(--soft);color:var(--link)}
+.share a:hover{background:var(--navy);color:#fff}
+.author-box{display:flex;gap:14px;align-items:center;background:var(--soft);padding:14px 16px;margin:18px 0}
+.author-box .av{width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;flex:0 0 48px}
+.author-box p{margin:0;font-size:13.5px;color:var(--muted)}
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.post-nav a{display:block;border:1px solid var(--line);padding:10px 14px;font-size:14px;font-weight:700}
+.post-nav a small{display:block;color:var(--muted);font-weight:400}
+.post-nav .nx{text-align:right}
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 32px}
+.comments{margin-top:28px;padding-top:18px;border-top:2px solid var(--line)}
+.comments h3{font-size:19px}
+.cmt{padding:12px 0;border-bottom:1px solid var(--line)}
+.cmt b{color:var(--head)}
+.cmt small{color:var(--muted);margin-left:8px}
+.cmt p{margin:4px 0 0;white-space:pre-line}
+.notice{padding:44px 24px;text-align:center;background:var(--soft)}
+.side-h{font-size:21px;font-weight:700;margin:0 0 16px}
+.sidebar .side-block{margin-bottom:28px}
+.sidebar .widget{margin-bottom:26px}
+.sidebar .widget h2,.sidebar .widget h3{font-size:21px;margin-bottom:14px}
+.sidebar .row{gap:16px;margin-bottom:17px}
+.sidebar .row-img{flex-basis:104px;height:72px}
+.sidebar .row-t{font-size:16px}
+
+/* ---------- 6) Footer ---------- */
+.site-footer{background:var(--navy-dark);color:#c4d3ea}
+.foot-grid{display:grid;grid-template-columns:1.9fr 1fr 1.15fr 1.2fr;gap:30px;padding:44px 0 26px}
+.site-footer h4{color:#fff;font-size:20px;font-weight:700;margin-bottom:16px}
+.site-footer a{color:#c4d3ea}
+.site-footer a:hover{color:var(--accent)}
+.foot-logo{display:flex;align-items:center;gap:7px;margin-bottom:14px}
+.foot-name{font-size:30px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;letter-spacing:.4px}
+.foot-about p{font-size:14.5px;line-height:1.5;margin:0 0 14px}
+.foot-about .ptag{font-size:15px}
+.site-footer ul{list-style:none;margin:0;padding:0}
+.site-footer li{padding:5px 0;font-size:16px}
+.ext::after{content:' \2197';font-size:.85em;opacity:.7}
+.socials{display:flex;gap:14px;flex-wrap:wrap}
+.soc{width:30px;height:30px;color:#c4d3ea;display:flex}
+.soc svg{width:100%;height:100%;fill:currentColor}
+.soc:hover{color:var(--accent)}
+.foot-badges{margin-top:6px}
+.foot-badges img{max-height:80px;margin:6px 10px 0 0}
+.foot-line{border-top:2px solid rgba(255,255,255,.25);padding:22px 0;display:flex;gap:36px;align-items:center;flex-wrap:wrap;font-size:15px}
+.foot-line .widget{margin:0}
+.foot-line .safe{text-decoration:underline}
+.foot-copy{font-size:14.5px;margin:0}
+.foot-bottom .widget{display:inline}
+.foot-bottom{padding:0 0 22px;font-size:12.5px;opacity:.8}
+#toTop{position:fixed;right:16px;bottom:18px;width:42px;height:42px;border-radius:50%;border:0;background:var(--accent);color:#1b1b1b;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);display:none;z-index:70}
+#toTop.show{display:block}
+
+/* ---------- Responsive ---------- */
+/* SIDEBAR SWITCH: to show the sidebar on the home page too, replace the
+   first .layout rule above with:
+   .layout{grid-template-columns:minmax(0,1fr) 324px}
+   and the .sidebar rule with: .sidebar{display:block}              */
+@media (max-width:960px){
+  .page-item .layout,.page-static_page .layout{grid-template-columns:minmax(0,1fr);gap:10px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .menu-btn{display:flex;margin-left:auto}
+  .nav{display:none;order:9;width:100%;flex:0 0 100%;padding-bottom:12px}
+  .nav-open .nav{display:block}
+  .menu ul{flex-direction:column;align-items:stretch}
+  .menu li:last-child a{display:inline-block;margin:6px 0 0}
+}
+@media (max-width:680px){
+  .feat,.bl,.two-col,.cards{grid-template-columns:minmax(0,1fr)}
+  .feat-body h3{font-size:23px}
+  .bl,.two-col{gap:26px}
+  .rel-grid{grid-template-columns:1fr}
+  .post-full h1.post-title{font-size:25px}
+  .post-nav{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .logo-text{font-size:26px}
+  .sec-h,.lbl-head h3{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* =========================================================
+   v5 ADD-ONS
+   Motion, ad slots, news ticker, topic chips, newsletter band,
+   image lightbox, skeleton loaders, polish. Safe to delete any block.
+   ========================================================= */
+:root{--shadow:0 10px 28px rgba(15,56,112,.14);--ease:cubic-bezier(.22,.8,.3,1);--radius:6px}
+:root[data-theme='dark']{--shadow:0 10px 28px rgba(0,0,0,.45)}
+
+/* ---------- Accessibility + page entrance ---------- */
+.skip{position:absolute;left:12px;top:-64px;background:var(--accent);color:#1b1b1b;padding:10px 16px;font-weight:700;z-index:200;border-radius:0 0 6px 6px;transition:top .25s}
+.skip:focus{top:0;color:#1b1b1b}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes dropIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+body{animation:pageIn .5s ease both}
+#progress{background:linear-gradient(90deg,var(--accent),var(--red));box-shadow:0 0 8px rgba(255,193,7,.6);transition:width .1s linear}
+
+/* ---------- Header motion ---------- */
+.site-header{transition:box-shadow .3s}
+.bar{transition:min-height .3s var(--ease)}
+.logo-text{transition:font-size .3s var(--ease)}
+.scrolled .site-header{box-shadow:0 6px 20px rgba(0,0,0,.28)}
+.scrolled .bar{min-height:54px}
+.scrolled .logo-text{font-size:25px}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}30%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}}
+.logo svg{transition:transform .3s var(--ease)}
+.logo svg circle{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+.logo:hover svg{animation:wiggle .6s}
+.menu li:not(:last-child) a{position:relative}
+.menu li:not(:last-child) a::after{content:'';position:absolute;left:14px;right:14px;bottom:3px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.menu li:not(:last-child) a:hover::after,.menu li a.on::after{transform:scaleX(1)}
+.menu li a.on{color:var(--accent)}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,193,7,.55)}70%,100%{box-shadow:0 0 0 12px rgba(255,193,7,0)}}
+.menu li:last-child a{animation:ring 2.6s infinite;transition:background .25s,color .25s,transform .25s}
+.menu li:last-child a:hover{transform:translateY(-2px);animation:none}
+.ic-btn svg{transition:transform .35s var(--ease)}
+.ic-btn:hover svg{transform:rotate(18deg) scale(1.12)}
+.search-open .search-pop{animation:dropIn .3s var(--ease)}
+
+/* ---------- News ticker ---------- */
+.ticker{background:var(--soft);border-bottom:1px solid var(--line);font-size:14px;height:38px}
+.ticker.off{display:none}
+.ticker .wrap{display:flex;align-items:center;gap:14px;height:38px;overflow:hidden}
+.tk-label{flex:0 0 auto;background:var(--red);color:#fff;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.6px;padding:4px 10px;border-radius:3px}
+.tk-label::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:7px;animation:livePulse 1.4s infinite}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.45)}}
+.tk-track{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+.tk-move{display:flex;width:max-content;animation:tk 60s linear infinite}
+.tk-move:hover{animation-play-state:paused}
+.tk-move>div{display:flex;align-items:center;flex:0 0 auto}
+.tk-move a{color:var(--title);white-space:nowrap;font-weight:500}
+.tk-move a:hover{color:var(--red)}
+.tk-move i{display:inline-block;width:6px;height:6px;background:var(--accent);transform:rotate(45deg);margin:0 20px}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* ---------- Scroll reveal ---------- */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- Cards, rows, images ---------- */
+.pc-img,.feat-img,.bl-img,.row-img{border-radius:var(--radius)}
+.pc-img{transition:transform .35s var(--ease),box-shadow .35s}
+.pcard:hover .pc-img{transform:translateY(-4px);box-shadow:var(--shadow)}
+.pc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,56,112,.38));opacity:0;transition:opacity .35s;pointer-events:none}
+.pcard:hover .pc-img::after{opacity:1}
+.chip-w{border-radius:0 0 6px 0}
+.pcard h2 a{background:linear-gradient(var(--red),var(--red)) 0 100%/0 2px no-repeat;transition:background-size .35s var(--ease),color .2s}
+.pcard:hover h2 a{background-size:100% 2px}
+.more{display:inline-flex;gap:6px;align-items:center;margin-top:10px;font-weight:700;font-size:14px;color:var(--link)}
+.more span{display:inline-block;transition:transform .3s var(--ease)}
+.more:hover span{transform:translateX(6px)}
+.feat-img img,.bl-img img,.row-img img{transition:transform .5s var(--ease)}
+.feat-img:hover img,.bl-img:hover img,.row:hover .row-img img{transform:scale(1.06)}
+.row-t{transition:color .2s,transform .25s var(--ease)}
+.row:hover .row-t{transform:translateX(3px)}
+.tag,.tab{transition:background .25s,transform .25s var(--ease)}
+.tag:hover,.tab:hover{transform:translateY(-2px)}
+.btn,.btn-o{transition:background .25s,color .25s,transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,56,112,.28)}
+.btn:active{transform:none;box-shadow:none}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(1.28) rotate(18deg);opacity:.7}}
+.sec-h .star{display:inline-block;color:var(--accent);animation:twinkle 2.4s ease-in-out infinite}
+.post-body img{cursor:zoom-in;transition:box-shadow .3s}
+.post-body img:hover{box-shadow:var(--shadow)}
+.share a{transition:background .25s,color .25s,transform .25s var(--ease)}
+.share a:hover{transform:translateY(-2px)}
+.post-nav a{transition:border-color .25s,transform .25s var(--ease),box-shadow .25s}
+.post-nav a:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:var(--shadow)}
+
+/* ---------- Topic chips ---------- */
+.topics{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-block;padding:7px 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:500;color:var(--title);background:var(--bg);transition:background .25s,color .25s,border-color .25s,transform .25s var(--ease),box-shadow .25s}
+.chip:hover{background:var(--navy);border-color:var(--navy);color:#fff;transform:translateY(-3px);box-shadow:var(--shadow)}
+.topics-sec{margin-bottom:34px}
+
+/* ---------- Skeleton loaders ---------- */
+@keyframes shimmer{0%{background-position:-500px 0}100%{background-position:500px 0}}
+.sk{display:block;border-radius:4px;background:linear-gradient(90deg,var(--soft) 25%,var(--line) 37%,var(--soft) 63%);background-size:1000px 100%;animation:shimmer 1.4s infinite linear}
+.sk-16x9{aspect-ratio:16/9;width:100%}
+.sk-img{flex:0 0 115px;height:80px}
+.sk-t{flex:1;height:48px}
+.sk-tag{width:90px;height:24px}
+.sk-h{height:26px;width:100%}
+.sk-p{height:14px;width:92%;margin-top:4px}
+.sk-row{display:flex;gap:22px;margin:0 0 20px}
+.sk-tab{width:130px;height:32px;margin-bottom:22px}
+
+/* ---------- AD SLOTS ---------- */
+.ad .widget>h2,.ad .widget>.title{display:none}
+.ad.has-ad{animation:fadeUp .6s var(--ease) both}
+.ad.has-ad::before,.ad-label{display:block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;text-align:center}
+.ad.has-ad::before{content:'Advertisement'}
+.adbox{margin:26px auto;text-align:center;max-width:100%;overflow:hidden;clear:both;animation:fadeUp .6s var(--ease) both}
+.adbox ins{display:block;min-height:90px}
+.ad-feed{grid-column:1/-1}
+.ad-feed .adbox{margin:4px auto}
+.ad-ph{display:flex;align-items:center;justify-content:center;min-height:90px;border:2px dashed var(--line);border-radius:var(--radius);background:repeating-linear-gradient(45deg,var(--soft),var(--soft) 10px,transparent 10px,transparent 20px);color:var(--muted);font-size:13px;font-weight:500;padding:8px 14px}
+.adbox-feed .ad-ph{min-height:250px}
+.adbox-article .ad-ph{min-height:160px}
+#ad-top .ad-ph,#ad-home .ad-ph,#ad-footer .ad-ph{max-width:728px;margin:0 auto}
+#ad-side .ad-ph{min-height:250px}
+#ad-side-2 .ad-ph{min-height:600px}
+#ad-post .ad-ph{min-height:280px}
+.ad-foot{margin:0}
+.side-sticky{position:sticky;top:84px}
+.scrolled .side-sticky{top:70px}
+
+/* Sticky bottom (anchor) ad */
+#anchorAd{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -6px 22px rgba(0,0,0,.14);padding:6px 44px 6px 10px;text-align:center;transform:translateY(125%);transition:transform .6s var(--ease);max-height:130px;overflow:hidden}
+#anchorAd.on{transform:none}
+#anchorAd .ad{margin:0}
+#anchorAd .adbox{margin:0 auto}
+#anchorAd .ad-ph{min-height:50px}
+#anchorAd .ad-label,#anchorAd .ad.has-ad::before{margin-bottom:2px}
+#anchorClose{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:50%;background:var(--soft);color:var(--text);cursor:pointer;font-size:13px;line-height:1;transition:background .25s,color .25s,transform .25s}
+#anchorClose:hover{background:var(--red);color:#fff;transform:rotate(90deg)}
+.has-anchor{padding-bottom:78px}
+.has-anchor #toTop{bottom:96px}
+
+/* ---------- Newsletter band ---------- */
+.nl{background:linear-gradient(135deg,var(--navy) 0,#1c5fae 100%);color:#fff;padding:36px 0;position:relative;overflow:hidden}
+.nl[hidden]{display:none}
+.nl::before,.nl::after{content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.07);animation:floaty 9s ease-in-out infinite}
+.nl::before{width:230px;height:230px;right:-60px;top:-90px}
+.nl::after{width:140px;height:140px;left:6%;bottom:-70px;animation-delay:-4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(18px)}}
+.nl .wrap{position:relative;z-index:1;display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.nl h3{color:#fff;font-size:24px;margin:0 0 4px}
+.nl p{margin:0;color:#d6e3f7;font-size:15px}
+.nl form{display:flex;background:#fff;border-radius:999px;overflow:hidden;flex:0 1 430px;min-width:260px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.nl input{flex:1;min-width:0;border:0;padding:13px 20px;font:inherit;font-size:15px;outline:0;background:transparent;color:#1f2933}
+.nl button{border:0;background:var(--accent);color:#1b1b1b;font-weight:700;font-family:inherit;padding:0 26px;cursor:pointer;transition:background .25s,color .25s}
+.nl button:hover{background:var(--red);color:#fff}
+
+/* ---------- Footer polish ---------- */
+.site-footer li a{display:inline-block;transition:transform .25s var(--ease),color .2s}
+.site-footer li a:hover{transform:translateX(5px)}
+.soc{transition:transform .3s var(--ease),color .2s}
+.soc:hover{transform:translateY(-4px) scale(1.14)}
+
+/* ---------- Back to top ---------- */
+#toTop{display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px) scale(.8);pointer-events:none;transition:opacity .3s,transform .3s var(--ease),bottom .4s var(--ease),background .25s,color .25s}
+#toTop.show{display:flex;opacity:1;transform:none;pointer-events:auto}
+#toTop.show:hover{transform:translateY(-4px);background:var(--red);color:#fff}
+
+/* ---------- Lightbox + code copy ---------- */
+.lb{position:fixed;inset:0;z-index:300;background:rgba(5,15,32,.92);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px;cursor:zoom-out}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-width:96vw;max-height:92vh;object-fit:contain;border-radius:6px;transform:scale(.92);transition:transform .35s var(--ease);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb.open img{transform:none}
+.lb-x{position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:18px;cursor:pointer}
+.lb-on{overflow:hidden}
+.post-body pre .copy-code{float:right;position:sticky;top:0;border:0;background:rgba(255,255,255,.16);color:#fff;font:inherit;font-size:12px;padding:3px 10px;border-radius:4px;cursor:pointer}
+.post-body pre .copy-code:hover{background:var(--accent);color:#1b1b1b}
+
+/* ---------- Responsive additions ---------- */
+@media (max-width:860px){
+  .bar{row-gap:0}
+  .nav{display:block;max-height:0;opacity:0;padding-bottom:0;overflow:hidden;visibility:hidden;transition:max-height .45s var(--ease),opacity .3s,padding .3s,visibility 0s .45s}
+  .nav-open .nav{max-height:560px;opacity:1;padding-bottom:12px;visibility:visible;transition-delay:0s}
+  .nav-open .menu li{animation:fadeUp .4s var(--ease) both}
+  .nav-open .menu li:nth-child(2){animation-delay:.05s}
+  .nav-open .menu li:nth-child(3){animation-delay:.1s}
+  .nav-open .menu li:nth-child(4){animation-delay:.15s}
+  .nav-open .menu li:nth-child(5){animation-delay:.2s}
+  .nav-open .menu li:nth-child(6){animation-delay:.25s}
+  .nav-open .menu li:nth-child(7){animation-delay:.3s}
+  .nav-open .menu li:nth-child(8){animation-delay:.35s}
+  .menu li:not(:last-child) a::after{left:0;right:auto;width:36px}
+}
+@media (max-width:680px){
+  .nl .wrap{flex-direction:column;align-items:stretch}
+  .nl form{flex:1 1 auto}
+  .nl h3{font-size:21px}
+  .tk-label{font-size:11px;padding:3px 8px}
+  .adbox{margin:20px auto}
+  .sk-row{gap:16px}
+}
+
+/* ---------- Print + reduced motion ---------- */
+@media print{
+  .site-header,.ticker,.ad,.adbox,#anchorAd,.sidebar,.site-footer,#toTop,.nl,#progress,.share{display:none!important}
+  .page-item .layout{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .tk-track{overflow-x:auto}
+}
+]]></b:skin>
+</head>
+
+<body expr:class='&quot;page-&quot; + data:blog.pageType'>
+<a class='skip' href='#mainContent'>Skip to content</a>
+<div id='progress'/>
+
+<!-- ================= 1) HEADER ================= -->
+<header class='site-header'>
+  <div class='wrap bar'>
+    <b:section class='brand' id='header' maxwidgets='1' showaddelement='no'>
+      <b:widget id='Header1' locked='true' title='Site Title' type='Header' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='displayUrl'/>
+          <b:widget-setting name='displayHeight'>0</b:widget-setting>
+          <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+          <b:widget-setting name='useImage'>false</b:widget-setting>
+          <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+          <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+          <b:widget-setting name='displayWidth'>0</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <div class='logo'>
+            <svg height='32' viewBox='0 0 32 32' width='32'><path d='M16 2C8 2 2 8.5 2 16s6 14 14 14c5 0 9-2.5 11.5-6.5-4 1.5-9 .5-11-3.5S15 12 20 10c2.5-1 5-.5 7 .5C25 5 21 2 16 2z' fill='#fff'/><circle cx='11' cy='15' r='2.3' fill='#0f3870'/></svg>
+            <b:if cond='data:blog.url == data:blog.homepageUrl'>
+              <h1 class='logo-text'><a expr:href='data:blog.homepageUrl'><data:blog.title/></a></h1>
+            <b:else/>
+              <div class='logo-text'><a expr:href='data:blog.homepageUrl'><data:blog.title/></a></div>
+            </b:if>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <b:section class='nav' id='nav' maxwidgets='1' showaddelement='no'>
+      <b:widget id='LinkList1' locked='false' title='Menu' type='LinkList' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='text-0'>Blogging</b:widget-setting>
+          <b:widget-setting name='link-0'>/search/label/Blogging?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-1'>Business</b:widget-setting>
+          <b:widget-setting name='link-1'>/search/label/Business?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-2'>Youtube</b:widget-setting>
+          <b:widget-setting name='link-2'>/search/label/Youtube?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-3'>Gadgets</b:widget-setting>
+          <b:widget-setting name='link-3'>/search/label/Gadgets?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-4'>Technology</b:widget-setting>
+          <b:widget-setting name='link-4'>/search/label/Technology?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-5'>Android</b:widget-setting>
+          <b:widget-setting name='link-5'>/search/label/Android?max-results=12</b:widget-setting>
+          <b:widget-setting name='text-6'>Collaborate</b:widget-setting>
+          <b:widget-setting name='link-6'>/p/contact.html</b:widget-setting>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <nav class='menu' id='menu'>
+            <ul>
+              <b:loop values='data:links' var='link'>
+                <li><a expr:href='data:link.target'><data:link.name/></a></li>
+              </b:loop>
+            </ul>
+          </nav>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <button aria-label='Search' class='ic-btn' id='searchBtn' type='button'><svg height='22' viewBox='0 0 24 24' width='22'><path d='M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z' fill='currentColor'/></svg></button>
+    <button aria-label='Dark mode' class='ic-btn' id='themeBtn' type='button'><svg height='20' viewBox='0 0 24 24' width='20'><path d='M12 3a9 9 0 1 0 9 9c0-.5 0-.9-.1-1.3A5.5 5.5 0 0 1 13.3 3.100C12.900 3 12.500 3 12 3z' fill='currentColor'/></svg></button>
+    <button aria-label='Menu' class='ic-btn menu-btn' id='menuBtn' type='button'>&#9776;</button>
+  </div>
+
+  <div class='search-pop'>
+    <div class='wrap'>
+      <form action='/search' method='get' role='search'>
+        <input aria-label='Search' name='q' placeholder='Search articles...' type='search'/>
+        <button type='submit'>Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- Latest-articles ticker (switch off in SETTINGS: ticker:false) -->
+<div aria-label='Latest articles' class='ticker' id='ticker' role='region'>
+  <div class='wrap'>
+    <span class='tk-label'>Latest</span>
+    <div class='tk-track'><div class='tk-move'/></div>
+  </div>
+</div>
+
+<!-- Ad slot under header: add an HTML widget in Layout -->
+<div class='wrap'>
+  <b:section class='ad' id='ad-top' showaddelement='yes'/>
+</div>
+
+<!-- ================= MAIN (+ sidebar on posts) ================= -->
+<div class='wrap layout'>
+
+  <main class='content' id='mainContent'>
+
+    <!-- ===== HOME ONLY ===== -->
+    <b:if cond='data:blog.url == data:blog.homepageUrl'>
+
+      <!-- 2) Selected Articles: newest post with label "featured" (falls back to newest post) -->
+      <section class='blk' style='border-bottom:0;padding-bottom:0;margin-bottom:36px'>
+        <h2 class='sec-h'>Selected Articles <span class='star'>&#9733;</span></h2>
+        <div data-label='featured' id='featured'/>
+      </section>
+
+      <!-- Ad slot: home banner (add an HTML widget in Layout) -->
+      <b:section class='ad' id='ad-home' showaddelement='yes'/>
+
+      <!-- 3) Label block: tab + big post + 3 rows. Change data-label / data-title -->
+      <section class='blk tabsec' data-label='Properties' data-max='4' data-title='Properties ~'/>
+
+      <!-- 4) Two label lists. Change data-label / data-title -->
+      <div class='blk two-col'>
+        <section class='lbl' data-label='Lifestyle' data-max='5' data-title='Life Style'/>
+        <section class='lbl' data-label='Gadgets' data-max='5' data-title='Gadgets'/>
+      </div>
+
+      <!-- Browse topics: chips built from your labels -->
+      <section class='blk topics-sec'>
+        <h2 class='sec-h'>Browse Topics</h2>
+        <div class='topics' data-max='16'/>
+      </section>
+
+      <!-- 5) Latest Articles heading -->
+      <div class='sec-row'>
+        <h2 class='sec-h'>Latest Articles</h2>
+        <a class='btn-o' href='/search?max-results=12'>See More &#187;</a>
+      </div>
+    </b:if>
+
+    <b:section class='main' id='main' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+          <b:widget-setting name='style.textcolor'>#2b3340</b:widget-setting>
+          <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+          <b:widget-setting name='showCommentLink'>false</b:widget-setting>
+          <b:widget-setting name='style.urlcolor'>#0b4f8a</b:widget-setting>
+          <b:widget-setting name='showAuthor'>true</b:widget-setting>
+          <b:widget-setting name='style.linkcolor'>#0b4f8a</b:widget-setting>
+          <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+          <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+          <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+          <b:widget-setting name='showLabels'>true</b:widget-setting>
+          <b:widget-setting name='showLocation'>false</b:widget-setting>
+          <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+          <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+          <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+          <b:widget-setting name='showInlineAuthor'>true</b:widget-setting>
+          <b:widget-setting name='showReactions'>false</b:widget-setting>
+        </b:widget-settings>
+
+        <!-- ===== MAIN includable ===== -->
+        <b:includable id='main' var='top'>
+          <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
+            <div class='notice'>
+              <h1>Page not found</h1>
+              <p>The page you are looking for does not exist or was moved.</p>
+              <a class='btn' expr:href='data:blog.homepageUrl'>Back to home</a>
+            </div>
+          <b:elseif cond='data:blog.pageType == &quot;item&quot; or data:blog.pageType == &quot;static_page&quot;'/>
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='postFull'/>
+            </b:loop>
+            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+              <div id='related'/>
+            </b:if>
+          <b:else/>
+            <b:if cond='data:blog.searchLabel'>
+              <h1 class='archive-title'>Label: <data:blog.searchLabel/></h1>
+            <b:elseif cond='data:blog.searchQuery'/>
+              <h1 class='archive-title'>Search results: <data:blog.searchQuery/></h1>
+            </b:if>
+            <div class='cards' id='postGrid'>
+              <b:loop values='data:posts' var='post'>
+                <b:include data='post' name='postCard'/>
+              </b:loop>
+            </div>
+            <div class='pager'>
+              <b:if cond='data:newerPageUrl'>
+                <a class='btn' expr:href='data:newerPageUrl'>&#171; Newer</a>
+              </b:if>
+              <b:if cond='data:olderPageUrl'>
+                <a class='btn' expr:href='data:olderPageUrl' id='loadMore'>Load More &#187;</a>
+              </b:if>
+            </div>
+          </b:if>
+        </b:includable>
+
+        <!-- ===== POST CARD (Latest Articles, 2-column) ===== -->
+        <b:includable id='postCard' var='post'>
+          <article class='pcard rv'>
+            <div class='pc-img'>
+              <a expr:href='data:post.url'>
+                <b:if cond='data:post.thumbnailUrl'>
+                  <img class='js-thumb' expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                </b:if>
+              </a>
+              <b:loop index='i' values='data:post.labels' var='label'>
+                <b:if cond='data:i == 0'>
+                  <a class='chip-w' expr:href='data:label.url'><data:label.name/></a>
+                </b:if>
+              </b:loop>
+            </div>
+            <h2 class='t1'><a expr:href='data:post.url'><data:post.title/></a></h2>
+            <div class='meta2'>Written By <span class='au'><data:post.author/></span> &#8212; <data:post.date/></div>
+            <p><data:post.snippet/></p>
+            <a class='more' expr:href='data:post.url'>Read more <span>&#8594;</span></a>
+          </article>
+        </b:includable>
+
+        <!-- ===== FULL POST / STATIC PAGE ===== -->
+        <b:includable id='postFull' var='post'>
+          <b:if cond='data:blog.pageType == &quot;item&quot;'>
+            <nav class='crumbs'>
+              <a expr:href='data:blog.homepageUrl'>Home</a>
+              <b:loop index='i' values='data:post.labels' var='label'>
+                <b:if cond='data:i == 0'>
+                  <span>&#8250;</span>
+                  <a expr:href='data:label.url'><data:label.name/></a>
+                </b:if>
+              </b:loop>
+              <span>&#8250;</span>
+              <span class='cur'><data:post.title/></span>
+            </nav>
+          </b:if>
+          <article class='post-full'>
+            <h1 class='post-title t1'><data:post.title/></h1>
+            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+              <div class='meta2'>Written By <span class='au'><data:post.author/></span> &#8212; <data:post.date/> &#8226; <span id='rt'/></div>
+            </b:if>
+            <div class='post-body' id='postBody'>
+              <data:post.body/>
+            </div>
+
+            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+              <b:if cond='data:post.labels'>
+                <div class='post-labels'>
+                  <b:loop values='data:post.labels' var='label'>
+                    <a class='tag' expr:href='data:label.url'><data:label.name/></a>
+                  </b:loop>
+                </div>
+              </b:if>
+
+              <div class='share' id='share'>
+                <b>Share:</b>
+                <a data-net='fb' href='#' rel='noopener' target='_blank'>Facebook</a>
+                <a data-net='x' href='#' rel='noopener' target='_blank'>X</a>
+                <a data-net='wa' href='#' rel='noopener' target='_blank'>WhatsApp</a>
+                <a data-net='tg' href='#' rel='noopener' target='_blank'>Telegram</a>
+                <a data-net='cp' href='#'>Copy link</a>
+              </div>
+
+              <div class='author-box'>
+                <span class='av' expr:data-name='data:post.author'/>
+                <div>
+                  <b><data:post.author/></b>
+                  <p>Author at <data:blog.title/></p>
+                </div>
+              </div>
+
+              <div class='post-nav'>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='pv' expr:href='data:olderPageUrl'><small>&#171; Older post</small><data:olderPageTitle/></a>
+                </b:if>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='nx' expr:href='data:newerPageUrl'><small>Newer post &#187;</small><data:newerPageTitle/></a>
+                </b:if>
+              </div>
+
+              <b:if cond='data:post.allowComments'>
+                <section class='comments' expr:data-post='data:post.id' id='comments'>
+                  <h3>Comments</h3>
+                  <div id='comment-list'/>
+                  <p>
+                    <a class='btn' expr:href='&quot;https://www.blogger.com/comment/fullpage/post/&quot; + data:blog.blogId + &quot;/&quot; + data:post.id' rel='noopener' target='_blank'>Write a comment</a>
+                  </p>
+                </section>
+              </b:if>
+            </b:if>
+          </article>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <!-- Ad slot below post: add an HTML widget in Layout -->
+    <b:if cond='data:blog.pageType == &quot;item&quot;'>
+      <b:section class='ad' id='ad-post' showaddelement='yes'/>
+    </b:if>
+  </main>
+
+  <!-- ================= SIDEBAR (posts and pages) ================= -->
+  <aside class='sidebar'>
+    <b:section class='ad' id='ad-side' showaddelement='yes'/>
+    <!-- Change data-label / data-title. Falls back to newest posts if the label is empty -->
+    <section class='side-block' data-label='Business' data-max='5' data-title='Latest Business Articles'/>
+    <section class='side-topics'>
+      <h3 class='side-h'>Topics</h3>
+      <div class='topics' data-max='20'/>
+    </section>
+    <b:section class='side-widgets' id='sidebar' showaddelement='yes'/>
+    <!-- Sticky sidebar ad (300x600 works well) -->
+    <div class='side-sticky'>
+      <b:section class='ad' id='ad-side-2' showaddelement='yes'/>
+    </div>
+  </aside>
+</div>
+
+<!-- Ad slot: footer banner -->
+<div class='wrap ad-foot'>
+  <b:section class='ad' id='ad-footer' showaddelement='yes'/>
+</div>
+
+<!-- Newsletter band (shown only when newsletterAction is set in SETTINGS) -->
+<section class='nl' hidden='hidden' id='newsletter'>
+  <div class='wrap'>
+    <div>
+      <h3 id='nlTitle'>Newsletter</h3>
+      <p id='nlText'>Join our newsletter.</p>
+    </div>
+    <form id='nlForm' method='post'>
+      <input aria-label='Email address' id='nlEmail' name='email' placeholder='Your email address' required='required' type='email'/>
+      <button type='submit'>Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= 6) FOOTER ================= -->
+<footer class='site-footer'>
+  <div class='wrap'>
+    <div class='foot-grid'>
+      <div class='foot-about'>
+        <div class='foot-logo'>
+          <svg height='32' viewBox='0 0 32 32' width='32'><path d='M16 2C8 2 2 8.5 2 16s6 14 14 14c5 0 9-2.5 11.5-6.5-4 1.5-9 .5-11-3.5S15 12 20 10c2.5-1 5-.5 7 .5C25 5 21 2 16 2z' fill='#fff'/><circle cx='11' cy='15' r='2.3' fill='#0a2a55'/></svg>
+          <span class='foot-name'><data:blog.title/></span>
+        </div>
+        <p class='ptag'>Informative, Practical and Latest: Business &#8226; Technology &#8226; Lifestyle &#8226; Entertainment</p>
+        <p>By accessing this site, you agree to the applicable terms. Blogger (Google) may use cookies at its discretion. We are not responsible for the impact of the use of information from this site. Read more: <a class='ext' href='/p/privacy-policy.html'>privacy policy</a></p>
+        <p class='foot-copy'>&#169; Copyright <span class='cy' data-from='2026'>2026</span>. All rights reserved.</p>
+
+        <!-- "We Are Available On The Platform" badges: add an HTML widget here -->
+        <b:section class='foot-badges' id='foot-badges' showaddelement='yes'/>
+      </div>
+
+      <b:section class='foot-col' id='foot-1' maxwidgets='1' showaddelement='no'>
+        <b:widget id='LinkList2' locked='false' title='Site Navigation' type='LinkList' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='text-0'>About Us</b:widget-setting>
+            <b:widget-setting name='link-0'>/p/about-us.html</b:widget-setting>
+            <b:widget-setting name='text-1'>Privacy and Policy</b:widget-setting>
+            <b:widget-setting name='link-1'>/p/privacy-policy.html</b:widget-setting>
+            <b:widget-setting name='text-2'>Terms and Conditions</b:widget-setting>
+            <b:widget-setting name='link-2'>/p/terms-and-conditions.html</b:widget-setting>
+            <b:widget-setting name='text-3'>Disclaimer</b:widget-setting>
+            <b:widget-setting name='link-3'>/p/disclaimer.html</b:widget-setting>
+            <b:widget-setting name='text-4'>Sitemap</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/sitemap.html</b:widget-setting>
+            <b:widget-setting name='text-5'>Contact Us</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/contact.html</b:widget-setting>
+            <b:widget-setting name='text-6'>Report Abuse</b:widget-setting>
+            <b:widget-setting name='link-6'>/p/report-abuse.html</b:widget-setting>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <h4><data:title/></h4>
+            <ul>
+              <b:loop values='data:links' var='link'>
+                <li><a expr:href='data:link.target'><data:link.name/></a></li>
+              </b:loop>
+            </ul>
+          </b:includable>
+        </b:widget>
+      </b:section>
+
+      <b:section class='foot-col' id='foot-2' maxwidgets='1' showaddelement='no'>
+        <b:widget id='LinkList3' locked='false' title='Tools Collection' type='LinkList' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='text-0'>Free Blogger Theme</b:widget-setting>
+            <b:widget-setting name='link-0'>https://www.blogger.com/</b:widget-setting>
+            <b:widget-setting name='text-1'>PageSpeed Insights</b:widget-setting>
+            <b:widget-setting name='link-1'>https://pagespeed.web.dev/</b:widget-setting>
+            <b:widget-setting name='text-2'>Search Console</b:widget-setting>
+            <b:widget-setting name='link-2'>https://search.google.com/search-console</b:widget-setting>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <h4><data:title/></h4>
+            <ul>
+              <b:loop values='data:links' var='link'>
+                <li><a expr:href='data:link.target'><data:link.name/></a></li>
+              </b:loop>
+            </ul>
+          </b:includable>
+        </b:widget>
+      </b:section>
+
+      <b:section class='foot-col' id='foot-3' maxwidgets='1' showaddelement='no'>
+        <b:widget id='LinkList4' locked='false' title='Connect With Us' type='LinkList' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='text-0'>Facebook</b:widget-setting>
+            <b:widget-setting name='link-0'>https://facebook.com/</b:widget-setting>
+            <b:widget-setting name='text-1'>LinkedIn</b:widget-setting>
+            <b:widget-setting name='link-1'>https://linkedin.com/</b:widget-setting>
+            <b:widget-setting name='text-2'>Bluesky</b:widget-setting>
+            <b:widget-setting name='link-2'>https://bsky.app/</b:widget-setting>
+            <b:widget-setting name='text-3'>RSS</b:widget-setting>
+            <b:widget-setting name='link-3'>/feeds/posts/default?alt=rss</b:widget-setting>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <h4><data:title/></h4>
+            <div class='socials'>
+              <b:loop values='data:links' var='link'>
+                <a class='soc' expr:data-n='data:link.name' expr:href='data:link.target' expr:title='data:link.name' rel='noopener' target='_blank'><span class='sr'><data:link.name/></span></a>
+              </b:loop>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+
+    <!-- DMCA badge: add an HTML widget here -->
+    <div class='foot-line'>
+      <b:section class='foot-dmca' id='foot-dmca' showaddelement='yes'/>
+      <a class='safe ext' expr:href='&quot;https://transparencyreport.google.com/safe-browsing/search?url=&quot; + data:blog.homepageUrl' rel='noopener' target='_blank'>Our website is safe to visit</a>
+    </div>
+
+    <div class='foot-bottom'>
+      <b:section class='attr' id='attr' maxwidgets='1' showaddelement='no'>
+        <b:widget id='Attribution1' locked='false' title='' type='Attribution' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='copyright'/>
+          </b:widget-settings>
+        </b:widget>
+      </b:section>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky bottom ad: slides up after 2 seconds, visitor can close it -->
+<div id='anchorAd'>
+  <button aria-label='Close ad' id='anchorClose' type='button'>&#10005;</button>
+  <b:section class='ad' id='ad-anchor' showaddelement='yes'/>
+</div>
+
+<button aria-label='Back to top' id='toTop' type='button'>&#8593;</button>
+
+<!-- ================= SCRIPT ================= -->
+<script type='text/javascript'>
+//<![CDATA[
+/* =====================================================================
+   SETTINGS  -  edit this block only
+   ===================================================================== */
+var NP_CFG={
+  adsenseClient:'',   /* your AdSense publisher id, e.g. 'ca-pub-1234567890123456' */
+  slots:{feed:'',article:'',anchor:''},  /* AdSense ad-unit ids for the 3 coded slots */
+  placeholders:true,  /* true = dashed 'Ad space' boxes while you design. Set to false before going live */
+  feedEvery:4, feedMax:3,                /* in-feed ad after every N cards, at most M per page */
+  articleAfter:3, articleMinParas:5, articleMid:true,  /* in-article ads: after paragraph N, plus one mid-post on long posts */
+  ticker:true, tickerMax:8,              /* 'Latest' news ticker under the header */
+  lightbox:true,                         /* click a post image to zoom */
+  newsletterAction:'', newsletterField:'email',  /* form URL from Mailchimp / Brevo / Formspree. Empty = band stays hidden */
+  newsletterTitle:'Get the best articles in your inbox',
+  newsletterText:'Join our free newsletter. No spam, unsubscribe anytime.'
+};
+(function(){
+  function $(s,c){return (c||document).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function big(u,w,h){return u?u.replace(/\/(?:s\d+|w\d+-h\d+)[-\w]*\//,'/w'+w+'-h'+h+'-p-k-no-nu/'):''}
+  function fdate(s){try{return new Date(s).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'2-digit'})}catch(e){return ''}}
+  function lurl(l){return '/search/label/'+encodeURIComponent(l)+'?max-results=12'}
+  var B=document.body;
+
+  /* ---------- UI basics ---------- */
+  var mb=$('#menuBtn');if(mb){mb.addEventListener('click',function(){B.classList.toggle('nav-open')})}
+  var sb=$('#searchBtn');
+  if(sb){sb.addEventListener('click',function(){B.classList.toggle('search-open');if(B.classList.contains('search-open')){var i=$('.search-pop input');if(i){i.focus()}}})}
+
+  /* Logo: first 2 letters yellow */
+  $$('.logo-text a').forEach(function(a){
+    var t=a.textContent.trim();
+    if(t.length>3){a.innerHTML='<span class="go">'+esc(t.slice(0,2))+'</span>'+esc(t.slice(2))}
+  });
+  var fn=$('.foot-name');
+  if(fn){var ft0=fn.textContent.trim();if(ft0.length>3){fn.innerHTML='<span class="go">'+esc(ft0.slice(0,2))+'</span>'+esc(ft0.slice(2))}}
+
+  /* Copyright years */
+  var cy=$('.cy');
+  if(cy){var now=new Date().getFullYear(),from=parseInt(cy.getAttribute('data-from'),10)||now;cy.textContent=from<now?from+' - '+now:String(now)}
+
+  /* Dark mode */
+  var tb=$('#themeBtn');
+  if(tb){
+    tb.addEventListener('click',function(){
+      var d=document.documentElement.getAttribute('data-theme')==='dark';
+      if(d){document.documentElement.removeAttribute('data-theme')}else{document.documentElement.setAttribute('data-theme','dark')}
+      try{localStorage.setItem('theme',d?'light':'dark')}catch(e){}
+    });
+  }
+
+  /* Progress + back to top */
+  var pg=$('#progress'),tt=$('#toTop');
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight,st=h.scrollTop||B.scrollTop;
+    if(pg){pg.style.width=(max>0?(st/max*100):0)+'%'}
+    if(tt){tt.classList.toggle('show',st>500)}
+    B.classList.toggle('scrolled',st>60);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  if(tt){tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})}
+
+  /* Footer: external link arrows + social icons */
+  $$('.foot-col a').forEach(function(a){
+    if(a.classList.contains('soc')){return}
+    if(a.hostname&&a.hostname!==location.hostname){a.target='_blank';a.rel='noopener';a.classList.add('ext')}
+  });
+  var ICONS={
+    facebook:'M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z',
+    linkedin:'M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z',
+    bluesky:'M12 10.8c-1.09-2.11-4.05-6.05-6.8-8C2.57.94 1.56 1.27.9 1.57.14 1.91 0 3.08 0 3.77c0 .69.38 5.65.62 6.48.82 2.74 3.71 3.66 6.38 3.36-3.91.58-7.39 2.01-2.83 7.08 5.01 5.19 6.87-1.11 7.82-4.31.95 3.2 2.05 9.27 7.73 4.31 4.27-4.31 1.17-6.5-2.74-7.08 2.67.3 5.57-.62 6.38-3.36.25-.83.62-5.79.62-6.48 0-.69-.14-1.86-.9-2.2-.66-.3-1.66-.62-4.3 1.24C16.05 4.75 13.09 8.69 12 10.8z',
+    rss:'M19.2 24C19.2 13.47 10.53 4.8 0 4.8V0c13.17 0 24 10.84 24 24h-4.8zM3.29 17.42c1.81 0 3.29 1.48 3.29 3.3 0 1.81-1.49 3.28-3.3 3.28C1.47 24 0 22.53 0 20.71s1.48-3.29 3.29-3.29zM15.91 24h-4.67c0-6.17-5.07-11.25-11.24-11.25V8.09c8.73 0 15.91 7.18 15.91 15.91z'
+  };
+  $$('.soc').forEach(function(a){
+    var n=(a.getAttribute('data-n')||'').toLowerCase().replace(/[^a-z]/g,''),p=ICONS[n];
+    var svg=p?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+p+'"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/></svg>';
+    a.insertAdjacentHTML('afterbegin',svg);
+  });
+
+  function fixThumbs(root){$$('img.js-thumb',root).forEach(function(i){i.src=big(i.getAttribute('src'),640,360);i.classList.remove('js-thumb')})}
+  fixThumbs();
+
+  /* ---------- Feed helpers ---------- */
+  function parse(e){
+    var link='';
+    (e.link||[]).forEach(function(l){if(l.rel==='alternate'){link=l.href}});
+    var html=(e.content&&e.content.$t)||(e.summary&&e.summary.$t)||'';
+    return {
+      title:e.title.$t,url:link,
+      img:e['media$thumbnail']?e['media$thumbnail'].url:'',
+      date:e.published.$t,
+      text:html.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim(),
+      cat:(e.category&&e.category[0])?e.category[0].term:''
+    };
+  }
+  function feed(label,max,cb){
+    var u='/feeds/posts/default'+(label?'/-/'+encodeURIComponent(label):'')+'?alt=json&max-results='+max;
+    fetch(u).then(function(r){return r.json()}).then(function(d){
+      cb(((d.feed&&d.feed.entry)||[]).map(parse));
+    }).catch(function(){cb([])});
+  }
+  function pic(p,w,h){return p.img?'<img loading="lazy" alt="'+esc(p.title)+'" src="'+esc(big(p.img,w,h))+'"/>':''}
+  function tag(c){return c?'<a class="tag" href="'+lurl(c)+'">'+esc(c)+'</a>':''}
+  function row(p){
+    return '<li class="row"><a class="row-img" href="'+esc(p.url)+'">'+pic(p,230,160)+'</a>'+
+      '<a class="row-t" href="'+esc(p.url)+'">'+esc(p.title)+'</a></li>';
+  }
+  function rows(a,cls){return '<ul class="rows'+(cls?' '+cls:'')+'">'+a.map(row).join('')+'</ul>'}
+
+  /* ---------- 2) Selected Articles ---------- */
+  var ft=$('#featured');
+  if(ft){
+    function paintFeat(p){
+      ft.innerHTML='<div class="feat"><a class="feat-img" href="'+esc(p.url)+'">'+pic(p,760,428)+'</a>'+
+        '<div class="feat-body">'+tag(p.cat)+
+        '<h3 class="t1"><a href="'+esc(p.url)+'">'+esc(p.title)+'</a></h3>'+
+        '<div class="meta2">Selected articles '+esc(location.hostname)+' \u2014 '+fdate(p.date)+'</div>'+
+        '<p>'+esc(p.text.slice(0,190))+'...</p></div></div>';
+    }
+    feed(ft.getAttribute('data-label'),1,function(a){
+      if(a.length){paintFeat(a[0])}
+      else{feed('',1,function(b){if(b.length){paintFeat(b[0])}else{ft.parentNode.style.display='none'}})}
+    });
+  }
+
+  /* ---------- 3) Label block: tab + big + 3 rows ---------- */
+  $$('.tabsec').forEach(function(el){
+    var l=el.getAttribute('data-label');
+    feed(l,4,function(a){
+      if(!a.length){el.style.display='none';return}
+      var b=a[0];
+      el.innerHTML='<div class="tab-head"><a class="tab" href="'+lurl(l)+'">'+esc(el.getAttribute('data-title')||l)+'</a></div>'+
+        '<div class="bl"><div><a class="bl-img" href="'+esc(b.url)+'">'+pic(b,640,360)+'</a>'+
+        '<h3 class="t1"><a href="'+esc(b.url)+'">'+esc(b.title)+'</a></h3></div>'+
+        rows(a.slice(1,4))+'</div>';
+    });
+  });
+
+  /* ---------- 4) Two label lists ---------- */
+  $$('.lbl').forEach(function(el){
+    var l=el.getAttribute('data-label'),m=el.getAttribute('data-max')||5;
+    feed(l,m,function(a){
+      if(!a.length){el.style.display='none';return}
+      el.innerHTML='<div class="lbl-head"><h3>'+esc(el.getAttribute('data-title')||l)+'</h3><span class="stars">\u2605\u2605\u2605</span>'+
+        '<a class="btn-o" href="'+lurl(l)+'">See all \u00bb</a></div>'+rows(a);
+    });
+  });
+
+  /* ---------- Sidebar block (only when the sidebar is visible) ---------- */
+  $$('.side-block').forEach(function(el){
+    if(!el.offsetParent){return}
+    var l=el.getAttribute('data-label'),m=el.getAttribute('data-max')||5;
+    function paint(a){el.innerHTML='<h3 class="side-h">'+esc(el.getAttribute('data-title')||l)+'</h3>'+rows(a)}
+    feed(l,m,function(a){
+      if(a.length){paint(a)}
+      else{feed('',m,function(b){if(b.length){paint(b)}else{el.style.display='none'}})}
+    });
+  });
+
+  /* ---------- 5) AJAX Load More ---------- */
+  var more=$('#loadMore'),pgrid=$('#postGrid');
+  if(more&&pgrid){
+    more.addEventListener('click',function(e){
+      e.preventDefault();
+      var txt=more.textContent;more.textContent='Loading...';
+      fetch(more.getAttribute('href')).then(function(r){return r.text()}).then(function(t){
+        var doc=new DOMParser().parseFromString(t,'text/html');
+        var g=doc.querySelector('#postGrid');
+        if(g){$$('.pcard',g).forEach(function(c){pgrid.appendChild(document.importNode(c,true))})}
+        fixThumbs(pgrid);feedAds();
+        var nm=doc.querySelector('#loadMore');
+        if(nm){more.setAttribute('href',nm.getAttribute('href'));more.textContent=txt}
+        else{more.parentNode.removeChild(more)}
+      }).catch(function(){window.location=more.getAttribute('href')});
+    });
+  }
+
+  /* ---------- Single post extras ---------- */
+  var body=$('#postBody');
+  if(body&&B.classList.contains('page-item')){
+    var words=(body.textContent||'').trim().split(/\s+/).length,rt=$('#rt');
+    if(rt){rt.textContent=Math.max(1,Math.round(words/200))+' min read'}
+
+    var hs=$$('h2,h3',body);
+    if(hs.length>=3){
+      var det=document.createElement('details');det.className='toc';det.open=true;
+      var html='<summary>Table of Contents</summary><ol>';
+      hs.forEach(function(h,i){
+        if(!h.id){h.id='sec-'+(i+1)}
+        html+='<li'+(h.tagName==='H3'?' class="sub"':'')+'><a href="#'+h.id+'">'+esc(h.textContent)+'</a></li>';
+      });
+      det.innerHTML=html+'</ol>';
+      body.insertBefore(det,body.firstChild);
+    }
+
+    var sh=$('#share');
+    if(sh){
+      var u=encodeURIComponent(location.href),t=encodeURIComponent(document.title);
+      var map={fb:'https://www.facebook.com/sharer/sharer.php?u='+u,x:'https://twitter.com/intent/tweet?url='+u+'&text='+t,wa:'https://wa.me/?text='+t+'%20'+u,tg:'https://t.me/share/url?url='+u+'&text='+t};
+      $$('a',sh).forEach(function(a){
+        var n=a.getAttribute('data-net');
+        if(map[n]){a.href=map[n]}
+        else{a.addEventListener('click',function(e){e.preventDefault();if(navigator.clipboard){navigator.clipboard.writeText(location.href);a.textContent='Copied!'}})}
+      });
+    }
+
+    var av=$('.author-box .av');
+    if(av){av.textContent=(av.getAttribute('data-name')||'?').trim().charAt(0).toUpperCase()}
+
+    var rel=$('#related'),first=$('.post-labels a');
+    if(rel&&first){
+      feed(first.textContent.trim(),7,function(a){
+        var cur=location.href.split('?')[0].split('#')[0];
+        a=a.filter(function(p){return p.url!==cur}).slice(0,4);
+        if(a.length){rel.innerHTML='<h2 class="sec-h" style="margin-top:30px">Related Articles</h2>'+rows(a,'rel-grid')}
+      });
+    }
+
+    var cm=$('#comments');
+    if(cm){
+      var id=cm.getAttribute('data-post'),list=$('#comment-list');
+      fetch('/feeds/'+id+'/comments/default?alt=json&max-results=100').then(function(r){return r.json()}).then(function(d){
+        var es=(d.feed&&d.feed.entry)||[];
+        if(!es.length){list.innerHTML='<p class="meta2">No comments yet. Be the first to comment.</p>';return}
+        list.innerHTML=es.map(function(e){
+          var txt=((e.content&&e.content.$t)||'').replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]*>/g,'');
+          var nm=(e.author&&e.author[0]&&e.author[0].name&&e.author[0].name.$t)||'Anonymous';
+          return '<div class="cmt"><b>'+esc(nm)+'</b><small>'+fdate(e.published.$t)+'</small><p>'+esc(txt)+'</p></div>';
+        }).join('');
+      }).catch(function(){list.innerHTML=''});
+    }
+  }
+
+  /* =====================================================================
+     v5 ADD-ONS
+     ===================================================================== */
+  var CFG=NP_CFG;
+  var isPost=B.classList.contains('page-item');
+
+  /* ---------- Menu: current item + keyboard shortcuts ---------- */
+  $$('.menu a').forEach(function(a){
+    try{var u=new URL(a.href,location.href);if(u.pathname!=='/'&&u.pathname===location.pathname){a.classList.add('on')}}catch(e){}
+  });
+  document.addEventListener('keydown',function(e){
+    var t=((document.activeElement||{}).tagName)||'';
+    if(e.key==='Escape'){B.classList.remove('search-open');B.classList.remove('nav-open');closeLb()}
+    else if(e.key==='/'&&!/^(INPUT|TEXTAREA|SELECT)$/.test(t)&&!e.ctrlKey&&!e.metaKey){
+      e.preventDefault();B.classList.add('search-open');var i=$('.search-pop input');if(i){i.focus()}
+    }
+  });
+
+  /* ---------- Skeleton loaders (shown until feeds arrive) ---------- */
+  function skelRows(n){var s='';for(var i=0;i<n;i++){s+='<div class="sk-row"><i class="sk sk-img"></i><i class="sk sk-t"></i></div>'}return s}
+  function skeleton(el,kind){
+    if(!el||el.children.length||(el.textContent||'').replace(/\s+/g,'')){return}
+    if(kind==='feat'){
+      el.innerHTML='<div class="feat"><i class="sk sk-16x9"></i><div class="feat-body"><i class="sk sk-tag"></i><i class="sk sk-h"></i><i class="sk sk-h" style="width:70%"></i><i class="sk sk-p"></i><i class="sk sk-p"></i></div></div>';
+    }else if(kind==='tab'){
+      el.innerHTML='<i class="sk sk-tab"></i><div class="bl"><div><i class="sk sk-16x9"></i><i class="sk sk-h" style="margin-top:14px"></i></div><div>'+skelRows(3)+'</div></div>';
+    }else{
+      el.innerHTML='<i class="sk sk-tab"></i>'+skelRows(4);
+    }
+  }
+  skeleton($('#featured'),'feat');
+  $$('.tabsec').forEach(function(e){skeleton(e,'tab')});
+  $$('.lbl').forEach(function(e){skeleton(e,'list')});
+  $$('.side-block').forEach(function(e){if(e.offsetParent){skeleton(e,'list')}});
+
+  /* ---------- News ticker ---------- */
+  var tk=$('#ticker');
+  if(tk){
+    if(!CFG.ticker){tk.classList.add('off')}
+    else{
+      feed('',CFG.tickerMax,function(a){
+        if(!a.length){tk.classList.add('off');return}
+        var h=a.map(function(p){return '<a href="'+esc(p.url)+'">'+esc(p.title)+'</a>'}).join('<i></i>')+'<i></i>';
+        var mv=$('.tk-move',tk);
+        mv.innerHTML='<div>'+h+'</div><div aria-hidden="true">'+h.replace(/<a /g,'<a tabindex="-1" ')+'</div>';
+        mv.style.animationDuration=Math.max(30,a.length*8)+'s';
+      });
+    }
+  }
+
+  /* ---------- Topic chips (home + sidebar) ---------- */
+  var tops=$$('.topics');
+  function hideTopics(){tops.forEach(function(el){var p=el.closest('section');if(p){p.style.display='none'}})}
+  if(tops.length){
+    fetch('/feeds/posts/summary?alt=json&max-results=0').then(function(r){return r.json()}).then(function(d){
+      var cats=((d.feed&&d.feed.category)||[]).map(function(c){return c.term});
+      if(!cats.length){hideTopics();return}
+      tops.forEach(function(el){
+        var max=parseInt(el.getAttribute('data-max'),10)||14;
+        el.innerHTML=cats.slice(0,max).map(function(c){return '<a class="chip" href="'+lurl(c)+'">'+esc(c)+'</a>'}).join('');
+      });
+    }).catch(hideTopics);
+  }
+
+  /* ---------- Newsletter band ---------- */
+  var nl=$('#newsletter');
+  if(nl&&CFG.newsletterAction){
+    $('#nlTitle').textContent=CFG.newsletterTitle;
+    $('#nlText').textContent=CFG.newsletterText;
+    var nf=$('#nlForm');nf.setAttribute('action',CFG.newsletterAction);nf.setAttribute('target','_blank');
+    $('#nlEmail').setAttribute('name',CFG.newsletterField||'email');
+    nl.hidden=false;
+  }
+
+  /* ---------- ADS ENGINE ---------- */
+  if(CFG.adsenseClient){
+    var ads=document.createElement('script');
+    ads.async=true;ads.crossOrigin='anonymous';
+    ads.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(CFG.adsenseClient);
+    document.head.appendChild(ads);
+  }
+  function pushAd(){try{(window.adsbygoogle=window.adsbygoogle||[]).push({})}catch(x){}}
+  var adIO=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){adIO.unobserve(e.target);pushAd()}});
+  },{rootMargin:'300px 0px'}):null;
+  function armAd(box){
+    var ins=box.querySelector('ins.adsbygoogle');
+    if(!ins){return}
+    if(adIO){adIO.observe(ins)}else{pushAd()}
+  }
+  function adBox(kind,size){
+    var slot=(CFG.slots&&CFG.slots[kind])||'';
+    var d=document.createElement('div');
+    d.className='adbox adbox-'+kind;
+    if(CFG.adsenseClient&&slot){
+      var attrs=kind==='article'?' data-ad-layout="in-article" data-ad-format="fluid"':' data-ad-format="auto" data-full-width-responsive="true"';
+      d.innerHTML='<span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block'+(kind==='article'?';text-align:center':'')+'" data-ad-client="'+esc(CFG.adsenseClient)+'" data-ad-slot="'+esc(slot)+'"'+attrs+'></ins>';
+      return d;
+    }
+    if(CFG.placeholders){
+      d.innerHTML='<span class="ad-label">Advertisement</span><div class="ad-ph">'+esc(size||'Ad space')+'</div>';
+      return d;
+    }
+    return null;
+  }
+
+  /* Layout slots (HTML widgets added in Layout): label, or placeholder, or hide */
+  var PH={'ad-top':'Top banner - 728 x 90','ad-home':'Home banner - 728 x 90','ad-post':'After post - 336 x 280','ad-side':'Sidebar - 300 x 250','ad-side-2':'Sticky sidebar - 300 x 600','ad-footer':'Footer banner - 728 x 90'};
+  $$('.ad').forEach(function(s){
+    if(s.id==='ad-anchor'){return}
+    if(s.querySelector('.widget')){s.classList.add('has-ad')}
+    else if(CFG.placeholders&&PH[s.id]){s.classList.add('has-ad');s.insertAdjacentHTML('beforeend','<div class="ad-ph">'+PH[s.id]+'</div>')}
+    else{s.style.display='none'}
+  });
+
+  /* Sticky bottom (anchor) ad */
+  var an=$('#anchorAd');
+  if(an){
+    var closed=false;try{closed=sessionStorage.getItem('np_anchor')==='1'}catch(e){}
+    var asec=$('#ad-anchor'),hasA=!!(asec&&asec.querySelector('.widget'));
+    if(!hasA&&asec){
+      var ab=adBox('anchor','Sticky bottom ad - 320 x 50 / 728 x 90');
+      if(ab){asec.appendChild(ab);armAd(ab);hasA=true}
+    }
+    if(hasA&&!closed){setTimeout(function(){an.classList.add('on');B.classList.add('has-anchor')},1800)}
+    var ac=$('#anchorClose');
+    if(ac){ac.addEventListener('click',function(){
+      an.classList.remove('on');B.classList.remove('has-anchor');
+      try{sessionStorage.setItem('np_anchor','1')}catch(e){}
+    })}
+  }
+
+  /* In-feed ads: after every N cards on home / label / search pages */
+  var fedN=0,fedAds=0;
+  function feedAds(){
+    var g=$('#postGrid');
+    if(!g){return}
+    $$('.pcard',g).forEach(function(c){
+      if(c.getAttribute('data-ad')){return}
+      c.setAttribute('data-ad','1');fedN++;
+      if(fedN%CFG.feedEvery===0&&fedAds<CFG.feedMax&&(c.nextElementSibling||$('#loadMore'))){
+        var box=adBox('feed','In-feed ad - responsive');
+        if(box){
+          var w=document.createElement('div');w.className='ad-feed';w.appendChild(box);
+          c.parentNode.insertBefore(w,c.nextSibling);fedAds++;armAd(box);
+        }
+      }
+    });
+  }
+  feedAds();
+
+  /* In-article ads: after paragraph N and in the middle of long posts */
+  function articleAds(){
+    if(!isPost||!body){return}
+    var kids=Array.prototype.slice.call(body.children).filter(function(n){
+      return /^(P|DIV)$/.test(n.tagName)&&!n.classList.contains('toc')&&(n.textContent||'').trim().length>70&&!n.querySelector('table,pre,iframe');
+    });
+    if(kids.length<CFG.articleMinParas){return}
+    var at=[CFG.articleAfter-1];
+    if(CFG.articleMid&&kids.length>=9){at.push(Math.floor(kids.length*0.6))}
+    at.forEach(function(i,n){
+      var ref=kids[i];if(!ref||ref===kids[kids.length-1]){return}
+      var box=adBox('article','In-article ad - responsive');
+      if(box){ref.parentNode.insertBefore(box,ref.nextSibling);armAd(box)}
+    });
+  }
+  articleAds();
+
+  /* ---------- Post extras: lightbox, code copy, lazy images ---------- */
+  var lb=null;
+  function fullImg(u){return u.replace(/\/(?:s\d+|w\d+-h\d+)[-\w]*\//,'/s1600/')}
+  function openLb(src,alt){
+    if(!lb){
+      lb=document.createElement('div');lb.className='lb';
+      lb.innerHTML='<button class="lb-x" aria-label="Close" type="button">&#10005;</button><img alt=""/>';
+      document.body.appendChild(lb);
+      lb.addEventListener('click',closeLb);
+    }
+    var im=$('img',lb);im.src=src;im.alt=alt||'';
+    requestAnimationFrame(function(){lb.classList.add('open')});
+    B.classList.add('lb-on');
+  }
+  function closeLb(){if(lb){lb.classList.remove('open');B.classList.remove('lb-on')}}
+  if(isPost&&body){
+    if(CFG.lightbox){
+      body.addEventListener('click',function(e){
+        var im=e.target;
+        if(!im||im.tagName!=='IMG'){return}
+        var a=im.closest?im.closest('a'):null,src=im.currentSrc||im.src;
+        if(a&&a.href){
+          if(/\.(?:jpe?g|png|gif|webp|avif)(?:\?|$)|googleusercontent|bp\.blogspot/i.test(a.href)){src=a.href}else{return}
+        }
+        e.preventDefault();openLb(fullImg(src),im.alt);
+      });
+    }
+    $$('pre',body).forEach(function(p){
+      var raw=p.textContent,b=document.createElement('button');
+      b.type='button';b.className='copy-code';b.textContent='Copy';
+      b.addEventListener('click',function(){
+        if(navigator.clipboard){navigator.clipboard.writeText(raw).then(function(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy'},1500)})}
+      });
+      p.insertBefore(b,p.firstChild);
+    });
+    $$('img',body).forEach(function(im,n){if(n>0&&!im.getAttribute('loading')){im.setAttribute('loading','lazy')}});
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var RV='.feat,.tabsec,.lbl,.sec-row,.topics-sec,.side-block,.side-topics,#related,.author-box,.post-nav,.comments,.share,.foot-grid>*,.nl .wrap';
+  var rvIO=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var t=e.target;rvIO.unobserve(t);t.classList.add('in');
+        setTimeout(function(){t.style.transitionDelay=''},1200);
+      }
+    });
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'}):null;
+  var rvQueued=false;
+  function scan(){
+    rvQueued=false;
+    $$(RV).forEach(function(el){if(!el.classList.contains('rv')){el.classList.add('rv')}});
+    var n=0;
+    $$('.rv:not(.in)').forEach(function(el){
+      if(!rvIO){el.classList.add('in');return}
+      if(!el.__rv){el.__rv=1;el.style.transitionDelay=((n++%4)*70)+'ms';rvIO.observe(el)}
+    });
+  }
+  function queueScan(){if(!rvQueued){rvQueued=true;requestAnimationFrame(scan)}}
+  scan();
+  if('MutationObserver' in window){new MutationObserver(queueScan).observe(document.body,{childList:true,subtree:true})}
+})();
+//]]>
+</script>
+
+</body>
+</html>
