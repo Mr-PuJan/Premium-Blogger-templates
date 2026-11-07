@@ -1,0 +1,3050 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie-design.xml' b:templateVersion='2.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta content='ie=edge' http-equiv='X-UA-Compatible'/>
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap' rel='stylesheet'/>
+    
+    <!-- ===== SEO: Nara Media ===== -->
+
+    <!-- BRAND SETTINGS. Both are optional and skipped while empty.
+         brandLogo  = direct URL of your logo (square PNG/SVG/WebP, at least 112x112 px, 512x512 recommended)
+         brandImage = default social-share image for pages with no post image (1200x630 px)
+         Example: value='&quot;https://example.com/logo.png&quot;' -->
+    <b:with value='&quot;&quot;' var='brandLogo'>
+    <b:with value='&quot;&quot;' var='brandImage'>
+    <b:with value='data:view.isHomepage ? &quot;Nara Media&quot; : (data:view.isError ? &quot;Page Not Found | Nara Media&quot; : (data:view.isLabelSearch ? (data:blog.searchLabel + &quot; | Nara Media&quot;) : (data:blog.pageName ? (data:blog.pageName + &quot; | Nara Media&quot;) : &quot;Nara Media&quot;)))' var='seoTitle'>
+    <b:with value='data:view.isHomepage ? &quot;Nara Media is your trusted source for digital marketing, SEO strategies, AI tools, web solutions, and premium digital resources. Discover expert guides, marketing tips, website optimization, and high-quality digital assets to grow your online presence and business Our Team Provide By Nara Media Digital Resource.&quot; : (data:view.isLabelSearch ? (&quot;Explore the latest &quot; + data:blog.searchLabel + &quot; articles, guides and resources from Nara Media.&quot;) : data:blog.metaDescription)' var='seoDesc'>
+
+    <title><data:seoTitle/></title>
+    <b:if cond='data:seoDesc'>
+      <meta expr:content='data:seoDesc' name='description'/>
+    </b:if>
+
+    <!-- Open Graph / Social -->
+    <meta expr:content='data:seoTitle' property='og:title'/>
+    <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+    <meta expr:content='data:view.isPost ? &quot;article&quot; : &quot;website&quot;' property='og:type'/>
+    <meta content='Nara Media' property='og:site_name'/>
+    <b:if cond='data:seoDesc'>
+      <meta expr:content='data:seoDesc' property='og:description'/>
+    </b:if>
+    <meta expr:content='data:blog.locale' property='og:locale'/>
+    <b:if cond='data:blog.postImageThumbnailUrl'>
+      <meta expr:content='data:blog.postImageThumbnailUrl' property='og:image'/>
+      <meta expr:content='data:seoTitle' property='og:image:alt'/>
+    <b:elseif cond='data:brandImage'/>
+      <meta expr:content='data:brandImage' property='og:image'/>
+      <meta expr:content='data:seoTitle' property='og:image:alt'/>
+    </b:if>
+
+    <!-- Twitter Card -->
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta expr:content='data:seoTitle' name='twitter:title'/>
+    <b:if cond='data:seoDesc'>
+      <meta expr:content='data:seoDesc' name='twitter:description'/>
+    </b:if>
+    <b:if cond='data:blog.postImageThumbnailUrl'>
+      <meta expr:content='data:blog.postImageThumbnailUrl' name='twitter:image'/>
+    <b:elseif cond='data:brandImage'/>
+      <meta expr:content='data:brandImage' name='twitter:image'/>
+    </b:if>
+    <!-- <meta content='@YourHandle' name='twitter:site'/>  (uncomment and add your X/Twitter handle) -->
+
+    </b:with>
+    </b:with>
+
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Crawling / indexing -->
+    <b:if cond='data:view.isError or data:view.isArchive or (data:view.isSearch and not data:view.isLabelSearch)'>
+      <meta content='noindex, follow' name='robots'/>
+      <meta content='noindex, follow' name='googlebot'/>
+    <b:else/>
+      <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='robots'/>
+      <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='googlebot'/>
+    </b:if>
+    <meta content='Nara Media' name='author'/>
+    <meta content='Nara Media' name='application-name'/>
+    <meta content='#2563eb' name='theme-color'/>
+    <link expr:href='data:blog.canonicalHomepageUrl + &quot;sitemap.xml&quot;' rel='sitemap' title='Sitemap' type='application/xml'/>
+    <link expr:href='data:blog.canonicalHomepageUrl + &quot;sitemap-pages.xml&quot;' rel='sitemap' title='Pages sitemap' type='application/xml'/>
+    <link expr:href='data:blog.canonicalUrl' hreflang='x-default' rel='alternate'/>
+    <!-- Google Search Console: paste your verification code, then remove the comment markers
+    <meta content='YOUR_VERIFICATION_CODE' name='google-site-verification'/> -->
+
+    <!-- Structured data (JSON-LD) on every page: Organization + WebSite, plus Blog (home), CollectionPage (topic pages)
+         and WebPage (static pages). Posts add BlogPosting + BreadcrumbList from the post template.
+         Social profiles: when you have them, add a line like
+           "sameAs": ["https://www.youtube.com/@yourchannel", "https://x.com/yourhandle"],
+         directly after the "url" line of the Organization block below. -->
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "<data:blog.canonicalHomepageUrl/>#organization",
+          "name": "Nara Media",
+          "alternateName": "Nara Media Digital Resource",
+          "url": "<data:blog.canonicalHomepageUrl/>",
+          <b:if cond='data:brandLogo'>
+          "logo": { "@type": "ImageObject", "url": "<data:brandLogo/>" },
+          "image": "<data:brandLogo/>",
+          </b:if>
+          "description": "Nara Media is your trusted source for digital marketing, SEO strategies, AI tools, web solutions, and premium digital resources. Discover expert guides, marketing tips, website optimization, and high-quality digital assets to grow your online presence and business Our Team Provide By Nara Media Digital Resource.",
+          "knowsAbout": ["Digital Marketing", "SEO", "AI Tools", "Web Solutions", "Website Optimization", "Digital Resources"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "<data:blog.canonicalHomepageUrl/>#website",
+          "url": "<data:blog.canonicalHomepageUrl/>",
+          "name": "Nara Media",
+          "description": "Nara Media is your trusted source for digital marketing, SEO strategies, AI tools, web solutions, and premium digital resources. Discover expert guides, marketing tips, website optimization, and high-quality digital assets to grow your online presence and business Our Team Provide By Nara Media Digital Resource.",
+          "publisher": { "@id": "<data:blog.canonicalHomepageUrl/>#organization" },
+          "inLanguage": "<data:blog.locale/>",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "<data:blog.canonicalHomepageUrl/>search?q={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          }
+        }
+        <b:if cond='data:view.isHomepage'>
+        ,{
+          "@type": "Blog",
+          "@id": "<data:blog.canonicalHomepageUrl/>#blog",
+          "url": "<data:blog.canonicalHomepageUrl/>",
+          "name": "Nara Media",
+          "description": "Nara Media is your trusted source for digital marketing, SEO strategies, AI tools, web solutions, and premium digital resources. Discover expert guides, marketing tips, website optimization, and high-quality digital assets to grow your online presence and business Our Team Provide By Nara Media Digital Resource.",
+          "inLanguage": "<data:blog.locale/>",
+          "isPartOf": { "@id": "<data:blog.canonicalHomepageUrl/>#website" },
+          "publisher": { "@id": "<data:blog.canonicalHomepageUrl/>#organization" }
+        }
+        </b:if>
+        <b:if cond='data:view.isLabelSearch'>
+        ,{
+          "@type": "CollectionPage",
+          "@id": "<data:blog.canonicalUrl/>#webpage",
+          "url": "<data:blog.canonicalUrl/>",
+          "name": "<data:blog.searchLabel.jsonEscaped/> | Nara Media",
+          "description": "Explore the latest <data:blog.searchLabel.jsonEscaped/> articles, guides and resources from Nara Media.",
+          "inLanguage": "<data:blog.locale/>",
+          "isPartOf": { "@id": "<data:blog.canonicalHomepageUrl/>#website" }
+        }
+        </b:if>
+        <b:if cond='data:view.isPage'>
+        ,{
+          "@type": "WebPage",
+          "@id": "<data:blog.canonicalUrl/>#webpage",
+          "url": "<data:blog.canonicalUrl/>",
+          "name": "<data:blog.pageName.jsonEscaped/>",
+          "inLanguage": "<data:blog.locale/>",
+          "isPartOf": { "@id": "<data:blog.canonicalHomepageUrl/>#website" }
+        }
+        </b:if>
+      ]
+    }
+    </script>
+
+    </b:with>
+    </b:with>
+
+    <!-- Apply saved / system theme BEFORE first paint (no flash) -->
+    <script>
+    //<![CDATA[
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { t = 'dark'; }
+          if (t === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+        } catch (e) {}
+      })();
+    //]]>
+    </script>
+
+    <b:skin><![CDATA[
+      /* ==========================================================
+         INDIE DESIGN PRO — Blogger theme stylesheet
+         ========================================================== */
+      :root {
+        --bg-body: #ffffff;
+        --bg-card: #ffffff;
+        --bg-header: rgba(255, 255, 255, 0.88);
+        --bg-alt: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --text-light: #94a3b8;
+        --accent: #2563eb;
+        --accent-hover: #1d4ed8;
+        --accent-soft: rgba(37, 99, 235, 0.10);
+        --border: #e2e8f0;
+        --cta-bg: #0f172a;
+        --cta-text: #ffffff;
+        --btn-red-bg: #ef4444; --btn-red-text: #fff;
+        --btn-blue-bg: #2563eb; --btn-blue-text: #fff;
+        --btn-yellow-bg: #eab308; --btn-yellow-text: #000;
+        --container: 1180px;
+        --header-height: 68px;
+        --radius: 14px;
+        --section-y: 3.5rem;
+        --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+        --shadow-md: 0 6px 12px -2px rgb(0 0 0 / 0.10), 0 3px 6px -3px rgb(0 0 0 / 0.10);
+        --shadow-lg: 0 14px 24px -4px rgb(0 0 0 / 0.12), 0 6px 10px -6px rgb(0 0 0 / 0.12);
+        color-scheme: light;
+      }
+      [data-theme='dark'] {
+        --bg-body: #020617;
+        --bg-card: #0f172a;
+        --bg-header: rgba(2, 6, 23, 0.88);
+        --bg-alt: #111c33;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --accent: #60a5fa;
+        --accent-hover: #93c5fd;
+        --accent-soft: rgba(96, 165, 250, 0.14);
+        --border: #1e293b;
+        --cta-bg: #1e293b;
+        --cta-text: #ffffff;
+        --btn-blue-bg: #3b82f6;
+        --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5);
+        --shadow-md: 0 6px 12px -2px rgb(0 0 0 / 0.5);
+        --shadow-lg: 0 14px 24px -4px rgb(0 0 0 / 0.6);
+        color-scheme: dark;
+      }
+
+      /* ---------- Reset & base ---------- */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 12px); -webkit-text-size-adjust: 100%; }
+      body {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: var(--bg-body); color: var(--text-main);
+        line-height: 1.65; font-size: 1rem; -webkit-font-smoothing: antialiased;
+        min-height: 100vh; display: flex; flex-direction: column;
+        transition: background-color .3s ease, color .3s ease;
+      }
+      body > main, body > .sec, body > .blog-wrap { flex: 1 0 auto; }
+      a { text-decoration: none; color: inherit; transition: color .2s ease; }
+      a:hover { color: var(--accent); }
+      img, video, iframe { max-width: 100%; }
+      img { height: auto; display: block; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+      ::selection { background: var(--accent); color: #fff; }
+
+      /* Blogger widget reset */
+      .widget { margin: 0; line-height: inherit; }
+      .widget ul, .widget ol, .widget li { margin: 0; padding: 0; list-style: none; }
+      .widget .title { display: none; }
+      .widget > *:last-child { margin-bottom: 0; }
+
+      .skip-link {
+        position: absolute; left: 1rem; top: -100px; z-index: 300; background: var(--accent); color: #fff;
+        padding: .6rem 1rem; border-radius: 8px; font-weight: 600;
+      }
+      .skip-link:focus { top: .75rem; color: #fff; }
+
+      /* ---------- Utilities ---------- */
+      .container { width: 100%; max-width: var(--container); margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+        padding: .7rem 1.4rem; border-radius: 9999px; font-weight: 600; font-size: .95rem;
+        cursor: pointer; border: none; letter-spacing: .01em; line-height: 1.2;
+        transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s, opacity .2s;
+      }
+      .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); opacity: .95; color: inherit; }
+      .btn:active { transform: translateY(0); }
+      .btn-red { background: var(--btn-red-bg); color: var(--btn-red-text); }
+      .btn-blue { background: var(--btn-blue-bg); color: var(--btn-blue-text); }
+      .btn-blue:hover { color: var(--btn-blue-text); }
+      .btn-yellow { background: var(--btn-yellow-bg); color: var(--btn-yellow-text); }
+      .btn-yellow:hover { color: var(--btn-yellow-text); }
+      .btn-ghost { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
+      .text-center { text-align: center; }
+      .mb-4 { margin-bottom: 1rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      .hidden { display: none; }
+
+      /* ---------- Reading progress ---------- */
+      .read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 200; background: linear-gradient(90deg, var(--accent), #8b5cf6); transition: width .1s linear; }
+
+      /* ---------- Header ---------- */
+      .site-header {
+        position: sticky; top: 0; z-index: 100; height: var(--header-height);
+        background: var(--bg-header); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border); display: flex; align-items: center;
+        transition: box-shadow .25s;
+      }
+      .site-header.scrolled { box-shadow: var(--shadow-sm); }
+      .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 1rem; }
+      .logo, .logo .section, .logo .widget { margin: 0; padding: 0; }
+      .logo .site-title { margin: 0; }
+      .logo h1, .logo .site-title, .logo a { font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; color: var(--text-main); line-height: 1.2; }
+      .nav-desktop { display: none; gap: 1.75rem; }
+      .nav-desktop a { font-weight: 500; font-size: .93rem; color: var(--text-muted); position: relative; padding: .25rem 0; }
+      .nav-desktop a:hover, .nav-desktop a.active { color: var(--text-main); }
+      .nav-desktop a::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: var(--accent); transition: width .3s ease; }
+      .nav-desktop a:hover::after, .nav-desktop a.active::after { width: 100%; }
+      @media (min-width: 768px) { .nav-desktop { display: flex; } .menu-toggle, .mobile-menu { display: none !important; } }
+
+      .nav-actions { display: flex; gap: .5rem; align-items: center; }
+      .icon-btn {
+        background: transparent; border: 1px solid var(--border); border-radius: 50%;
+        width: 40px; height: 40px; cursor: pointer; color: var(--text-main);
+        display: inline-flex; align-items: center; justify-content: center; transition: all .2s;
+      }
+      .icon-btn:hover { background: var(--bg-alt); border-color: var(--text-muted); }
+      .icon-btn svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .icon-sun { display: none; }
+      [data-theme='dark'] .icon-sun { display: block; }
+      [data-theme='dark'] .icon-moon { display: none; }
+
+      .mobile-menu {
+        position: fixed; top: var(--header-height); left: 0; width: 100%; max-height: calc(100vh - var(--header-height)); overflow-y: auto;
+        background: var(--bg-card); border-bottom: 1px solid var(--border); padding: .5rem 0;
+        transform: translateY(-12px); opacity: 0; visibility: hidden;
+        transition: transform .25s ease, opacity .25s ease, visibility .25s; z-index: 99; box-shadow: var(--shadow-lg);
+      }
+      .mobile-menu.is-active { transform: none; opacity: 1; visibility: visible; }
+      .mobile-menu a { display: block; padding: .9rem 1.5rem; font-weight: 600; }
+      .mobile-menu a:hover { background: var(--bg-alt); color: var(--accent); }
+
+      /* ---------- Search overlay ---------- */
+      .search-overlay {
+        position: fixed; inset: 0; z-index: 250; background: rgba(2, 6, 23, .55); backdrop-filter: blur(4px);
+        display: flex; align-items: flex-start; justify-content: center; padding: 14vh 1rem 1rem;
+        opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s;
+      }
+      .search-overlay.is-open { opacity: 1; visibility: visible; }
+      .search-box {
+        width: 100%; max-width: 620px; display: flex; gap: .5rem; background: var(--bg-card);
+        border: 1px solid var(--border); border-radius: 9999px; padding: .5rem; box-shadow: var(--shadow-lg);
+      }
+      .search-box input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text-main); font-size: 1.05rem; padding: .5rem 1rem; outline: none; }
+
+      /* ---------- Sections ---------- */
+      .sec { padding-top: var(--section-y); padding-bottom: var(--section-y); position: relative; }
+      .sec-alt { background: var(--bg-alt); }
+      .section-header { text-align: center; max-width: 680px; margin: 0 auto 2rem; }
+      .section-title { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 800; margin-bottom: .6rem; letter-spacing: -.03em; line-height: 1.2; }
+      .section-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; }
+
+      .hero-section {
+        padding: 3.5rem 0 4rem; text-align: center; background-color: var(--bg-body);
+        background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 28px 28px;
+      }
+      .hero-title {
+        font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -.03em;
+        background: linear-gradient(120deg, var(--text-main) 30%, var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      }
+      .hero-desc { color: var(--text-muted); max-width: 600px; margin: 0 auto 1.75rem; font-size: 1.15rem; }
+
+      .about-grid { display: grid; gap: 2rem; align-items: center; }
+      @media (min-width: 900px) { .about-grid { grid-template-columns: .85fr 1.15fr; gap: 3.5rem; } }
+      .about-img { width: 100%; max-width: 440px; margin: 0 auto; border-radius: var(--radius); aspect-ratio: 1/1; object-fit: cover; background: var(--bg-alt); box-shadow: var(--shadow-lg); border: 4px solid var(--bg-card); }
+      .about-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: .75rem; color: var(--accent); }
+      .about-content p { margin-bottom: 1rem; color: var(--text-muted); font-size: 1.05rem; }
+      .about-content .section-title { text-align: left; }
+
+      .services-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .service-card { background: var(--bg-card); padding: 1.75rem; border-radius: var(--radius); border: 1px solid var(--border); transition: all .3s ease; }
+      .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+      .service-icon { width: 56px; height: 56px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; border-radius: 14px; margin-bottom: 1rem; font-size: 1.6rem; }
+      .service-title { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+      .service-desc { color: var(--text-muted); font-size: .95rem; }
+
+      .featured-grid { display: flex; flex-direction: column; gap: 3rem; }
+      .featured-item { display: grid; gap: 1.25rem; align-items: center; }
+      @media (min-width: 900px) {
+        .featured-item { grid-template-columns: 1.2fr 1fr; gap: 3rem; }
+        .featured-item:nth-child(even) .featured-img-wrap { order: 2; }
+        .featured-item:nth-child(even) .featured-content { order: 1; text-align: right; }
+        .featured-item:nth-child(even) .project-stats { justify-content: flex-end; }
+      }
+      .featured-img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border); transition: transform .3s ease; }
+      .featured-img-wrap:hover { transform: scale(1.015); }
+      .featured-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+      .project-meta { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .78rem; margin-bottom: .5rem; }
+      .project-title { font-size: 1.75rem; font-weight: 800; margin-bottom: .75rem; line-height: 1.2; }
+      .project-desc { color: var(--text-muted); margin-bottom: 1rem; }
+      .project-stats { display: flex; gap: 1.25rem; margin-bottom: 1.25rem; font-size: .93rem; font-weight: 600; flex-wrap: wrap; }
+      .project-stats span { display: flex; align-items: center; gap: .4rem; }
+
+      .skills-wrapper { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .skill-category h4 { font-size: 1.15rem; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--border); display: block; }
+      .skill-list { display: flex; flex-direction: column; gap: 1rem; }
+      .skill-item { display: flex; flex-direction: column; gap: .4rem; }
+      .skill-header { display: flex; justify-content: space-between; font-weight: 600; font-size: .93rem; }
+      .skill-bar-bg { height: 8px; width: 100%; background: var(--border); border-radius: 4px; overflow: hidden; }
+      .skill-progress { height: 100%; background: linear-gradient(90deg, var(--accent), #8b5cf6); border-radius: 4px; }
+
+      .testimonials-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+      .testimonial-card { background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); position: relative; }
+      .quote-icon { font-size: 3.5rem; color: var(--accent-soft); position: absolute; top: .5rem; left: 1.25rem; line-height: 1; font-family: Georgia, serif; z-index: 0; }
+      .quote-text { font-size: 1.08rem; font-style: italic; margin-bottom: 1.25rem; line-height: 1.65; position: relative; z-index: 1; }
+      .client-info { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1; }
+      .client-details strong { display: block; font-size: .98rem; }
+      .client-details span { font-size: .85rem; color: var(--text-muted); }
+
+      .cta-section-inner { background: var(--cta-bg); color: var(--cta-text); padding: 3.5rem 1.5rem; text-align: center; border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; }
+      .cta-section-inner::before { content: ''; position: absolute; top: -50%; left: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+      .cta-section-inner h2 { color: #fff; font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: .75rem; position: relative; }
+      .cta-section-inner p { color: #cbd5e1; font-size: 1.1rem; margin: 0 auto 1.75rem; max-width: 600px; position: relative; }
+      .cta-section-inner .btn { position: relative; }
+
+      /* ---------- Blog area ---------- */
+      .blog-wrap { padding-top: 2rem; padding-bottom: 2.5rem; }
+      .single-view .blog-wrap { padding-top: 1.5rem; }
+      .posts-wrapper { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+      @media (min-width: 700px) { .posts-wrapper { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1020px) { .posts-wrapper { grid-template-columns: repeat(3, 1fr); } }
+
+      .post-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: transform .2s, box-shadow .2s, border-color .2s; }
+      .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+      .post-thumb { display: block; aspect-ratio: 16/9; background: var(--bg-alt); overflow: hidden; position: relative; }
+      .post-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+      .post-card:hover .post-thumb img { transform: scale(1.05); }
+      .post-thumb-empty { display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt)); }
+      .post-content { padding: 1.15rem 1.25rem 1.25rem; flex-grow: 1; display: flex; flex-direction: column; gap: .5rem; }
+      .post-meta { font-size: .78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .75rem; text-transform: uppercase; letter-spacing: .05em; }
+      .post-tag, .tag { display: inline-block; background: var(--accent-soft); color: var(--accent); font-weight: 700; padding: .15rem .6rem; border-radius: 9999px; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+      a.tag:hover { background: var(--accent); color: #fff; }
+      .post-title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; }
+      .post-snippet { color: var(--text-muted); font-size: .93rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .read-more { margin-top: auto; padding-top: .5rem; font-weight: 600; font-size: .88rem; color: var(--accent); }
+
+      @media (min-width: 700px) {
+        .has-featured > .post-card:first-child { grid-column: 1 / -1; flex-direction: row; }
+        .has-featured > .post-card:first-child .post-thumb { flex: 1.25; aspect-ratio: auto; min-height: 300px; }
+        .has-featured > .post-card:first-child .post-content { flex: 1; justify-content: center; padding: 2rem; }
+        .has-featured > .post-card:first-child .post-title { font-size: 1.75rem; }
+        .has-featured > .post-card:first-child .post-snippet { -webkit-line-clamp: 4; font-size: 1rem; }
+      }
+
+      .feed-ad { grid-column: 1 / -1; }
+      .pager { margin-top: 2rem; display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+      .empty-state { text-align: center; padding: 3rem 1rem; max-width: 520px; margin: 0 auto; }
+      .empty-state .code { font-size: 4.5rem; font-weight: 900; line-height: 1; background: linear-gradient(120deg, var(--accent), #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+      .empty-state h2 { margin: .5rem 0; font-size: 1.6rem; }
+      .empty-state p { color: var(--text-muted); margin-bottom: 1.25rem; }
+
+      /* ---------- Single post ---------- */
+      .post-detail { max-width: 780px; margin: 0 auto; }
+      .post-detail .post-header { text-align: center; margin-bottom: 1.75rem; }
+      .post-detail .post-title { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.15; letter-spacing: -.03em; margin: .75rem 0; }
+      .post-detail .post-meta { justify-content: center; }
+      .post-tags { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; }
+      .post-body { font-size: 1.1rem; line-height: 1.8; overflow-wrap: anywhere; }
+      .post-body p { margin-bottom: 1.25rem; }
+      .post-body h2, .post-body h3, .post-body h4 { margin: 2rem 0 .75rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; }
+      .post-body h2 { font-size: 1.6rem; } .post-body h3 { font-size: 1.3rem; }
+      .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+      .post-body ul, .post-body ol { margin: 0 0 1.25rem 1.5rem; }
+      .post-body ul { list-style: disc; } .post-body ol { list-style: decimal; }
+      .post-body li { margin-bottom: .4rem; }
+      .post-body img { border-radius: 10px; margin: 1.25rem auto; max-width: 100%; height: auto; }
+      .post-body .separator, .post-body .tr-caption-container { text-align: center; }
+      .post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; text-decoration: none; }
+      .post-body blockquote { border-left: 4px solid var(--accent); padding: .5rem 0 .5rem 1.25rem; font-style: italic; color: var(--text-muted); margin: 1.5rem 0; background: var(--accent-soft); border-radius: 0 10px 10px 0; }
+      .post-body pre, .post-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+      .post-body pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 10px; overflow-x: auto; margin: 0 0 1.25rem; line-height: 1.6; }
+      .post-body :not(pre) > code { background: var(--accent-soft); padding: .1rem .4rem; border-radius: 5px; }
+      .post-body table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; margin: 0 0 1.25rem; }
+      .post-body th, .post-body td { border: 1px solid var(--border); padding: .6rem .8rem; text-align: left; }
+      .post-body th { background: var(--bg-alt); }
+      .post-body iframe { border: 0; border-radius: 10px; }
+      .post-body iframe[src*='youtube'], .post-body iframe[src*='youtu.be'], .post-body iframe[src*='vimeo'] { width: 100%; height: auto; aspect-ratio: 16/9; }
+
+      .toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0 0 1.75rem; font-size: .97rem; }
+      .toc summary { cursor: pointer; font-weight: 700; }
+      .toc ol { margin: .75rem 0 0 1.25rem; list-style: decimal; }
+      .toc li { margin-bottom: .3rem; } .toc li.l3 { margin-left: 1rem; list-style: circle; }
+      .toc a { color: var(--text-main); text-decoration: none; } .toc a:hover { color: var(--accent); }
+
+      .post-footer { margin-top: 2rem; display: grid; gap: 1.25rem; }
+      .share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .share-bar strong { margin-right: .5rem; font-size: .9rem; }
+      .share-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .45rem .9rem; border-radius: 9999px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .2s; }
+      .share-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .author-box { display: flex; gap: 1rem; align-items: center; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+      .author-avatar-ini { flex: none; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #8b5cf6); color: #fff; font-weight: 800; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; }
+      .author-box strong { display: block; } .author-box p { color: var(--text-muted); font-size: .92rem; }
+      .post-nav { display: grid; gap: .75rem; grid-template-columns: 1fr; }
+      @media (min-width: 600px) { .post-nav { grid-template-columns: 1fr 1fr; } }
+      .post-nav a { display: block; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); font-weight: 600; transition: all .2s; }
+      .post-nav a:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+      .post-nav small { display: block; color: var(--text-muted); font-weight: 500; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; }
+      .post-nav .next { text-align: right; }
+
+      .related { margin-top: 2.5rem; }
+      .related h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+      .related-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+      .related-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-card); transition: all .2s; display: block; }
+      .related-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+      .related-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--bg-alt); }
+      .related-card span { display: block; padding: .75rem 1rem; font-weight: 600; font-size: .93rem; line-height: 1.35; }
+
+      /* ---------- Comments ---------- */
+      .comments { margin-top: 2.5rem; }
+      .comments .title { display: block; font-size: 1.3rem; margin-bottom: 1rem; }
+      .comments ol, .comments ul { list-style: none; margin: 0; padding: 0; }
+      .comments .comment, .comments .comment-block { margin-bottom: 1rem; }
+      .comments .comment { display: flex; gap: .75rem; }
+      .comments .avatar-image-container { flex: none; width: 36px; height: 36px; border-radius: 50%; overflow: hidden; }
+      .comments .avatar-image-container img { width: 100%; height: 100%; object-fit: cover; }
+      .comments .comment-block, .comments .comment-content { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: .75rem 1rem; flex: 1; min-width: 0; }
+      .comments .comment-content { border: 0; padding: .25rem 0; background: none; }
+      .comments .user, .comments .comment-author { font-weight: 700; }
+      .comments .datetime, .comments .comment-timestamp { font-size: .8rem; color: var(--text-muted); }
+      .comments .comment-replies { margin: .75rem 0 0 1rem; }
+      .comments .comment-actions a, .comments .comment-footer a { font-size: .82rem; color: var(--accent); margin-right: .75rem; }
+      .comments iframe { width: 100%; border: 0; }
+      .comments .comment-form, .comments .footer { margin-top: 1rem; }
+      .comments .continue a, .comments .footer a { font-weight: 600; color: var(--accent); }
+      .paging-control-container { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; }
+
+      /* ---------- Ad slots ---------- */
+      .ad-slot, .inline-ad { text-align: center; margin: 1.25rem auto; max-width: 100%; overflow: hidden; }
+      .ad-slot:not(:has(.widget)) { display: none; }
+      .ad-slot .widget::before, .inline-ad::before {
+        content: 'Advertisement'; display: block; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-bottom: .35rem;
+      }
+      .inline-ad-placeholder { border: 1px dashed var(--border); border-radius: 10px; padding: 1.5rem; color: var(--text-muted); font-size: .85rem; }
+      .ad-slot ins, .ad-slot iframe, .inline-ad ins { max-width: 100%; }
+      .ad-sticky {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; background: var(--bg-card);
+        border-top: 1px solid var(--border); box-shadow: 0 -6px 16px rgb(0 0 0 / .12); padding: .35rem .75rem .5rem; text-align: center;
+      }
+      .ad-sticky:not(:has(.widget)), .ad-sticky.is-closed { display: none; }
+      .ad-sticky .ad-slot-inner { max-width: 728px; margin: 0 auto; overflow: hidden; }
+      .ad-sticky-close { position: absolute; top: -26px; right: 10px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); border-radius: 8px 8px 0 0; padding: 2px 10px; cursor: pointer; font-size: .8rem; }
+      .ad-sticky .widget::before { content: 'Advertisement'; display: block; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); }
+
+      /* ---------- Footer ---------- */
+      .site-footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 2.5rem 0 1.25rem; margin-top: auto; }
+      .footer-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+      .footer-grid:not(:has(.widget)) { display: none; }
+      .site-footer h3, .site-footer .widget-title { font-size: 1rem; margin-bottom: .75rem; }
+      .site-footer a:hover { color: var(--accent); }
+      .copyright { text-align: center; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: .88rem; display: flex; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+
+      .to-top { position: fixed; right: 1rem; bottom: 1rem; z-index: 80; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; background: var(--accent); color: #fff; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s; }
+      .to-top.show { opacity: 1; visibility: visible; transform: none; }
+      .to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      body.has-sticky-ad .to-top { bottom: 5.5rem; }
+
+
+      /* ==========================================================
+         v2 — PRO ADDITIONS
+         ========================================================== */
+      :root { --accent-2: #8b5cf6; --grad: linear-gradient(120deg, var(--accent), var(--accent-2)); --ring: 0 0 0 4px var(--accent-soft); }
+      [data-theme='dark'] { --accent-2: #a78bfa; }
+      body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-feature-settings: 'cv11', 'ss01'; }
+      .btn-sm { padding: .5rem 1.05rem; font-size: .85rem; }
+      .btn-lg { padding: .9rem 1.8rem; font-size: 1rem; }
+      .btn-blue { background: var(--grad); }
+      .nav-cta { display: none; }
+      @media (min-width: 768px) { .nav-cta { display: inline-flex; margin-right: .25rem; } }
+      kbd { font: 600 .7rem ui-monospace, Menlo, monospace; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px; padding: .1rem .4rem; background: var(--bg-alt); color: var(--text-muted); }
+
+      /* Scroll reveal (class added by JS only) */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+      .reveal.in { opacity: 1; transform: none; }
+
+      /* Hero */
+      .hero-section { position: relative; overflow: hidden; padding: 4rem 0 3rem; }
+      .hero-section::before, .hero-section::after { content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; filter: blur(90px); opacity: .35; pointer-events: none; z-index: 0; }
+      .hero-section::before { background: var(--accent); top: -220px; left: -120px; animation: float 14s ease-in-out infinite; }
+      .hero-section::after { background: var(--accent-2); bottom: -240px; right: -120px; animation: float 17s ease-in-out infinite reverse; }
+      [data-theme='dark'] .hero-section::before, [data-theme='dark'] .hero-section::after { opacity: .22; }
+      @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,30px); } }
+      .hero-section .container { position: relative; z-index: 1; }
+      .eyebrow { display: inline-flex; align-items: center; gap: .55rem; padding: .35rem .9rem; border: 1px solid var(--border); background: var(--bg-card); border-radius: 9999px; font-size: .82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.25rem; box-shadow: var(--shadow-sm); }
+      .pulse { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; position: relative; }
+      .pulse::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #22c55e; animation: ping 1.8s cubic-bezier(0,0,.2,1) infinite; }
+      @keyframes ping { 75%,100% { transform: scale(2.6); opacity: 0; } }
+      .hero-cta { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; }
+      .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; max-width: 820px; margin: 2.75rem auto 0; box-shadow: var(--shadow-sm); }
+      @media (min-width: 700px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
+      .stat { background: var(--bg-card); padding: 1.25rem .75rem; }
+      .stat strong { display: block; font-size: 1.9rem; font-weight: 800; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+      .stat span { font-size: .82rem; color: var(--text-muted); font-weight: 500; }
+      .marquee { margin-top: 2.5rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+      .marquee-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--text-light); margin-bottom: .75rem; font-weight: 600; }
+      .marquee-track { display: flex; width: max-content; gap: 3rem; animation: scroll 32s linear infinite; }
+      .marquee:hover .marquee-track { animation-play-state: paused; }
+      .marquee-track span { font-weight: 700; font-size: 1.1rem; color: var(--text-light); white-space: nowrap; letter-spacing: -.01em; }
+      @keyframes scroll { to { transform: translateX(calc(-50% - 1.5rem)); } }
+
+      /* ===== Motion-graphic hero (v2.1) ===== */
+      .hero-section { text-align: left; background-image: none;
+        background: radial-gradient(60% 60% at 10% 0%, rgba(37,99,235,.14), transparent 70%), radial-gradient(50% 55% at 95% 10%, rgba(139,92,246,.16), transparent 70%), radial-gradient(45% 50% at 70% 100%, rgba(236,72,153,.12), transparent 70%), var(--bg-body);
+        background-size: 140% 140%; animation: heroShift 18s ease-in-out infinite alternate; padding: 4.5rem 0 3.5rem; }
+      @keyframes heroShift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+      .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+      @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3rem; } }
+      .hero-copy .hero-desc { margin-left: 0; margin-right: 0; }
+      .hero-copy .hero-cta { justify-content: flex-start; }
+      .hero-title { background: none; -webkit-text-fill-color: currentColor; color: var(--text-main); }
+      .grad-words { display: inline-block; background: linear-gradient(100deg, #2563eb, #8b5cf6 45%, #ec4899 75%, #f59e0b); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: gradSlide 6s linear infinite; transition: opacity .35s ease, transform .35s ease; }
+      .grad-words.swap { opacity: 0; transform: translateY(10px); }
+      @keyframes gradSlide { to { background-position: 220% 0; } }
+      .hero-cta .btn-blue { background: linear-gradient(100deg, #2563eb, #7c3aed); border: 0; box-shadow: 0 10px 24px -8px rgba(99,102,241,.6); position: relative; overflow: hidden; }
+      .hero-cta .btn-blue::after { content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent); transform: skewX(-20deg); animation: shine 3.6s ease-in-out infinite; }
+      @keyframes shine { 0%, 55% { left: -60%; } 100% { left: 140%; } }
+
+      .hero-visual { position: relative; min-height: 360px; display: grid; place-items: center; perspective: 900px; }
+      .hero-visual .orbit { position: absolute; border-radius: 50%; border: 1.5px dashed var(--border); }
+      .orbit-1 { width: 330px; height: 330px; animation: spin 40s linear infinite; }
+      .orbit-2 { width: 450px; height: 450px; border-color: var(--accent-soft); animation: spin 60s linear infinite reverse; }
+      .orbit-1::after, .orbit-2::after { content: ''; position: absolute; width: 14px; height: 14px; border-radius: 50%; top: -7px; left: 50%; background: #ec4899; box-shadow: 0 0 18px #ec4899; }
+      .orbit-2::after { background: #22d3ee; box-shadow: 0 0 18px #22d3ee; top: auto; bottom: 20%; left: -7px; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .blob { position: absolute; filter: blur(2px); opacity: .85; }
+      .blob-a { width: 190px; height: 190px; background: linear-gradient(135deg, #60a5fa, #8b5cf6); top: 6%; right: 8%; border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%; animation: morph 9s ease-in-out infinite, bob 7s ease-in-out infinite; }
+      .blob-b { width: 150px; height: 150px; background: linear-gradient(135deg, #f472b6, #f59e0b); bottom: 6%; left: 6%; border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%; animation: morph 11s ease-in-out infinite reverse, bob 8s ease-in-out infinite reverse; }
+      @keyframes morph { 0%,100% { border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%; } 50% { border-radius: 38% 62% 45% 55% / 58% 42% 58% 42%; } }
+      @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+      .hv-card { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow-lg); }
+      .hv-main { width: min(300px, 78%); padding: 1rem 1rem 1.1rem; z-index: 2; transform: rotateY(-14deg) rotateX(6deg); animation: tilt 8s ease-in-out infinite; }
+      @keyframes tilt { 0%,100% { transform: rotateY(-14deg) rotateX(6deg) translateY(0); } 50% { transform: rotateY(-6deg) rotateX(2deg) translateY(-10px); } }
+      .hv-dots { display: flex; gap: 5px; margin-bottom: .8rem; }
+      .hv-dots i { width: 9px; height: 9px; border-radius: 50%; background: #f87171; } .hv-dots i:nth-child(2) { background: #fbbf24; } .hv-dots i:nth-child(3) { background: #34d399; }
+      .hv-bars { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding: .6rem .6rem 0; border-radius: 10px; background: var(--bg-alt); }
+      .hv-bars b { flex: 1; height: var(--h); border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #8b5cf6, #2563eb); transform-origin: bottom; animation: grow 3.2s ease-in-out infinite; }
+      .hv-bars b:nth-child(2n) { background: linear-gradient(180deg, #ec4899, #8b5cf6); animation-delay: .35s; } .hv-bars b:nth-child(3n) { animation-delay: .7s; }
+      @keyframes grow { 0%,100% { transform: scaleY(.55); } 50% { transform: scaleY(1); } }
+      .hv-line { margin-top: .8rem; display: grid; gap: 6px; }
+      .hv-line span { height: 7px; border-radius: 9999px; background: var(--border); } .hv-line span:nth-child(1) { width: 85%; } .hv-line span:nth-child(2) { width: 62%; } .hv-line span:nth-child(3) { width: 40%; background: var(--accent-soft); }
+      .hv-chip { position: absolute; z-index: 3; padding: .55rem .85rem; display: inline-flex; align-items: center; gap: .55rem; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+      .hv-ico { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; color: #fff; background: var(--c); font-size: .8rem; }
+      .hv-c1 { top: 12%; left: 0; animation: bob 6s ease-in-out infinite; }
+      .hv-c2 { bottom: 14%; right: 0; animation: bob 7s ease-in-out infinite .8s; }
+      .hv-c3 { top: 46%; left: -2%; animation: bob 8s ease-in-out infinite 1.6s; }
+      .spark { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px 3px rgba(139,92,246,.8); animation: twinkle 3s ease-in-out infinite; }
+      .sp1 { top: 8%; left: 40%; } .sp2 { top: 70%; right: 16%; animation-delay: 1s; } .sp3 { bottom: 4%; left: 36%; animation-delay: 1.8s; } .sp4 { top: 30%; right: 2%; animation-delay: .5s; }
+      @keyframes twinkle { 0%,100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.3); } }
+      .stats-row .stat { transition: transform .25s ease; } .stats-row .stat:hover { transform: translateY(-3px); }
+      @media (max-width: 899px) { .hero-section { text-align: center; } .hero-copy .hero-cta { justify-content: center; } .hero-copy .hero-desc { margin-left: auto; margin-right: auto; } .hero-visual { min-height: 320px; } .orbit-2 { width: 330px; height: 330px; } .orbit-1 { width: 240px; height: 240px; } .hv-c3 { display: none; } }
+
+      /* About extras */
+      .chip-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.5rem; }
+      .chip { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .8rem; border: 1px solid var(--border); border-radius: 9999px; font-size: .85rem; font-weight: 600; background: var(--bg-card); }
+      .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+      /* Services */
+      .services-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+      .service-card { position: relative; overflow: hidden; }
+      .service-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+      .service-card:hover::before { transform: scaleX(1); }
+
+      /* Process */
+      .process-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); counter-reset: step; }
+      .process-step { position: relative; padding: 1.75rem 1.5rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); counter-increment: step; }
+      .process-step::before { content: '0' counter(step); display: block; font-size: 2.4rem; font-weight: 900; letter-spacing: -.04em; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: .75rem; }
+      .process-step h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+      .process-step p { color: var(--text-muted); font-size: .93rem; }
+
+      /* Featured extras */
+      .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+      @media (min-width: 900px) { .featured-item:nth-child(even) .project-tags { justify-content: flex-end; } }
+
+      /* Pricing */
+      .pricing-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); align-items: stretch; max-width: 1000px; margin: 0 auto; }
+      .price-card { position: relative; display: flex; flex-direction: column; padding: 2rem 1.75rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); transition: transform .25s, box-shadow .25s; }
+      .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+      .price-card.popular { border: 2px solid var(--accent); box-shadow: var(--shadow-lg); }
+      .price-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--grad); color: #fff; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .25rem .8rem; border-radius: 9999px; white-space: nowrap; }
+      .price-name { font-size: 1.05rem; font-weight: 700; }
+      .price-amount { font-size: 2.6rem; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; margin: .5rem 0 .25rem; }
+      .price-amount small { font-size: .9rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0; }
+      .price-desc { color: var(--text-muted); font-size: .92rem; margin-bottom: 1.25rem; }
+      .price-list { margin-bottom: 1.75rem; display: grid; gap: .6rem; font-size: .93rem; }
+      .price-list li { display: flex; gap: .6rem; align-items: flex-start; }
+      .price-list li::before { content: '\2713'; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: .72rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: .15rem; }
+      .price-card .btn { margin-top: auto; }
+
+      /* Skills animation */
+      .reveal-bars .skill-progress { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+      .reveal-bars.in .skill-progress { transform: none; }
+
+      /* Testimonials */
+      .stars { color: #f59e0b; letter-spacing: 2px; font-size: .95rem; margin-bottom: .6rem; position: relative; z-index: 1; }
+      .avatar-ini { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--grad); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+
+      /* FAQ */
+      .faq-list { max-width: 780px; margin: 0 auto; display: grid; gap: .75rem; }
+      .faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); transition: border-color .2s, box-shadow .2s; }
+      .faq-item[open] { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+      .faq-item summary { cursor: pointer; list-style: none; padding: 1.1rem 1.25rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-item summary::after { content: '+'; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: transform .25s; }
+      .faq-item[open] summary::after { transform: rotate(45deg); }
+      .faq-item p { padding: 0 1.25rem 1.25rem; color: var(--text-muted); }
+
+      /* Newsletter */
+      .newsletter { max-width: 720px; margin: 0 auto; text-align: center; padding: 2.5rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); box-shadow: var(--shadow-sm); }
+      .newsletter h2 { font-size: 1.6rem; letter-spacing: -.02em; margin-bottom: .4rem; }
+      .newsletter p { color: var(--text-muted); margin-bottom: 1.25rem; }
+      .newsletter form { display: flex; gap: .5rem; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+      .newsletter input[type=email] { flex: 1 1 220px; min-width: 0; padding: .7rem 1.1rem; border: 1px solid var(--border); border-radius: 9999px; background: var(--bg-body); color: var(--text-main); font-size: .95rem; font-family: inherit; }
+      .newsletter input[type=email]:focus { outline: none; border-color: var(--accent); box-shadow: var(--ring); }
+      .newsletter small { display: block; margin-top: .75rem; color: var(--text-light); font-size: .78rem; }
+
+      /* CTA */
+      .cta-section-inner { background: linear-gradient(135deg, var(--cta-bg), #1e1b4b); }
+      .cta-section-inner::after { content: ''; position: absolute; bottom: -40%; right: -15%; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(139,92,246,.35), transparent 70%); pointer-events: none; }
+      .cta-buttons { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+      .cta-note { margin-top: 1.25rem !important; font-size: .9rem !important; color: #94a3b8 !important; }
+
+      /* Topic chips + blog polish */
+      .topic-chips { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 0 auto 2rem; max-width: 760px; }
+      .topic-chips:empty { display: none; }
+      .topic-chips a { padding: .4rem .95rem; border-radius: 9999px; border: 1px solid var(--border); font-size: .85rem; font-weight: 600; background: var(--bg-card); color: var(--text-muted); transition: all .2s; }
+      .topic-chips a:hover, .topic-chips a.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .post-card { box-shadow: var(--shadow-sm); }
+      .post-card .post-title a { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat; transition: background-size .3s; }
+      .post-card:hover .post-title a { background-size: 100% 2px; }
+
+      /* Live search */
+      .search-panel { width: 100%; max-width: 620px; }
+      .search-results { margin-top: .6rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; max-height: 55vh; overflow-y: auto; }
+      .search-results:empty { display: none; }
+      .sr-item { display: flex; gap: .85rem; align-items: center; padding: .65rem .9rem; border-bottom: 1px solid var(--border); }
+      .sr-item:last-child { border-bottom: 0; }
+      .sr-item:hover, .sr-item.is-active { background: var(--bg-alt); color: var(--text-main); }
+      .sr-item img { flex: none; width: 56px; height: 40px; border-radius: 8px; object-fit: cover; background: var(--bg-alt); }
+      .sr-item strong { display: block; font-size: .93rem; line-height: 1.3; }
+      .sr-item small { color: var(--text-muted); font-size: .78rem; }
+      .sr-empty, .sr-hint { padding: .9rem 1rem; color: var(--text-muted); font-size: .88rem; }
+      .sr-all { display: block; text-align: center; padding: .7rem; font-weight: 600; font-size: .88rem; color: var(--accent); background: var(--bg-alt); }
+
+      /* Single post extras */
+      .post-body h2, .post-body h3 { position: relative; }
+      .h-anchor { position: absolute; left: -1.1em; top: 0; opacity: 0; color: var(--accent) !important; text-decoration: none !important; font-weight: 400; transition: opacity .2s; }
+      .post-body h2:hover .h-anchor, .post-body h3:hover .h-anchor, .h-anchor:focus { opacity: 1; }
+      .post-body pre { position: relative; }
+      .code-copy { position: absolute; top: .5rem; right: .5rem; background: rgba(255,255,255,.1); color: #e2e8f0; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: .2rem .65rem; font-size: .75rem; cursor: pointer; font-family: inherit; opacity: 0; transition: opacity .2s; }
+      .post-body pre:hover .code-copy, .code-copy:focus { opacity: 1; }
+      .post-body img { cursor: zoom-in; }
+      .post-body a img { cursor: zoom-in; }
+      .toc a.is-current { color: var(--accent); font-weight: 700; }
+      .post-body > p:first-of-type::first-line { font-weight: 500; }
+      .lightbox { position: fixed; inset: 0; z-index: 400; background: rgba(2,6,23,.92); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; cursor: zoom-out; }
+      .lightbox.is-open { opacity: 1; visibility: visible; }
+      .lightbox img { max-width: 100%; max-height: 100%; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+      .lightbox-close { position: absolute; top: 1rem; right: 1rem; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1); color: #fff; font-size: 1.3rem; cursor: pointer; }
+
+      /* Toast + cookie notice */
+      .toast { position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, 20px); background: var(--text-main); color: var(--bg-body); padding: .65rem 1.2rem; border-radius: 9999px; font-size: .88rem; font-weight: 600; z-index: 350; opacity: 0; visibility: hidden; transition: all .25s; box-shadow: var(--shadow-lg); }
+      .toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+      .cookie { position: fixed; left: .75rem; right: .75rem; bottom: .75rem; z-index: 95; max-width: 460px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 1rem 1.15rem; display: none; gap: .85rem; align-items: center; font-size: .86rem; color: var(--text-muted); }
+      .cookie.show { display: flex; }
+      .cookie p { flex: 1; }
+      .cookie a { color: var(--accent); text-decoration: underline; }
+      body.has-sticky-ad .cookie { bottom: 5.5rem; }
+
+      /* Footer */
+      .site-footer { background: var(--bg-alt); }
+      .footer-brand { color: var(--text-muted); font-size: .93rem; margin-bottom: 1rem; max-width: 320px; }
+      .social-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+      .social-row a { padding: .35rem .85rem; border: 1px solid var(--border); border-radius: 9999px; font-size: .85rem; font-weight: 600; background: var(--bg-card); }
+      .social-row a:hover { border-color: var(--accent); }
+      .footer-links { display: grid; gap: .5rem; font-size: .93rem; color: var(--text-muted); }
+      .footer-links a:hover { color: var(--accent); }
+
+      @media print { .toast, .cookie, .lightbox, .stats-row, .marquee { display: none !important; } }
+
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+      @media print { .site-header, .mobile-menu, .read-progress, .to-top, .ad-slot, .ad-sticky, .inline-ad, .share-bar, .post-nav, .related, .site-footer, .search-overlay { display: none !important; } body { color: #000; background: #fff; } }
+    
+      /* ==========================================================
+         v3 — MOTION SYSTEM (sliding buttons, posts, page entrances)
+         ========================================================== */
+      :root { --ease-out: cubic-bezier(.22, 1, .36, 1); --ease-spring: cubic-bezier(.34, 1.56, .64, 1); }
+
+      /* ---------- Page-load entrances ---------- */
+      @keyframes moSlideUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+      @keyframes moSlideDown { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+      @keyframes moSlideLeft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+      @keyframes moSlideRight { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+      @keyframes moPop { from { opacity: 0; transform: scale(.88); } to { opacity: 1; transform: none; } }
+      @keyframes moShine { 0%, 60% { transform: translateX(-130%) skewX(-20deg); } 100% { transform: translateX(330%) skewX(-20deg); } }
+      @keyframes moRipple { to { transform: scale(1); opacity: 0; } }
+
+      .site-header { animation: moSlideDown .7s var(--ease-out) both; }
+      .logo { animation: moSlideLeft .8s var(--ease-out) .15s both; }
+      .nav-desktop a { animation: moSlideUp .6s var(--ease-out) both; }
+      .nav-desktop a:nth-child(1) { animation-delay: .20s; } .nav-desktop a:nth-child(2) { animation-delay: .26s; }
+      .nav-desktop a:nth-child(3) { animation-delay: .32s; } .nav-desktop a:nth-child(4) { animation-delay: .38s; }
+      .nav-desktop a:nth-child(5) { animation-delay: .44s; } .nav-desktop a:nth-child(6) { animation-delay: .50s; }
+      .nav-desktop a:nth-child(7) { animation-delay: .56s; }
+      .nav-actions > * { animation: moPop .6s var(--ease-spring) both; }
+      .nav-actions > *:nth-child(1) { animation-delay: .45s; } .nav-actions > *:nth-child(2) { animation-delay: .52s; }
+      .nav-actions > *:nth-child(3) { animation-delay: .59s; } .nav-actions > *:nth-child(4) { animation-delay: .66s; }
+
+      .hero-copy > * { animation: moSlideLeft .9s var(--ease-out) both; }
+      .hero-copy > *:nth-child(1) { animation-delay: .25s; } .hero-copy > *:nth-child(2) { animation-delay: .38s; }
+      .hero-copy > *:nth-child(3) { animation-delay: .52s; } .hero-copy > *:nth-child(4) { animation-delay: .66s; }
+      .hero-visual { animation: moSlideRight 1s var(--ease-out) .35s both; }
+      .stats-row { animation: moSlideUp .9s var(--ease-out) .8s both; }
+      .marquee { animation: moSlideUp .9s var(--ease-out) 1s both; }
+
+      /* Single post header + blog heading entrances */
+      .post-detail .post-header > * { animation: moSlideUp .8s var(--ease-out) both; }
+      .post-detail .post-header > *:nth-child(1) { animation-delay: .05s; }
+      .post-detail .post-header > *:nth-child(2) { animation-delay: .18s; }
+      .post-detail .post-header > *:nth-child(3) { animation-delay: .30s; }
+
+      /* ---------- Buttons: sliding fill, shine, press, ripple ---------- */
+      .btn, .share-btn { position: relative; overflow: hidden; isolation: isolate; will-change: transform; }
+      .btn { transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), color .3s ease, border-color .3s ease, opacity .2s; }
+      .btn::before, .share-btn::before {
+        content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+        background: rgba(255, 255, 255, .20); transform: translateX(-101%);
+        transition: transform .5s var(--ease-out);
+      }
+      .btn:hover::before, .share-btn:hover::before, .btn:focus-visible::before { transform: translateX(0); }
+      .btn-ghost::before, .share-btn::before { background: var(--accent); }
+      .btn-ghost:hover, .btn-ghost:focus-visible { color: #fff; border-color: var(--accent); }
+      .btn-yellow::before { background: rgba(255, 255, 255, .45); }
+      .btn-red::before { background: rgba(0, 0, 0, .16); }
+      .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 26px -10px rgba(37, 99, 235, .55); }
+      .btn:active { transform: translateY(0) scale(.97); box-shadow: var(--shadow-sm); transition-duration: .1s; }
+      .btn-ghost:hover { box-shadow: 0 14px 26px -12px rgba(15, 23, 42, .35); }
+
+      /* Looping light sweep on primary buttons */
+      .btn-blue::after {
+        content: ''; position: absolute; top: 0; left: 0; width: 36%; height: 100%; z-index: -1; pointer-events: none;
+        background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .5), transparent);
+        transform: translateX(-130%) skewX(-20deg); animation: moShine 4.2s ease-in-out infinite;
+      }
+      .hero-cta .btn-blue::after { left: 0; width: 36%; animation: moShine 4.2s ease-in-out infinite; }
+
+      /* Arrow nudge on any button/link that ends with an arrow glyph wrapped in .arr (added by JS) */
+      .arr { display: inline-block; transition: transform .35s var(--ease-out); }
+      .btn:hover .arr, .read-more:hover .arr, .post-nav a:hover .arr { transform: translateX(6px); }
+      .post-nav .prev:hover .arr { transform: translateX(-6px); }
+
+      /* Click ripple (span injected by JS) */
+      .ripple-dot {
+        position: absolute; border-radius: 50%; pointer-events: none; z-index: -1;
+        background: rgba(255, 255, 255, .55); transform: scale(0); animation: moRipple .65s ease-out forwards;
+      }
+      .btn-ghost .ripple-dot, .icon-btn .ripple-dot, .share-btn .ripple-dot { background: var(--accent-soft); }
+      .icon-btn { position: relative; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease-spring), background .2s, border-color .2s; }
+      .icon-btn:hover { transform: translateY(-2px) rotate(8deg); }
+      .icon-btn:active { transform: scale(.9); }
+      #theme-toggle:hover { transform: translateY(-2px) rotate(180deg); }
+      #theme-toggle svg { transition: transform .5s var(--ease-out); }
+
+      /* Share / copy buttons */
+      .share-btn { transition: transform .3s var(--ease-out), color .25s, border-color .25s, box-shadow .3s; }
+      .share-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+      .share-btn:active { transform: scale(.96); }
+      .share-btn::before { background: var(--accent); }
+      .share-btn:hover { background: var(--bg-card); }
+
+      /* Tags & chips slide fill */
+      .tag, .post-tag, .topic-chips a, .chip { position: relative; overflow: hidden; isolation: isolate; transition: color .3s, border-color .3s, transform .3s var(--ease-out); }
+      .tag::before, .topic-chips a::before {
+        content: ''; position: absolute; inset: 0; z-index: -1; background: var(--accent);
+        transform: translateX(-101%); transition: transform .4s var(--ease-out);
+      }
+      a.tag:hover::before, .topic-chips a:hover::before, .topic-chips a.active::before { transform: translateX(0); }
+      a.tag:hover, .topic-chips a:hover { transform: translateY(-2px); background: var(--accent-soft); }
+      .topic-chips a:hover, .topic-chips a.active { background: var(--bg-card); color: #fff; }
+      .chip:hover { transform: translateY(-2px); border-color: var(--accent); }
+      .social-row a, .footer-links a { transition: transform .3s var(--ease-out), border-color .2s, color .2s; }
+      .social-row a:hover { transform: translateY(-3px); }
+      .footer-links a:hover { transform: translateX(5px); }
+
+      /* Back-to-top + hamburger */
+      .to-top { transition: opacity .3s, visibility .3s, transform .35s var(--ease-spring), background .2s; }
+      .to-top:hover { transform: translateY(-5px); }
+      .to-top:hover svg { animation: moBob .8s ease-in-out infinite; }
+      @keyframes moBob { 50% { transform: translateY(-3px); } }
+
+      /* Mobile menu: links slide in one by one */
+      .mobile-menu a { opacity: 0; transform: translateX(-24px); transition: opacity .4s ease, transform .5s var(--ease-out), background .2s, color .2s; }
+      .mobile-menu.is-active a { opacity: 1; transform: none; }
+      .mobile-menu.is-active a:nth-child(1) { transition-delay: .03s; } .mobile-menu.is-active a:nth-child(2) { transition-delay: .07s; }
+      .mobile-menu.is-active a:nth-child(3) { transition-delay: .11s; } .mobile-menu.is-active a:nth-child(4) { transition-delay: .15s; }
+      .mobile-menu.is-active a:nth-child(5) { transition-delay: .19s; } .mobile-menu.is-active a:nth-child(6) { transition-delay: .23s; }
+      .mobile-menu.is-active a:nth-child(7) { transition-delay: .27s; }
+
+      /* Search overlay: panel slides down */
+      .search-panel { transform: translateY(-24px) scale(.98); opacity: 0; transition: transform .45s var(--ease-out), opacity .3s; }
+      .search-overlay.is-open .search-panel { transform: none; opacity: 1; }
+      .sr-item { animation: moSlideLeft .35s var(--ease-out) both; }
+      .sr-item:nth-child(2) { animation-delay: .04s; } .sr-item:nth-child(3) { animation-delay: .08s; }
+      .sr-item:nth-child(4) { animation-delay: .12s; } .sr-item:nth-child(5) { animation-delay: .16s; } .sr-item:nth-child(6) { animation-delay: .20s; }
+
+      /* ---------- Post cards: alternate slide-in, image reveal, glow ---------- */
+      .posts-wrapper .post-card.reveal { transform: translateX(-56px); transition: opacity .7s ease, transform .8s var(--ease-out), box-shadow .3s, border-color .3s; transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
+      .posts-wrapper .post-card.reveal:nth-child(even) { transform: translateX(56px); }
+      .posts-wrapper .post-card.reveal.in { opacity: 1; transform: none; }
+      .posts-wrapper .post-card.reveal.in:hover { transform: translateY(-8px); transition-delay: 0s; box-shadow: var(--shadow-lg); border-color: var(--accent); }
+      .post-card { position: relative; }
+      .post-card::before {
+        content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity .35s;
+        background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 0%), var(--accent-soft), transparent 55%);
+      }
+      .post-card:hover::before { opacity: 1; }
+      .post-thumb { overflow: hidden; }
+      .post-card.in .post-thumb img { animation: moImgIn 1.1s var(--ease-out) both; }
+      @keyframes moImgIn { from { transform: scale(1.18); clip-path: inset(0 100% 0 0); } to { transform: scale(1); clip-path: inset(0 0 0 0); } }
+      .post-card:hover .post-thumb img { transform: scale(1.08) rotate(.6deg); }
+      .post-card .post-content > * { transition: transform .45s var(--ease-out), color .2s; }
+      .post-card:hover .post-title { transform: translateX(4px); }
+      .read-more { display: inline-block; align-self: flex-start; transition: transform .35s var(--ease-out), letter-spacing .35s; }
+      .read-more:hover { transform: translateX(4px); }
+      .post-thumb-empty { transition: background .4s, transform .4s var(--ease-out); }
+      .post-card:hover .post-thumb-empty { transform: scale(1.04); }
+
+      /* Section headings: gradient underline slides in */
+      .section-title { position: relative; display: inline-block; }
+      .section-header .section-title::after {
+        content: ''; display: block; height: 4px; width: 56px; margin: .6rem auto 0; border-radius: 4px; background: var(--grad);
+        transform: scaleX(0); transform-origin: center; transition: transform .9s var(--ease-out) .25s;
+      }
+      .section-header.in .section-title::after, .no-reveal .section-header .section-title::after { transform: scaleX(1); }
+      .about-content .section-title::after { margin-left: 0; }
+
+      /* Cards in other sections slide with direction */
+      .service-card.reveal:nth-child(odd), .testimonial-card.reveal:nth-child(odd), .price-card.reveal:nth-child(odd) { transform: translateX(-34px); }
+      .service-card.reveal:nth-child(even), .testimonial-card.reveal:nth-child(even), .price-card.reveal:nth-child(even) { transform: translateX(34px); }
+      .service-card.reveal.in, .testimonial-card.reveal.in, .price-card.reveal.in { transform: none; }
+      .service-card.reveal.in:hover { transform: translateY(-6px); }
+      .price-card.reveal.in:hover { transform: translateY(-6px); }
+      .featured-item.reveal { transform: translateX(-60px); }
+      .featured-item.reveal:nth-child(even) { transform: translateX(60px); }
+      .featured-item.reveal.in { transform: none; }
+
+      /* ---------- Single post: sliding content blocks ---------- */
+      .mo { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .8s var(--ease-out); transition-delay: var(--d, 0s); }
+      .mo.mo-l { transform: translateX(-44px); }
+      .mo.mo-r { transform: translateX(44px); }
+      .mo.in { opacity: 1; transform: none; }
+      .post-body img { transition: transform .5s var(--ease-out), box-shadow .4s, opacity .7s ease; }
+      .post-body img:hover { transform: scale(1.015); box-shadow: var(--shadow-lg); }
+      .post-body blockquote { transition: transform .4s var(--ease-out), box-shadow .3s; }
+      .post-body blockquote:hover { transform: translateX(6px); box-shadow: var(--shadow-sm); }
+      .post-body a { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat; transition: background-size .35s var(--ease-out), color .2s; text-decoration: none; padding-bottom: 1px; }
+      .post-body a:hover { background-size: 100% 2px; }
+      .post-body a img, .post-body a[imageanchor] { background: none; }
+      .post-nav a { transition: transform .35s var(--ease-out), border-color .2s, box-shadow .3s; }
+      .post-nav .prev:hover { transform: translateX(-6px); }
+      .post-nav .next:hover { transform: translateX(6px); }
+      .author-box { transition: transform .35s var(--ease-out), box-shadow .3s; }
+      .author-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+      .author-avatar-ini { transition: transform .6s var(--ease-spring); }
+      .author-box:hover .author-avatar-ini { transform: rotate(360deg) scale(1.08); }
+      .related-card { transition: transform .4s var(--ease-out), box-shadow .3s, border-color .2s; animation: moSlideUp .6s var(--ease-out) both; }
+      .related-card:nth-child(2) { animation-delay: .1s; } .related-card:nth-child(3) { animation-delay: .2s; }
+      .related-card img { transition: transform .6s var(--ease-out); }
+      .related-card:hover img { transform: scale(1.08); }
+      .toc a { display: inline-block; transition: transform .25s var(--ease-out), color .2s; }
+      .toc a:hover { transform: translateX(5px); }
+
+      /* FAQ: smooth content slide */
+      .faq-item[open] p { animation: moSlideUp .45s var(--ease-out) both; }
+      .faq-item summary { transition: color .2s, padding-left .3s var(--ease-out); }
+      .faq-item summary:hover { color: var(--accent); padding-left: 1.5rem; }
+
+      /* Pager / newsletter */
+      .pager .btn { min-width: 130px; }
+      .newsletter input[type=email] { transition: border-color .2s, box-shadow .3s, transform .3s var(--ease-out); }
+      .newsletter input[type=email]:focus { transform: translateY(-2px); }
+
+      /* Subtle cursor-follow for the hero buttons (set by JS) */
+      .magnetic { transition: transform .25s var(--ease-out), box-shadow .35s; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal, .mo, .posts-wrapper .post-card.reveal, .featured-item.reveal { opacity: 1 !important; transform: none !important; }
+        .btn::after, .ripple-dot { display: none !important; }
+      }
+
+      .share-btn[hidden] { display: none; }
+
+      /* ---- Breadcrumbs (mirror the BreadcrumbList schema) ---- */
+      .breadcrumb { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .25rem .55rem; font-size: .8rem; color: var(--text-muted); margin-bottom: .5rem; }
+      .breadcrumb a { color: var(--text-muted); transition: color .2s; }
+      .breadcrumb a:hover { color: var(--accent); }
+      .breadcrumb [aria-current] { max-width: 30ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-main); font-weight: 600; }
+      .breadcrumb span[aria-hidden] { opacity: .5; }
+    ]]></b:skin>
+  </head>
+
+  <body id='top'>
+    <a class='skip-link' href='#content'>Skip to content</a>
+    <div aria-hidden='true' class='read-progress' id='read-progress'/>
+
+    <!-- HEADER -->
+    <header class='site-header' id='site-header'>
+      <div class='container header-inner'>
+        <div class='logo'>
+          <b:section id='header-logo' maxwidgets='1' showaddelement='no'>
+            <b:widget id='Header1' locked='true' title='Infopurna (Header)' type='Header' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='displayUrl'/>
+                <b:widget-setting name='displayHeight'>0</b:widget-setting>
+                <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+                <b:widget-setting name='useImage'>false</b:widget-setting>
+                <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+                <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+                <b:widget-setting name='displayWidth'>0</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <a expr:href='data:blog.homepageUrl'><data:title/></a>
+              </b:includable>
+              <b:includable id='behindImageStyle'>
+    <b:if cond='data:sourceUrl'>
+      <b:include cond='data:this.image' data='{                    image: data:this.image,                    selector: &quot;.header-widget&quot;                  }' name='responsiveImageStyle'/>
+      <style type='text/css'>
+        .header-widget {
+          background-position: <data:blog.locale.languageAlignment/>;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      </style>
+    </b:if>
+  </b:includable>
+              <b:includable id='description'>
+    <p>
+      <data:this.description/>
+    </p>
+  </b:includable>
+              <b:includable id='image'>
+    <a class='header-image-wrapper' expr:href='data:blog.homepageUrl'>
+      <b:include data='{                                                 image: data:image,                                                 altText: data:blog.title.escaped,                                                 originalWidth: data:width,                                                 originalHeight: data:height                                               }' name='responsiveImage'/>
+    </a>
+  </b:includable>
+              <b:includable id='title'>
+    <p class='site-title'>
+      <b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
+        <data:title/>
+      </b:tag>
+    </p>
+  </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+        <nav aria-label='Main Navigation' class='nav-desktop'>
+          <a expr:href='data:blog.homepageUrl'>Home</a>
+          <a expr:href='data:blog.homepageUrl + &quot;#about&quot;'>About</a>
+          <a expr:href='data:blog.homepageUrl + &quot;#services&quot;'>Topics</a>
+          <a expr:href='data:blog.homepageUrl + &quot;#featured&quot;'>Resources</a>
+          <a expr:href='data:blog.homepageUrl + &quot;#blog&quot;'>Blog</a>
+          <a expr:href='data:blog.homepageUrl + &quot;#contact&quot;'>Contact</a>
+        </nav>
+        <div class='nav-actions'>
+          <a class='btn btn-blue btn-sm nav-cta' expr:href='data:blog.homepageUrl + &quot;#blog&quot;'>Explore Guides</a>
+          <button aria-label='Search' class='icon-btn' id='search-open' type='button'>
+            <svg viewBox='0 0 24 24'><circle cx='11' cy='11' r='7'/><path d='M21 21l-4.35-4.35'/></svg>
+          </button>
+          <button aria-label='Toggle Dark Mode' class='icon-btn' id='theme-toggle' type='button'>
+            <svg class='icon-sun' viewBox='0 0 24 24'><circle cx='12' cy='12' r='5'/><path d='M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42'/></svg>
+            <svg class='icon-moon' viewBox='0 0 24 24'><path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/></svg>
+          </button>
+          <button aria-controls='mobile-menu' aria-expanded='false' aria-label='Open Menu' class='icon-btn menu-toggle' id='menu-toggle' type='button'>
+            <svg viewBox='0 0 24 24'><line x1='3' x2='21' y1='12' y2='12'/><line x1='3' x2='21' y1='6' y2='6'/><line x1='3' x2='21' y1='18' y2='18'/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class='mobile-menu' id='mobile-menu'>
+      <a expr:href='data:blog.homepageUrl'>Home</a>
+      <a expr:href='data:blog.homepageUrl + &quot;#about&quot;'>About</a>
+      <a expr:href='data:blog.homepageUrl + &quot;#services&quot;'>Topics</a>
+      <a expr:href='data:blog.homepageUrl + &quot;#featured&quot;'>Resources</a>
+      <a expr:href='data:blog.homepageUrl + &quot;#blog&quot;'>Blog</a>
+      <a expr:href='data:blog.homepageUrl + &quot;#contact&quot;'>Contact</a>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div aria-hidden='true' class='search-overlay' id='search-overlay'>
+      <div class='search-panel'>
+      <form class='search-box' expr:action='data:blog.homepageUrl + &quot;search&quot;' method='get' role='search'>
+          <input aria-label='Search this site' autocomplete='off' id='search-input' name='q' placeholder='Search articles…  (Ctrl K)' type='search'/>
+          <button class='btn btn-blue' type='submit'>Search</button>
+        </form>
+        <div aria-live='polite' class='search-results' id='search-results'/>
+      </div>
+    </div>
+
+    <!-- AD SLOT: below header (all pages) -->
+    <div class='container'>
+      <div class='ad-slot ad-top'>
+          <b:section class='ad-area' id='ad-top' showaddelement='yes'/>
+        </div>
+    </div>
+
+    <!-- HOME PAGE SECTIONS (Top Half) -->
+    <b:if cond='data:view.isHomepage'>
+      
+      <!-- 1. Hero Section -->
+      <section class='hero-section' id='home'>
+        <div class='container'>
+          <b:section id='sec-hero' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML101' locked='false' title='Hero Content' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="hero-grid">
+  <div class="hero-copy">
+    <span class="eyebrow"><span class="pulse"></span>Digital marketing &bull; SEO &bull; AI tools</span>
+    <h1 class="hero-title">Nara Media<br/><span class="grad-words" data-words="Digital Marketing|SEO Strategies|AI Tools|Web Solutions|Digital Resources">Digital Marketing</span></h1>
+    <p class="hero-desc">Your trusted source for digital marketing, SEO strategies, AI tools, web solutions and premium digital resources.</p>
+    <div class="hero-cta">
+      <a href="#blog" class="btn btn-blue btn-lg">Explore Guides</a>
+      <a href="#services" class="btn btn-ghost btn-lg">Browse Topics</a>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="orbit orbit-1"></div>
+    <div class="orbit orbit-2"></div>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="hv-card hv-main">
+      <div class="hv-dots"><i></i><i></i><i></i></div>
+      <div class="hv-bars"><b style="--h:55%"></b><b style="--h:85%"></b><b style="--h:40%"></b><b style="--h:95%"></b><b style="--h:65%"></b><b style="--h:78%"></b></div>
+      <div class="hv-line"><span></span><span></span><span></span></div>
+    </div>
+    <div class="hv-card hv-chip hv-c1"><span class="hv-ico" style="--c:#f43f5e">&#9733;</span>AI tools</div>
+    <div class="hv-card hv-chip hv-c2"><span class="hv-ico" style="--c:#10b981">&#9650;</span>SEO strategies</div>
+    <div class="hv-card hv-chip hv-c3"><span class="hv-ico" style="--c:#f59e0b">&#9670;</span>Web solutions</div>
+    <span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span><span class="spark sp4"></span>
+  </div>
+</div>
+<div class="stats-row">
+  <div class="stat"><strong>SEO</strong><span>Search strategies</span></div>
+  <div class="stat"><strong>AI</strong><span>Tools &amp; workflows</span></div>
+  <div class="stat"><strong>Web</strong><span>Website optimization</span></div>
+  <div class="stat"><strong>Assets</strong><span>Premium resources</span></div>
+</div>
+<div class="marquee" aria-label="Topics we cover">
+  <p class="marquee-label">Topics we cover</p>
+  <div class="marquee-track"><span>Digital Marketing</span><span>SEO Strategies</span><span>AI Tools</span><span>Web Solutions</span><span>Website Optimization</span><span>Marketing Tips</span><span>Expert Guides</span><span>Digital Assets</span><span>Premium Resources</span></div>
+</div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- AD SLOT: homepage, after hero -->
+      <div class='container'>
+        <div class='ad-slot ad-home'>
+          <b:section class='ad-area' id='ad-home' showaddelement='yes'/>
+        </div>
+      </div>
+
+      <!-- 2. About Me Section -->
+      <section class='sec' id='about'>
+        <div class='container'>
+          <b:section id='sec-about' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML102' locked='false' title='About Section' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="about-grid">
+                  <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20600%20600%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%230f172a%27%2F%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%232563eb%27%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%27600%27%20height%3D%27600%27%20fill%3D%27url%28%23g%29%27%2F%3E%3Ccircle%20cx%3D%27470%27%20cy%3D%27130%27%20r%3D%27120%27%20fill%3D%27%23fff%27%20fill-opacity%3D%27.08%27%2F%3E%3Ccircle%20cx%3D%27120%27%20cy%3D%27500%27%20r%3D%27160%27%20fill%3D%27%23fff%27%20fill-opacity%3D%27.06%27%2F%3E%3Ctext%20x%3D%27300%27%20y%3D%27350%27%20font-family%3D%27Inter%2CArial%2Csans-serif%27%20font-size%3D%27260%27%20font-weight%3D%27800%27%20fill%3D%27%23fff%27%20text-anchor%3D%27middle%27%3EN%3C%2Ftext%3E%3Ctext%20x%3D%27300%27%20y%3D%27440%27%20font-family%3D%27Inter%2CArial%2Csans-serif%27%20font-size%3D%2744%27%20font-weight%3D%27700%27%20fill%3D%27%23fff%27%20fill-opacity%3D%27.85%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ENARA%20MEDIA%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Nara Media logo mark" class="about-img" loading="lazy" width="600" height="600" />
+                  <div class="about-content">
+                    <h2 class="section-title">About Nara Media</h2>
+                    <h3>Digital resources built to help you grow.</h3>
+                    <p>Nara Media is your trusted source for digital marketing, SEO strategies, AI tools, web solutions and premium digital resources.</p>
+                    <p>Discover expert guides, marketing tips, website optimization and high-quality digital assets to grow your online presence and business. Our team provides it all through Nara Media Digital Resource.</p>
+                    <div class="chip-row">
+                      <span class="chip">&#128218; Expert guides</span>
+                      <span class="chip">&#128161; Marketing tips</span>
+                      <span class="chip">&#127873; Premium assets</span>
+                    </div>
+                    <div class="btn-row">
+                      <a href="#blog" class="btn btn-blue">Read the Blog</a>
+                      <a href="#contact" class="btn btn-ghost">Stay Connected</a>
+                    </div>
+                  </div>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- 3. Services Section -->
+      <section class='sec sec-alt' id='services'>
+        <div class='container'>
+          <div class='section-header'>
+            <h2 class='section-title'>What We Cover</h2>
+            <p class='section-desc'>Guides, tools and resources for growing your online presence and business.</p>
+          </div>
+          <b:section id='sec-services' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML103' locked='false' title='Services Grid' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="services-grid">
+                  <div class="service-card">
+                    <div class="service-icon">&#128640;</div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-desc">Practical marketing tips and strategies to reach your audience and grow your brand online.</p>
+                  </div>
+                  <div class="service-card">
+                    <div class="service-icon">&#128269;</div>
+                    <h3 class="service-title">SEO Strategies</h3>
+                    <p class="service-desc">Guides to help your website rank higher, earn organic traffic and build lasting search visibility.</p>
+                  </div>
+                  <div class="service-card">
+                    <div class="service-icon">&#129302;</div>
+                    <h3 class="service-title">AI Tools</h3>
+                    <p class="service-desc">Discover and learn AI tools that streamline your marketing, content and everyday workflows.</p>
+                  </div>
+                  <div class="service-card">
+                    <div class="service-icon">&#128187;</div>
+                    <h3 class="service-title">Web Solutions</h3>
+                    <p class="service-desc">Website building and design advice for fast, user-friendly and responsive sites.</p>
+                  </div>
+                  <div class="service-card">
+                    <div class="service-icon">&#9889;</div>
+                    <h3 class="service-title">Website Optimization</h3>
+                    <p class="service-desc">Speed, structure and on-page improvements that help your site perform better.</p>
+                  </div>
+                  <div class="service-card">
+                    <div class="service-icon">&#127873;</div>
+                    <h3 class="service-title">Digital Resources</h3>
+                    <p class="service-desc">High-quality premium digital assets to support your online presence and business.</p>
+                  </div>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class='sec' id='process'>
+        <div class='container'>
+          <div class='section-header'>
+            <h2 class='section-title'>How It Works</h2>
+            <p class='section-desc'>From finding the right guide to growing your online presence.</p>
+          </div>
+          <b:section id='sec-process' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML109' locked='false' title='Process Steps' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="process-grid">
+                  <div class="process-step"><h3>Explore</h3><p>Browse expert guides by topic: digital marketing, SEO, AI tools and web solutions.</p></div>
+                  <div class="process-step"><h3>Learn</h3><p>Follow clear explanations and marketing tips you can put into practice right away.</p></div>
+                  <div class="process-step"><h3>Optimize</h3><p>Improve your website with practical optimization advice for search and users.</p></div>
+                  <div class="process-step"><h3>Grow</h3><p>Use high-quality digital assets and resources to strengthen your online presence and business.</p></div>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- 4. Featured Projects -->
+      <section class='sec sec-alt' id='featured'>
+        <div class='container'>
+          <div class='section-header'>
+            <h2 class='section-title'>Featured Resources</h2>
+            <p class='section-desc'>Start with the topics readers explore most.</p>
+          </div>
+          <b:section id='sec-featured' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML104' locked='false' title='Featured Projects' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="featured-grid">
+                  <div class="featured-item">
+                    <div class="featured-img-wrap">
+                      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="" class="featured-img" loading="lazy" />
+                    </div>
+                    <div class="featured-content">
+                      <div class="project-meta">Guides &bull; Search</div>
+                      <h3 class="project-title">SEO Strategies</h3>
+                      <p class="project-desc">Expert guides to help your website get found, earn organic traffic and grow steadily.</p>
+                      <div class="project-tags"><span class="tag">SEO</span><span class="tag">Guides</span><span class="tag">Tips</span></div>
+                      <a href="/search?q=SEO" class="btn btn-blue">Explore SEO guides</a>
+                    </div>
+                  </div>
+                  <div class="featured-item">
+                    <div class="featured-img-wrap">
+                      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="" class="featured-img" loading="lazy" />
+                    </div>
+                    <div class="featured-content">
+                      <div class="project-meta">Tools &bull; Workflows</div>
+                      <h3 class="project-title">AI Tools</h3>
+                      <p class="project-desc">Learn how AI tools can speed up your marketing, content and day-to-day digital work.</p>
+                      <div class="project-tags"><span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Workflows</span></div>
+                      <a href="/search?q=AI" class="btn btn-blue">Explore AI tools</a>
+                    </div>
+                  </div>
+                  <div class="featured-item">
+                    <div class="featured-img-wrap">
+                      <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="" class="featured-img" loading="lazy" />
+                    </div>
+                    <div class="featured-content">
+                      <div class="project-meta">Web &bull; Optimization</div>
+                      <h3 class="project-title">Web Solutions &amp; Optimization</h3>
+                      <p class="project-desc">Practical website optimization tips and solutions for faster, better-performing sites.</p>
+                      <div class="project-tags"><span class="tag">Web</span><span class="tag">Optimization</span><span class="tag">Marketing</span></div>
+                      <a href="/search?q=website" class="btn btn-blue">Explore web solutions</a>
+                    </div>
+                  </div>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+    </b:if> <!-- End Top Homepage Sections -->
+
+    <!-- MAIN BLOG / PORTFOLIO GRID -->
+    <!-- 5 & 9. Portfolio Grid / Blog Section -->
+    <div class='container sec blog-wrap' id='blog'>
+      
+      <b:if cond='data:view.isMultipleItems'>
+        <div class='section-header'>
+          <b:if cond='data:view.isLabelSearch'>
+            <h1 class='section-title' id='archive-title'>Topic: <data:blog.searchLabel/></h1>
+            <p class='section-desc' id='archive-desc'>All articles filed under this topic.</p>
+          <b:elseif cond='data:view.isSearch'/>
+            <h1 class='section-title' id='archive-title'>Search results</h1>
+            <p class='section-desc' id='archive-desc'>Articles matching your search.</p>
+          <b:elseif cond='data:view.isArchive'/>
+            <h1 class='section-title' id='archive-title'>Archive</h1>
+            <p class='section-desc' id='archive-desc'>Posts from this period.</p>
+          <b:else/>
+            <h2 class='section-title' id='archive-title'>Latest Articles</h2>
+            <p class='section-desc' id='archive-desc'>Expert guides, marketing tips and digital resources.</p>
+          </b:if>
+        </div>
+        <nav aria-label='Topics' class='topic-chips' id='topic-chips'/>
+      </b:if>
+
+      <main id='content' role='main'>
+        <b:section id='main' showaddelement='yes'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+              <b:widget-setting name='commentLabel'>Comments</b:widget-setting>
+              <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+              <b:widget-setting name='authorLabel'>by</b:widget-setting>
+              <b:widget-setting name='showCommentLink'>false</b:widget-setting>
+              <b:widget-setting name='showAuthor'>false</b:widget-setting>
+              <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+              <b:widget-setting name='timestampLabel'/>
+              <b:widget-setting name='reactionsLabel'/>
+              <b:widget-setting name='showAuthorProfile'>true</b:widget-setting>
+              <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+              <b:widget-setting name='showLabels'>true</b:widget-setting>
+              <b:widget-setting name='showLocation'>true</b:widget-setting>
+              <b:widget-setting name='postLabelsLabel'/>
+              <b:widget-setting name='showTimestamp'>false</b:widget-setting>
+              <b:widget-setting name='postsPerAd'>5</b:widget-setting>
+              <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+              <b:widget-setting name='showInlineAds'>true</b:widget-setting>
+              <b:widget-setting name='showReactions'>false</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main' var='top'>
+              <b:if cond='data:posts.empty'>
+                <div class='empty-state'>
+                  <div class='code'>404</div>
+                  <h2>Nothing found here</h2>
+                  <p>The page or post you are looking for does not exist, was moved, or no posts match your search.</p>
+                  <a class='btn btn-blue' expr:href='data:blog.homepageUrl'>Back to home</a>
+                </div>
+              <b:elseif cond='data:view.isMultipleItems'/>
+                <div expr:class='&quot;posts-wrapper&quot; + (data:view.isHomepage ? &quot; has-featured&quot; : &quot;&quot;)'>
+                  <b:loop index='i' values='data:posts' var='post'>
+                    <b:include data='post' name='postCard'/>
+                    <b:if cond='data:post.includeAd'>
+                      <div class='feed-ad'><b:include data='post' name='inlineAd'/></div>
+                    </b:if>
+                  </b:loop>
+                </div>
+                <div class='blog-pager'>
+                  <b:include name='nextprev'/>
+                </div>
+              <b:else/>
+                <b:loop values='data:posts' var='post'>
+                  <b:include data='post' name='postDetail'/>
+                </b:loop>
+              </b:if>
+            </b:includable>
+            <b:includable id='aboutPostAuthor'>
+  <div class='author-name'>
+    <a class='g-profile' expr:href='data:post.author.profileUrl' rel='author' title='author profile'>
+      <span>
+        <data:post.author.name/>
+      </span>
+    </a>
+  </div>
+  <div>
+    <span class='author-desc'>
+      <data:post.author.aboutMe/>
+    </span>
+  </div>
+</b:includable>
+            <b:includable id='addComments'>
+  <a expr:href='data:post.commentsUrl' expr:onclick='data:post.commentsUrlOnclick'>
+    <b:message name='messages.postAComment'/>
+  </a>
+</b:includable>
+            <b:includable id='blogThisShare'>
+  <b:with value='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+            <b:includable id='bylineByName' var='byline'>
+  <b:switch var='data:byline.name'>
+  <b:case value='share'/>
+    <b:include cond='data:post.shareUrl' name='postShareButtons'/>
+  <b:case value='comments'/>
+    <b:include cond='data:post.allowComments' name='postCommentsLink'/>
+  <b:case value='location'/>
+    <b:include cond='data:post.location' name='postLocation'/>
+  <b:case value='timestamp'/>
+    <b:include cond='not data:view.isPage' name='postTimestamp'/>
+  <b:case value='author'/>
+    <b:include name='postAuthor'/>
+  <b:case value='labels'/>
+    <b:include cond='data:post.labels' name='postLabels'/>
+  <b:case value='icons'/>
+    <b:include cond='data:post.emailPostUrl' name='emailPostIcon'/>
+  </b:switch>
+</b:includable>
+            <b:includable id='bylineRegion' var='regionItems'>
+  <b:loop values='data:regionItems' var='byline'>
+    <b:include data='byline' name='bylineByName'/>
+  </b:loop>
+</b:includable>
+            <b:includable id='commentAuthorAvatar'>
+  <div class='avatar-image-container'>
+    <img alt='' class='author-avatar' expr:src='data:comment.authorAvatarSrc' height='35' loading='lazy' width='35'/>
+  </div>
+</b:includable>
+            <b:includable id='commentDeleteIcon' var='comment'>
+  <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
+    <b:if cond='data:showCmtPopup'>
+      <div class='goog-toggle-button'>
+        <div class='goog-inline-block comment-action-icon'/>
+      </div>
+    <b:else/>
+      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:messages.deleteComment'>
+        <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+            <b:includable id='commentForm' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <h4 id='comment-post-message'><data:messages.postAComment/></h4>
+    <b:if cond='data:this.messages.blogComment != &quot;&quot;'>
+      <p><data:this.messages.blogComment/></p>
+    </b:if>
+    <b:include data='post' name='commentFormIframeSrc'/>
+    <iframe allowtransparency='allowtransparency' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight ?: &quot;90px&quot;' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+            <b:includable id='commentFormIframeSrc' var='post'>
+  <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+</b:includable>
+            <b:includable id='commentItem' var='comment'>
+  <div class='comment' expr:id='&quot;c&quot; + data:comment.id'>
+    <b:include cond='data:blog.enabledCommentProfileImages' name='commentAuthorAvatar'/>
+
+    <div class='comment-block'>
+      <div class='comment-author'>
+        <b:if cond='data:comment.authorUrl'>
+          <b:message name='messages.authorSaidWithLink'>
+            <b:param expr:value='data:comment.author' name='authorName'/>
+            <b:param expr:value='data:comment.authorUrl' name='authorUrl'/>
+          </b:message>
+        <b:else/>
+          <b:message name='messages.authorSaid'>
+            <b:param expr:value='data:comment.author' name='authorName'/>
+          </b:message>
+        </b:if>
+      </div>
+      <div expr:class='&quot;comment-body&quot; + (data:comment.isDeleted ? &quot; deleted&quot; : &quot;&quot;)'>
+        <data:comment.body/>
+      </div>
+      <div class='comment-footer'>
+        <span class='comment-timestamp'>
+          <a expr:href='data:comment.url' title='comment permalink'>
+            <data:comment.timestamp/>
+          </a>
+          <b:include data='comment' name='commentDeleteIcon'/>
+        </span>
+      </div>
+    </div>
+  </div>
+</b:includable>
+            <b:includable id='commentList' var='comments'>
+  <div id='comments-block'>
+    <b:loop values='data:comments' var='comment'>
+      <b:include data='comment' name='commentItem'/>
+    </b:loop>
+  </div>
+</b:includable>
+            <b:includable id='commentPicker' var='post'>
+  <b:if cond='data:post.showThreadedComments'>
+    <b:include data='post' name='threadedComments'/>
+  <b:else/>
+    <b:include data='post' name='comments'/>
+  </b:if>
+</b:includable>
+            <b:includable id='comments' var='post'>
+  <section expr:class='&quot;comments&quot; + (data:post.embedCommentForm ? &quot; embed&quot; : &quot;&quot;)' expr:data-num-comments='data:post.numberOfComments' id='comments'>
+    <a name='comments'/>
+    <b:if cond='data:post.allowComments'>
+
+      <b:include name='commentsTitle'/>
+
+      <div expr:id='data:widget.instanceId + &quot;_comments-block-wrapper&quot;'>
+        <b:include cond='data:post.comments' data='post.comments' name='commentList'/>
+      </div>
+
+      <b:if cond='data:post.commentPagingRequired'>
+        <div class='paging-control-container'>
+          <b:if cond='data:post.hasOlderLinks'>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'>
+              <data:messages.oldest/>
+            </a>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'>
+              <data:messages.older/>
+            </a>
+          </b:if>
+
+          <span class='comment-range-text'>
+            <data:post.commentRangeText/>
+          </span>
+
+          <b:if cond='data:post.hasNewerLinks'>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'>
+              <data:messages.newer/>
+            </a>
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'>
+              <data:messages.newest/>
+            </a>
+          </b:if>
+        </div>
+      </b:if>
+
+      <div class='footer'>
+        <b:if cond='data:post.embedCommentForm'>
+          <b:if cond='data:post.allowNewComments'>
+            <b:include data='post' name='commentForm'/>
+          <b:else/>
+            <data:post.noNewCommentsText/>
+          </b:if>
+        <b:else/>
+          <b:if cond='data:post.allowComments'>
+            <b:include data='post' name='addComments'/>
+          </b:if>
+        </b:if>
+      </div>
+    </b:if>
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='allowtransparency' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+  </section>
+</b:includable>
+            <b:includable id='commentsLink'>
+  <a class='comment-link' expr:href='data:post.commentsUrl' expr:onclick='data:post.commentsUrlOnclick'>
+    <b:if cond='data:post.numberOfComments &gt; 0'>
+      <b:message name='messages.numberOfComments'>
+        <b:param expr:value='data:post.numberOfComments' name='numComments'/>
+      </b:message>
+    <b:else/>
+      <data:messages.postAComment/>
+    </b:if>
+  </a>
+</b:includable>
+            <b:includable id='commentsLinkIframe'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+            <b:includable id='commentsTitle'>
+  <h3 class='title'><data:messages.comments/></h3>
+</b:includable>
+            <b:includable id='defaultAdUnit'>
+  <ins class='adsbygoogle' data-ad-format='auto' expr:data-ad-client='data:adClientId ?: data:blog.adsenseClientId' expr:data-ad-host='data:blog.adsenseHostId' expr:style='data:style ?: &quot;display: block;&quot;'>
+    <b:attr cond='not data:blog.analytics4' expr:value='data:blog.analyticsAccountNumber' name='data-analytics-uacct'/>
+  </ins>
+  <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</b:includable>
+            <b:includable id='emailPostIcon'>
+  <span class='byline post-icons'>
+    <!-- email post links -->
+    <span class='item-action'>
+      <a expr:href='data:post.emailPostUrl' expr:title='data:messages.emailPost'>
+        <b:include data='{ iconClass: &quot;touch-icon sharing-icon&quot; }' name='emailIcon'/>
+      </a>
+    </span>
+  </span>
+</b:includable>
+            <b:includable id='facebookShare'>
+  <b:with value='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+            <b:includable id='feedLinks'>
+  <b:if cond='!data:view.isPost'> <!-- Blog feed links -->
+    <b:if cond='data:feedLinks'>
+      <div class='blog-feeds'>
+        <b:include data='feedLinks' name='feedLinksBody'/>
+      </div>
+    </b:if>
+  <b:else/> <!--Post feed links -->
+    <div class='post-feeds'>
+      <b:loop values='data:posts' var='post'>
+        <b:if cond='data:post.allowComments and data:post.feedLinks'>
+          <b:include data='post.feedLinks' name='feedLinksBody'/>
+        </b:if>
+      </b:loop>
+    </div>
+  </b:if>
+</b:includable>
+            <b:includable id='feedLinksBody' var='links'>
+  <div class='feed-links'>
+  <data:messages.subscribeTo/>
+  <b:loop values='data:links' var='f'>
+     <a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'><data:f.name/> (<data:f.feedType/>)</a>
+  </b:loop>
+  </div>
+</b:includable>
+            <b:includable id='footerBylines'>
+  <b:if cond='data:widgets.Blog.first.footerBylines'>
+    <b:loop index='i' values='data:widgets.Blog.first.footerBylines' var='region'>
+      <b:if cond='not data:region.items.empty'>
+        <div expr:class='&quot;post-footer-line post-footer-line-&quot; + (data:i + 1)'>
+          <b:with value='&quot;footer-&quot; + (data:i + 1)' var='regionName'>
+            <b:include data='region.items' name='bylineRegion'/>
+          </b:with>
+        </div>
+      </b:if>
+    </b:loop>
+  </b:if>
+</b:includable>
+            <b:includable id='googlePlusShare'>
+</b:includable>
+            <b:includable id='headerByline'>
+  <b:if cond='data:widgets.Blog.first.headerByline'>
+    <div class='post-header'>
+      <div class='post-header-line-1'>
+        <b:with value='&quot;header-1&quot;' var='regionName'>
+          <b:include data='data:widgets.Blog.first.headerByline.items' name='bylineRegion'/>
+        </b:with>
+      </div>
+    </div>
+  </b:if>
+</b:includable>
+            <b:includable id='homePageLink'>
+  <a class='home-link' expr:href='data:blog.homepageUrl'>
+    <data:messages.home/>
+  </a>
+</b:includable>
+            <b:includable id='iframeComments' var='post'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+            <b:includable id='inlineAd' var='post'>
+  <b:if cond='!data:view.isPreview'>
+    <b:if cond='data:this.adCode or data:this.adClientId or data:blog.adsenseClientId'>
+      <!-- Ad -->
+      <div class='inline-ad'>
+        <b:if cond='data:this.adCode != &quot;&quot;'>
+          <data:this.adCode/>
+        <b:else/>
+          <b:include cond='data:this.adClientId or data:blog.adsenseClientId' name='defaultAdUnit'/>
+        </b:if>
+      </div>
+    </b:if>
+  <b:else/>
+    <div class='inline-ad'>
+      <div class='inline-ad-placeholder'>
+        <span><b:message name='messages.adsGoHere'/></span>
+      </div>
+    </div>
+  </b:if>
+</b:includable>
+            <b:includable id='linkShare'>
+  <b:with value='&quot;window.prompt(\&quot;Copy to clipboard: Ctrl+C, Enter\&quot;, \&quot;&quot; + data:originalUrl + &quot;\&quot;); return false;&quot;' var='onclick'>
+    <b:include name='platformShare'/>
+  </b:with>
+</b:includable>
+            <b:includable id='nextPageLink'>
+  <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:messages.olderPosts'>
+    <data:messages.olderPosts/>
+  </a>
+</b:includable>
+            <b:includable id='nextprev'>
+              <div class='pager'>
+                <b:if cond='data:newerPageUrl'><a class='btn btn-ghost' expr:href='data:newerPageUrl'>&#8592; Newer</a></b:if>
+                <b:if cond='data:olderPageUrl'><a class='btn btn-blue' expr:href='data:olderPageUrl'>Older &#8594;</a></b:if>
+              </div>
+            </b:includable>
+            <b:includable id='otherSharingButton'>
+  <span class='sharing-platform-button sharing-element-other' expr:aria-label='data:messages.shareToOtherApps.escaped' expr:data-url='data:originalUrl' expr:title='data:messages.shareToOtherApps.escaped' role='menuitem' tabindex='-1'>
+    <b:with value='{key: &quot;sharingOther&quot;}' var='platform'>
+      <b:include name='sharingPlatformIcon'/>
+    </b:with>
+    <span class='platform-sharing-text'><data:messages.shareOtherApps.escaped/></span>
+  </span>
+</b:includable>
+            <b:includable id='platformShare'>
+  <a expr:class='&quot;goog-inline-block sharing-&quot; + data:platform.key' expr:data-url='data:originalUrl' expr:href='data:shareUrl + &quot;&amp;target=&quot; + data:platform.target' expr:onclick='data:onclick ? data:onclick : &quot;&quot;' expr:title='data:platform.shareMessage' target='_blank'>
+    <span class='share-button-link-text'>
+      <data:platform.shareMessage/>
+    </span>
+  </a>
+</b:includable>
+            <b:includable id='post' var='post'>
+  <div class='post'>
+    <b:include data='post' name='postMeta'/>
+    <b:include data='post' name='postTitle'/>
+    <b:include name='headerByline'/>
+    <b:if cond='data:view.isSingleItem'>
+      <b:include data='post' name='postBody'/>
+    <b:else/>
+      <b:include data='post' name='postBodySnippet'/>
+      <b:include data='post' name='postJumpLink'/>
+    </b:if>
+    <b:include data='post' name='postFooter'/>
+  </div>
+</b:includable>
+            <b:includable id='postAuthor'>
+  <span class='byline post-author vcard'>
+    <span class='post-author-label'>
+      <data:byline.label/>
+    </span>
+    <span class='fn'>
+      <b:if cond='data:post.author.profileUrl'>
+        <meta expr:content='data:post.author.profileUrl'/>
+        <a class='g-profile' expr:href='data:post.author.profileUrl' rel='author' title='author profile'>
+          <span><data:post.author.name/></span>
+        </a>
+      <b:else/>
+        <span><data:post.author.name/></span>
+      </b:if>
+    </span>
+  </span>
+</b:includable>
+            <b:includable id='postBody' var='post'>
+  <!-- If metaDescription is empty, use the post body as the schema.org description too, for G+/FB snippeting. -->
+  <div class='post-body entry-content float-container' expr:id='&quot;post-body-&quot; + data:post.id'>
+    <data:post.body/>
+  </div>
+</b:includable>
+            <b:includable id='postBodySnippet' var='post'>
+  <b:include data='post' name='postBody'/>
+</b:includable>
+            <b:includable id='postCard' var='post'>
+              <article class='post-card'>
+                <b:if cond='data:post.featuredImage'>
+                  <a class='post-thumb' expr:href='data:post.url' expr:title='data:post.title'>
+                    <b:if cond='data:i == 0'>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' fetchpriority='high' loading='eager'/>
+                    <b:else/>
+                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                    </b:if>
+                  </a>
+                <b:else/>
+                  <a aria-hidden='true' class='post-thumb post-thumb-empty' expr:href='data:post.url' tabindex='-1'>&#9998;</a>
+                </b:if>
+                <div class='post-content'>
+                  <div class='post-meta'>
+                    <b:if cond='data:post.labels'><span class='post-tag'><data:post.labels.first.name/></span></b:if>
+                    <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+                  </div>
+                  <h2 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h2>
+                  <div class='post-snippet'><data:post.snippet/></div>
+                  <a class='read-more' expr:href='data:post.url'>Read more &#8594;</a>
+                </div>
+              </article>
+            </b:includable>
+            <b:includable id='postCommentsAndAd' var='post'>
+  <article class='post-outer-container'>
+    <!-- Post title and body -->
+    <div class='post-outer'>
+      <b:include data='post' name='post'/>
+    </div>
+
+    <!-- Comments -->
+    <b:include cond='data:view.isSingleItem' data='post' name='commentPicker'/>
+
+    <!-- Show ad inside post container, after comments, if single item. -->
+    <b:include cond='data:view.isSingleItem and data:post.includeAd' data='post' name='inlineAd'/>
+  </article>
+
+  <!-- Show ad outside post container (between posts) for feed pages. -->
+  <b:include cond='data:view.isMultipleItems and data:post.includeAd' data='post' name='inlineAd'/>
+</b:includable>
+            <b:includable id='postCommentsLink'>
+  <b:if cond='data:view.isMultipleItems'>
+    <span class='byline post-comment-link container'>
+      <b:include cond='data:post.commentSource != 1' name='commentsLink'/>
+    </span>
+  </b:if>
+</b:includable>
+            <b:includable id='postDetail' var='post'>
+              <article class='post-detail'>
+                <header class='post-header'>
+                  <b:if cond='data:view.isPost'>
+                    <nav aria-label='Breadcrumb' class='breadcrumb'>
+                      <a expr:href='data:blog.canonicalHomepageUrl'>Home</a>
+                      <b:if cond='data:post.labels'>
+                        <span aria-hidden='true'>&#8250;</span>
+                        <a expr:href='data:post.labels.first.url'><data:post.labels.first.name/></a>
+                      </b:if>
+                      <span aria-hidden='true'>&#8250;</span>
+                      <span aria-current='page'><data:post.title/></span>
+                    </nav>
+                  </b:if>
+                  <b:if cond='data:post.labels'>
+                    <div class='post-tags'>
+                      <b:loop values='data:post.labels' var='label'>
+                        <a class='tag' expr:href='data:label.url' rel='tag'><data:label.name/></a>
+                      </b:loop>
+                    </div>
+                  </b:if>
+                  <h1 class='post-title'><data:post.title/></h1>
+                  <b:if cond='not data:view.isPage'>
+                    <div class='post-meta'>
+                      <span class='author-name'><data:post.author.name/></span>
+                      <time class='published' expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+                      <span class='reading-time'/>
+                    </div>
+                  </b:if>
+                </header>
+
+                <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id'>
+                  <data:post.body/>
+                </div>
+
+                <!-- Built-in Blogger in-article ad (Layout &gt; Blog Posts &gt; Edit &gt; Show Ads Between Posts) -->
+                <b:include cond='data:post.includeAd' data='post' name='inlineAd'/>
+
+                <b:if cond='not data:view.isPage'>
+                  <div class='post-footer'>
+                    <div class='share-bar'>
+                      <strong>Share:</strong>
+                      <a class='share-btn' data-share='facebook' href='#' rel='noopener noreferrer' target='_blank'>Facebook</a>
+                      <a class='share-btn' data-share='x' href='#' rel='noopener noreferrer' target='_blank'>X</a>
+                      <a class='share-btn' data-share='whatsapp' href='#' rel='noopener noreferrer' target='_blank'>WhatsApp</a>
+                      <a class='share-btn' data-share='linkedin' href='#' rel='noopener noreferrer' target='_blank'>LinkedIn</a>
+                      <button class='share-btn' hidden='hidden' id='native-share' type='button'>Share&#8230;</button>
+                      <button class='share-btn' id='copy-link' type='button'>Copy link</button>
+                    </div>
+
+                    <div class='author-box'>
+                      <div aria-hidden='true' class='author-avatar-ini' id='author-initial'/>
+                      <div>
+                        <strong><data:post.author.name/></strong>
+                        <p><b:if cond='data:post.author.aboutMe'><data:post.author.aboutMe/><b:else/>Thanks for reading. Share this article if you found it useful.</b:if></p>
+                      </div>
+                    </div>
+
+                    <nav aria-label='Post navigation' class='post-nav'>
+                      <b:if cond='data:newerPageUrl'><a class='prev' expr:href='data:newerPageUrl' rel='prev'><small>Newer post</small>&#8592; Previous article</a></b:if>
+                      <b:if cond='data:olderPageUrl'><a class='next' expr:href='data:olderPageUrl' rel='next'><small>Older post</small>Next article &#8594;</a></b:if>
+                    </nav>
+
+                    <b:if cond='data:post.labels'>
+                      <section aria-label='Related posts' class='related' expr:data-label='data:post.labels.first.name' id='related-posts'/>
+                    </b:if>
+                  </div>
+                </b:if>
+
+                <b:include cond='data:view.isSingleItem' data='post' name='commentPicker'/>
+              </article>
+            </b:includable>
+            <b:includable id='postFooter' var='post'>
+  <div class='post-footer'>
+    <b:include name='footerBylines'/>
+    <b:include data='post' name='postFooterAuthorProfile'/>
+  </div>
+</b:includable>
+            <b:includable id='postFooterAuthorProfile' var='post'>
+  <b:if cond='data:post.author.aboutMe and data:view.isPost'>
+    <div class='author-profile'>
+      <b:if cond='data:post.author.authorPhoto.url'>
+        <img class='author-image' expr:alt='data:post.author.name' expr:src='data:post.author.authorPhoto.url' height='50' loading='lazy' width='50'/>
+        <div class='author-about'>
+          <b:include data='post' name='aboutPostAuthor'/>
+        </div>
+      <b:else/>
+        <b:include data='post' name='aboutPostAuthor'/>
+      </b:if>
+    </div>
+  </b:if>
+</b:includable>
+            <b:includable id='postHeader' var='post'>
+  <b:include name='headerByline'/>
+</b:includable>
+            <b:includable id='postJumpLink' var='post'>
+  <div class='jump-link flat-button'>
+    <a expr:href='data:post.url fragment &quot;more&quot;' expr:title='data:post.title'>
+      <b:eval expr='data:blog.jumpLinkMessage'/>
+    </a>
+  </div>
+</b:includable>
+            <b:includable id='postLabels'>
+  <span class='byline post-labels'>
+    <span class='byline-label'><data:byline.label/></span>
+    <b:loop index='i' values='data:post.labels' var='label'>
+      <a expr:href='data:label.url' rel='tag'>
+        <data:label.name/>
+      </a>
+    </b:loop>
+  </span>
+</b:includable>
+            <b:includable id='postLocation'>
+  <span class='byline post-location'>
+    <data:byline.label/>
+    <a expr:href='data:post.location.mapsUrl' target='_blank'><data:post.location.name/></a>
+  </span>
+</b:includable>
+            <b:includable id='postMeta' var='post'>
+  <b:if cond='data:view.isPost'>
+    <b:include data='post' name='postMetadataJSON'/>
+  </b:if>
+</b:includable>
+            <b:includable id='postMetadataJSON' var='post'>
+<script type='application/ld+json'>
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "<data:post.canonicalUrl/>" },
+  <b:if cond='data:post.title'>
+  "name": "<data:post.title.jsonEscaped/>",
+  "headline": "<data:post.title.jsonEscaped/>",
+  </b:if>
+  <b:if cond='data:post.snippet'>
+  "description": "<data:post.snippet.jsonEscaped/>",
+  </b:if>
+  "datePublished": "<data:post.date.iso8601/>",
+  "dateModified": "<data:post.lastUpdated.iso8601/>",
+  "url": "<data:post.canonicalUrl/>",
+  "inLanguage": "<data:blog.locale/>",
+  <b:if cond='data:post.labels'>
+  "articleSection": "<data:post.labels.first.name.jsonEscaped/>",
+  "keywords": "<b:loop index='i' values='data:post.labels' var='l'><b:if cond='data:i != 0'>, </b:if><data:l.name.jsonEscaped/></b:loop>",
+  </b:if>
+  "isPartOf": { "@id": "<data:blog.canonicalHomepageUrl/>#website" },
+  <b:include data='post' name='postMetadataJSONImage'/>
+  <b:include name='postMetadataJSONPublisher'/>
+  "author": {
+    "@type": "Person",
+    "name": "<data:post.author.name.jsonEscaped/>"
+    <b:if cond='data:post.author.profileUrl'>
+    ,"url": "<data:post.author.profileUrl/>"
+    </b:if>
+  }
+}
+</script>
+<script type='application/ld+json'>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "<data:blog.canonicalHomepageUrl/>" },
+    <b:if cond='data:post.labels'>
+    { "@type": "ListItem", "position": 2, "name": "<data:post.labels.first.name.jsonEscaped/>", "item": "<data:post.labels.first.url/>" },
+    </b:if>
+    { "@type": "ListItem", "position": <b:eval expr='data:post.labels ? 3 : 2'/>, "name": "<data:post.title.jsonEscaped/>", "item": "<data:post.canonicalUrl/>" }
+  ]
+}
+</script>
+</b:includable>
+            <b:includable id='postMetadataJSONImage' var='post'>
+  <b:if cond='data:post.featuredImage.isResizable'>
+  "image": {
+    "@type": "ImageObject",
+    "url": "<b:eval expr='resizeImage(data:post.featuredImage, 1200, &quot;1200:630&quot;)'/>",
+    "height": 630,
+    "width": 1200
+  },
+  </b:if>
+</b:includable>
+            <b:includable id='postMetadataJSONPublisher'>
+  "publisher": {
+    "@type": "Organization",
+    "@id": "<data:blog.canonicalHomepageUrl/>#organization",
+    "name": "Nara Media",
+    "url": "<data:blog.canonicalHomepageUrl/>"
+  },
+</b:includable>
+            <b:includable id='postPagination'>
+  <div class='blog-pager container' id='blog-pager'>
+    <b:include cond='data:newerPageUrl' name='previousPageLink'/>
+    <b:include cond='data:olderPageUrl' name='nextPageLink'/>
+    <b:include cond='data:view.url != data:blog.homepageUrl' name='homePageLink'/>
+  </div>
+</b:includable>
+            <b:includable id='postReactions'>
+  <!-- Reaction feature no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+            <b:includable id='postShareButtons'>
+  <div class='byline post-share-buttons goog-inline-block'>
+    <b:with value='data:sharingId ?: ((data:widget.instanceId ?: &quot;sharing&quot;) + &quot;-&quot; + (data:regionName ?: &quot;byline&quot;) + &quot;-&quot; + data:post.id)' var='sharingId'>
+      <!-- Note: 'sharingButtons' includable is from the default Sharing widget markup. -->
+      <b:include data='{                                                sharingId: data:sharingId,                                                originalUrl: data:post.url,                                                platforms: data:this.sharing.platforms,                                                shareUrl: data:post.shareUrl,                                                shareTitle: data:post.title,                                              }' name='sharingButtons'/>
+    </b:with>
+  </div>
+</b:includable>
+            <b:includable id='postTimestamp'>
+  <span class='byline post-timestamp'>
+    <data:byline.label/>
+    <b:if cond='data:post.url'>
+      <meta expr:content='data:post.url.canonical'/>
+      <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'>
+        <time class='published' expr:datetime='data:post.date.iso8601' expr:title='data:post.date.iso8601'>
+          <data:post.date/>
+        </time>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+            <b:includable id='postTitle' var='post'>
+  <a expr:name='data:post.id'/>
+  <b:if cond='data:post.title != &quot;&quot;'>
+    <h3 class='post-title entry-title'>
+      <b:if cond='data:post.link or (data:post.url and data:view.url != data:post.url)'>
+        <a expr:href='data:post.link ?: data:post.url'><data:post.title/></a>
+      <b:else/>
+        <data:post.title/>
+      </b:if>
+    </h3>
+  </b:if>
+</b:includable>
+            <b:includable id='previousPageLink'>
+  <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:messages.newerPosts'>
+    <data:messages.newerPosts/>
+  </a>
+</b:includable>
+            <b:includable id='sharingButton'>
+  <span expr:aria-label='data:platform.shareMessage' expr:class='&quot;sharing-platform-button sharing-element-&quot; + data:platform.key' expr:data-href='data:shareUrl + &quot;&amp;target=&quot; + data:platform.target' expr:data-url='data:originalUrl' expr:title='data:platform.shareMessage' role='menuitem' tabindex='-1'>
+    <b:include name='sharingPlatformIcon'/>
+    <span class='platform-sharing-text'><data:platform.name/></span>
+  </span>
+</b:includable>
+            <b:includable id='sharingButtonContent'>
+  <div class='flat-icon-button ripple'>
+    <b:include name='shareIcon'/>
+  </div>
+</b:includable>
+            <b:includable id='sharingButtons'>
+  <div class='sharing' expr:aria-owns='&quot;sharing-popup-&quot; + data:sharingId' expr:data-title='data:shareTitle'>
+    <button class='sharing-button touch-icon-button' expr:aria-controls='&quot;sharing-popup-&quot; + data:sharingId' expr:aria-label='data:messages.share.escaped' expr:id='&quot;sharing-button-&quot; + data:sharingId' role='button'>
+      <b:include name='sharingButtonContent'/>
+    </button>
+    <b:include name='sharingButtonsMenu'/>
+  </div>
+</b:includable>
+            <b:includable id='sharingButtonsMenu'>
+  <div class='share-buttons-container'>
+    <ul aria-hidden='true' class='share-buttons hidden' expr:aria-label='data:messages.share.escaped' expr:id='&quot;sharing-popup-&quot; + data:sharingId' role='menu'>
+      <b:loop values='(data:platforms ?: data:blog.sharing.platforms) filter (p =&gt; p.key not in {&quot;blogThis&quot;})' var='platform'>
+        <li>
+          <b:include name='sharingButton'/>
+        </li>
+      </b:loop>
+      <li aria-hidden='true' class='hidden'>
+        <b:include name='otherSharingButton'/>
+      </li>
+    </ul>
+  </div>
+</b:includable>
+            <b:includable id='sharingPlatformIcon'>
+  <b:include data='{ iconClass: (&quot;touch-icon sharing-&quot; + data:platform.key) }' expr:name='data:platform.key + &quot;Icon&quot;'/>
+</b:includable>
+            <b:includable id='threadedCommentForm' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <h4 id='comment-post-message'><data:messages.postAComment/></h4>
+    <b:if cond='data:this.messages.blogComment != &quot;&quot;'>
+      <p><data:this.messages.blogComment/></p>
+    </b:if>
+    <b:include data='post' name='commentFormIframeSrc'/>
+    <iframe allowtransparency='allowtransparency' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight ?: &quot;90px&quot;' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+            <b:includable id='threadedCommentJs' var='post'>
+  <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
+  <b:template-script inline='true' name='threaded_comments'/>
+  <script type='text/javascript'>
+    blogger.widgets.blog.initThreadedComments(
+        <data:post.commentJso/>,
+        <data:post.commentMsgs/>,
+        <data:post.commentConfig/>);
+  </script>
+</b:includable>
+            <b:includable id='threadedComments' var='post'>
+  <section class='comments threaded' expr:data-embed='data:post.embedCommentForm' expr:data-num-comments='data:post.numberOfComments' id='comments'>
+    <a name='comments'/>
+
+    <b:include name='commentsTitle'/>
+
+    <div class='comments-content'>
+      <b:if cond='data:post.embedCommentForm'>
+        <b:include data='post' name='threadedCommentJs'/>
+      </b:if>
+      <div id='comment-holder'>
+         <data:post.commentHtml/>
+      </div>
+    </div>
+
+    <p class='comment-footer'>
+      <b:if cond='data:post.allowNewComments'>
+        <b:include data='post' name='threadedCommentForm'/>
+      <b:else/>
+        <data:post.noNewCommentsText/>
+      </b:if>
+      <b:if cond='data:post.showManageComments'>
+        <b:include data='post' name='manageComments'/>
+      </b:if>
+    </p>
+
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='allowtransparency' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+  </section>
+</b:includable>
+            <b:includable id='tooltipCss'>
+  <!-- LINT.IfChange -->
+  <style>
+    .post-body a.b-tooltip-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .post-body a.b-tooltip-container .b-tooltip {
+      display: block !important;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-20%, 1px);
+      visibility: hidden;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    .post-body a.b-tooltip-container .b-tooltip iframe {
+      width: 200px;
+      height: 198px;
+      max-width: none;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (hover: hover) {
+      .post-body a.b-tooltip-container:hover .b-tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  </style>
+  <!-- LINT.ThenChange(//depot/google3/java/com/google/blogger/b2/layouts/widgets/v2-style.css) -->
+</b:includable>
+          </b:widget>
+        </b:section>
+      </main>
+      <!-- AD SLOT: below posts / article -->
+      <div class='ad-slot ad-content-bottom'>
+          <b:section class='ad-area' id='ad-content-bottom' showaddelement='yes'/>
+        </div>
+    </div>
+
+    <!-- HOME PAGE SECTIONS (Bottom Half) -->
+    <b:if cond='data:view.isHomepage'>
+
+      <!-- FAQ Section -->
+      <section class='sec sec-alt' id='faq'>
+        <div class='container'>
+          <div class='section-header'>
+            <h2 class='section-title'>Frequently Asked Questions</h2>
+            <p class='section-desc'>Quick answers to the things people ask most.</p>
+          </div>
+          <b:section id='sec-faq' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML111' locked='false' title='FAQ' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="faq-list">
+                  <details class="faq-item"><summary>What is Nara Media?</summary><p>Nara Media is a trusted source for digital marketing, SEO strategies, AI tools, web solutions and premium digital resources, provided by the Nara Media Digital Resource team.</p></details>
+                  <details class="faq-item"><summary>What topics does Nara Media cover?</summary><p>Digital marketing, SEO, AI tools, web solutions and website optimization, along with high-quality digital assets to help you grow your online presence and business.</p></details>
+                  <details class="faq-item"><summary>How do I find articles on a specific topic?</summary><p>Use the search button in the header (or press Ctrl K), or browse the topic buttons above the Latest Articles section.</p></details>
+                  <details class="faq-item"><summary>Who is behind Nara Media?</summary><p>Our team provides every guide, tip and resource through Nara Media Digital Resource.</p></details>
+                  <details class="faq-item"><summary>How can I stay in touch with Nara Media?</summary><p>Follow us through the social links in the footer to keep up with new guides, marketing tips and digital resources.</p></details>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class='sec' id='newsletter'>
+        <div class='container'>
+          <b:section id='sec-newsletter' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML112' locked='false' title='Newsletter Signup' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="newsletter">
+                  <h2>Get new articles in your inbox</h2>
+                  <p>Digital marketing, SEO and AI tool guides in your inbox &mdash; no spam, unsubscribe any time.</p>
+                  <!-- Replace YOUR-FEEDBURNER-ID with your FeedBurner feed name (Blogger: Settings > Site feed, then FeedBurner email subscriptions). -->
+                  <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=YOUR-FEEDBURNER-ID','popupwindow','scrollbars=yes,width=550,height=520');return true">
+                    <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required="required" />
+                    <input type="hidden" value="YOUR-FEEDBURNER-ID" name="uri"/>
+                    <input type="hidden" name="loc" value="en_US"/>
+                    <button type="submit" class="btn btn-blue">Subscribe</button>
+                  </form>
+                  <small>By subscribing you agree to receive occasional emails.</small>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+      <!-- 8. Contact CTA Section -->
+      <section class='sec' id='contact'>
+        <div class='container'>
+          <b:section id='sec-contact' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML107' locked='false' title='Contact CTA' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="cta-section-inner">
+                  <h2>Stay connected with Nara Media</h2>
+                  <p>Follow Nara Media for expert guides, marketing tips and premium digital resources to grow your online presence and business.</p>
+                  <div class="cta-buttons">
+                    <a href="#blog" class="btn btn-yellow btn-lg">Read the Blog</a>
+                    <a href="#footer" class="btn btn-lg" style="background:rgba(255,255,255,.12);color:#fff;">Follow Us</a>
+                  </div>
+                  <p class="cta-note">Provided by the Nara Media Digital Resource team</p>
+                </div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </section>
+
+    </b:if> <!-- End Bottom Homepage Sections -->
+
+   
+
+    <!-- FOOTER -->
+    <footer class='site-footer' id='footer'>
+      <div class='container'>
+        <div class='footer-grid'>
+          <b:section id='footer-1' showaddelement='yes'>
+            <b:widget id='HTML108' locked='false' title='' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<!--====================================================
+ Premium Contact With Us
+ 4 Social Icons | Fully Responsive
+ Transparent Background | Blogger Compatible
+=====================================================-->
+
+<style>
+
+.contact-social-box{
+    width:100%;
+    margin:25px auto;
+    padding:15px 10px;
+    box-sizing:border-box;
+    background:transparent;
+    text-align:center;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.contact-social-title{
+    margin:0 0 18px;
+    font-size:22px;
+    font-weight:800;
+    color:inherit;
+}
+
+.contact-social-icons{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:clamp(10px,3vw,18px);
+}
+
+.contact-social-icons a{
+    width:clamp(46px,12vw,58px);
+    height:clamp(46px,12vw,58px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex:0 0 auto;
+
+    border-radius:18px;
+
+    color:#64748b;
+    background:transparent;
+
+    border:1px solid #e2e8f0;
+
+    text-decoration:none;
+
+    transition:
+        transform .3s ease,
+        color .3s ease,
+        background .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.contact-social-icons svg{
+    width:clamp(21px,5vw,27px);
+    height:clamp(21px,5vw,27px);
+    fill:currentColor;
+    display:block;
+}
+
+.contact-social-icons a:hover{
+    transform:translateY(-6px) scale(1.06);
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 12px 25px rgba(0,0,0,.16);
+}
+
+
+/* FACEBOOK */
+
+.contact-facebook:hover{
+    background:#1877F2;
+}
+
+
+/* YOUTUBE */
+
+.contact-youtube:hover{
+    background:#FF0000;
+}
+
+
+/* INSTAGRAM */
+
+.contact-instagram:hover{
+    background:linear-gradient(
+        135deg,
+        #833AB4,
+        #E1306C,
+        #FD1D1D,
+        #FCAF45
+    );
+}
+
+
+/* WHATSAPP */
+
+.contact-whatsapp:hover{
+    background:#25D366;
+}
+
+
+/* AUTOMATIC SMALL-SCREEN ADJUSTMENT */
+
+@media(max-width:360px){
+
+    .contact-social-title{
+        font-size:19px;
+    }
+
+    .contact-social-icons{
+        gap:8px;
+    }
+
+}
+
+
+/* REDUCE MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+    .contact-social-icons a{
+        transition:none;
+    }
+
+}
+
+</style>
+
+
+<div class="contact-social-box">
+
+    <h3 class="contact-social-title">
+        Contact With Us
+    </h3>
+
+    <div class="contact-social-icons">
+
+
+        <!-- FACEBOOK -->
+
+        <a
+        href="https://facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-facebook"
+        aria-label="Facebook">
+
+            <svg viewbox="0 0 24 24">
+                <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1z"/>
+            </path></svg>
+
+        
+
+
+        <!-- YOUTUBE -->
+
+        <a
+        href="https://youtube.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-youtube"
+        aria-label="YouTube">
+
+            <svg viewbox="0 0 24 24">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.9V8.1l6.5 3.9-6.5 3.9z"/>
+            </path></svg>
+
+        
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+        href="https://instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-instagram"
+        aria-label="Instagram">
+
+            <svg viewbox="0 0 24 24">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5a1.2 1.2 0 1 1-1.2 1.2 1.2 0 0 1 1.2-1.2z"/>
+            </path></svg>
+
+        
+
+
+        <!-- WHATSAPP -->
+
+        <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-whatsapp"
+        aria-label="WhatsApp">
+
+            <svg viewbox="0 0 24 24">
+                <path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.6 6L0 24l6.3-1.6a11.9 11.9 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.2-1.2-6.2-3.4-8.4zM12.1 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 1 1 8.3 4.6zm5.3-7.3c-.3-.2-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.1-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.4 4.8 2 .9 2.8 1 3.8.8.6-.1 1.7-.7 2-1.3.2-.6.2-1.1.1-1.2-.2-.2-.4-.3-.7-.5z"/>
+            </path></svg>
+
+        
+
+    </a
+></a
+></a
+></a
+></div>
+
+</div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><h3 class='widget-title'><data:title/></h3><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+          <b:section id='footer-2' showaddelement='yes'>
+            <b:widget id='HTML113' locked='false' title='Explore' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="footer-links"><a href="#about">About</a><a href="#services">Services</a>
+<a href="#faq">FAQ</a></div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><h3 class='widget-title'><data:title/></h3><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+          <b:section id='footer-3' showaddelement='yes'>
+            <b:widget id='HTML114' locked='false' title='Get in touch' type='HTML' version='2' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="footer-links"><span>Nara Media Digital Resource</span><a href="#blog">Latest articles</a><a href="#contact">Stay connected</a></div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'><h3 class='widget-title'><data:title/></h3><data:content/></b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+        <div class='copyright'>
+          <p>&#169; <span id='year'>2026</span> <data:blog.title/>. All rights reserved.</p>
+          <a href='#top' id='footer-top'>Back to top &#8593;</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- AD SLOT: sticky bottom anchor (add an HTML/JavaScript gadget to enable) -->
+    <div class='ad-sticky' id='ad-sticky'>
+   
+        
+      </div>
+   
+
+    <div aria-hidden='true' aria-live='polite' class='toast' id='toast' role='status'/>
+    <div aria-hidden='true' aria-label='Image preview' aria-modal='true' class='lightbox' id='lightbox' role='dialog'>
+      <button aria-label='Close preview' class='lightbox-close' type='button'>&#215;</button>
+      <img alt='' src=''/>
+    </div>
+    <aside aria-label='Privacy notice' class='cookie' id='cookie'>
+      <p>This site uses cookies for analytics and to serve ads. By continuing you accept their use.</p>
+      <button class='btn btn-blue btn-sm' id='cookie-ok' type='button'>Got it</button>
+    </aside>
+
+    <button aria-label='Back to top' class='to-top' id='to-top' type='button'>
+      <svg viewBox='0 0 24 24'><path d='M12 19V5M5 12l7-7 7 7'/></svg>
+    </button>
+
+    <!-- MAIN JAVASCRIPT -->
+    <script>
+    //<![CDATA[
+    (function () {
+      'use strict';
+      var d = document, root = d.documentElement;
+      var $ = function (s, c) { return (c || d).querySelector(s); };
+      var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+      var store = function (k, v) {
+        try { if (v === undefined) { return localStorage.getItem(k); } localStorage.setItem(k, v); } catch (e) {}
+        return null;
+      };
+      function ready(fn) { if (d.readyState !== 'loading') { fn(); } else { d.addEventListener('DOMContentLoaded', fn); } }
+
+      ready(function () {
+        var isPost = !!$('.post-detail');
+        if (isPost) { d.body.classList.add('single-view'); }
+
+        /* ---- Theme toggle ---- */
+        var tb = $('#theme-toggle');
+        if (tb) {
+          tb.addEventListener('click', function () {
+            var dark = root.getAttribute('data-theme') === 'dark';
+            if (dark) { root.removeAttribute('data-theme'); store('theme', 'light'); }
+            else { root.setAttribute('data-theme', 'dark'); store('theme', 'dark'); }
+          });
+        }
+
+        /* ---- Mobile menu ---- */
+        var mb = $('#menu-toggle'), mm = $('#mobile-menu');
+        function closeMenu() { if (mm) { mm.classList.remove('is-active'); } if (mb) { mb.setAttribute('aria-expanded', 'false'); } }
+        if (mb && mm) {
+          mb.addEventListener('click', function () {
+            var open = mm.classList.toggle('is-active');
+            mb.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+          $$('a', mm).forEach(function (a) { a.addEventListener('click', closeMenu); });
+          window.addEventListener('resize', function () { if (window.innerWidth >= 768) { closeMenu(); } });
+        }
+
+        /* ---- Search overlay ---- */
+        var so = $('#search-overlay'), sb = $('#search-open'), si = $('#search-input');
+        function openSearch() { so.classList.add('is-open'); so.setAttribute('aria-hidden', 'false'); setTimeout(function () { si.focus(); }, 60); }
+        function closeSearch() { so.classList.remove('is-open'); so.setAttribute('aria-hidden', 'true'); if (sb) { sb.focus(); } }
+        if (so && sb) {
+          sb.addEventListener('click', openSearch);
+          so.addEventListener('click', function (e) { if (e.target === so) { closeSearch(); } });
+        }
+        d.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') { if (so && so.classList.contains('is-open')) { closeSearch(); } closeMenu(); }
+          if (e.key === '/' && so && !/input|textarea|select/i.test((e.target.tagName || '')) && !e.target.isContentEditable) { e.preventDefault(); openSearch(); }
+        });
+
+        /* ---- Scroll: header shadow, progress bar, back-to-top ---- */
+        var header = $('#site-header'), bar = $('#read-progress'), top = $('#to-top'), art = $('.post-detail .post-body');
+        var ticking = false;
+        function onScroll() {
+          var y = window.pageYOffset || root.scrollTop;
+          if (header) { header.classList.toggle('scrolled', y > 8); }
+          if (top) { top.classList.toggle('show', y > 600); }
+          if (bar && art) {
+            var r = art.getBoundingClientRect(), h = art.offsetHeight - window.innerHeight * 0.6;
+            var p = h > 0 ? Math.min(1, Math.max(0, (-r.top) / h)) : 0;
+            bar.style.width = (p * 100) + '%';
+          }
+          ticking = false;
+        }
+        window.addEventListener('scroll', function () { if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); } }, { passive: true });
+        onScroll();
+        if (top) { top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); }); }
+
+        /* ---- Active nav link (homepage sections) ---- */
+        if ('IntersectionObserver' in window) {
+          var links = {};
+          $$('.nav-desktop a').forEach(function (a) { var h = a.getAttribute('href') || ''; var i = h.indexOf('#'); if (i > -1) { links[h.slice(i + 1)] = a; } });
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && links[en.target.id]) {
+                $$('.nav-desktop a').forEach(function (a) { a.classList.remove('active'); });
+                links[en.target.id].classList.add('active');
+              }
+            });
+          }, { rootMargin: '-45% 0px -50% 0px' });
+          Object.keys(links).forEach(function (id) { var el = d.getElementById(id); if (el) { io.observe(el); } });
+        }
+
+        /* ---- Footer year ---- */
+        var yr = $('#year'); if (yr) { yr.textContent = new Date().getFullYear(); }
+
+        /* ---- Sticky ad close ---- */
+        var sa = $('#ad-sticky'), sc = $('#ad-sticky-close');
+        if (sa && sa.querySelector('.widget')) { d.body.classList.add('has-sticky-ad'); }
+        if (sa && sc) { sc.addEventListener('click', function () { sa.classList.add('is-closed'); d.body.classList.remove('has-sticky-ad'); }); }
+
+        /* ---- Archive / label / search heading ---- */
+        var at = $('#archive-title'), ad = $('#archive-desc');
+        if (at && ad) {
+          var path = ''; try { path = decodeURIComponent(location.pathname); } catch (e) { path = location.pathname; }
+          var q = ''; try { q = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
+          var m = path.match(/\/search\/label\/(.+?)\/?$/);
+          if (m) { at.textContent = 'Topic: ' + m[1].replace(/\+/g, ' '); ad.textContent = 'All articles filed under this topic.'; }
+          else if (q) { at.textContent = 'Search results'; ad.textContent = 'Results for \u201C' + q + '\u201D'; }
+          else if (/\/\d{4}\/\d{2}\/?$/.test(path)) { at.textContent = 'Archive'; ad.textContent = 'Posts from this period.'; }
+        }
+
+        /* ---- Structured data helpers (WebSite/Organization/BlogPosting are rendered server-side in <head>) ---- */
+        function addLD(obj) { var sc = d.createElement('script'); sc.type = 'application/ld+json'; sc.text = JSON.stringify(obj); d.head.appendChild(sc); }
+        var home = location.origin + '/';
+        var sitename = 'Nara Media';
+
+        /* ================= v2: global features ================= */
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ---- v2.1 hero: rotating words + gentle parallax ---- */
+        (function () {
+          var gw = $('.grad-words'); if (!gw || reduceMotion) { return; }
+          var words = (gw.getAttribute('data-words') || '').split('|').filter(Boolean), i = 0;
+          if (words.length > 1) {
+            setInterval(function () {
+              gw.classList.add('swap');
+              setTimeout(function () { i = (i + 1) % words.length; gw.textContent = words[i]; gw.classList.remove('swap'); }, 350);
+            }, 2800);
+          }
+          var hv = $('.hero-visual');
+          if (hv && window.matchMedia('(hover: hover)').matches) {
+            hv.addEventListener('mousemove', function (e) {
+              var r = hv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+              $$('.blob, .hv-chip, .spark', hv).forEach(function (el, k) { var f = (k % 3 + 1) * 6; el.style.transform = 'translate(' + (x * f) + 'px,' + (y * f) + 'px)'; });
+            });
+          }
+        })();
+
+        /* ---- Toast ---- */
+        var toastEl = $('#toast'), toastT;
+        function toast(msg) {
+          if (!toastEl) { return; }
+          toastEl.textContent = msg; toastEl.classList.add('show');
+          clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+        }
+        window.__toast = toast;
+
+        /* ---- Follow system theme until the visitor picks one ---- */
+        if (window.matchMedia && !store('theme')) {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          var follow = function (e) { if (store('theme')) { return; } if (e.matches) { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); } };
+          if (mq.addEventListener) { mq.addEventListener('change', follow); }
+        }
+
+        /* ---- Scroll reveal ---- */
+        var revealSel = '.section-header, .service-card, .process-step, .featured-item, .price-card, .testimonial-card, .faq-item, .stat, .skill-category, .newsletter, .cta-section-inner, .about-grid, .post-card, .related-card';
+        if ('IntersectionObserver' in window && !reduceMotion) {
+          var rio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } });
+          }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+          $$(revealSel).forEach(function (el, i) {
+            el.classList.add('reveal'); el.style.setProperty('--d', ((i % 3) * 0.08) + 's'); rio.observe(el);
+          });
+          $$('.skills-wrapper').forEach(function (el) { el.classList.add('reveal-bars'); rio.observe(el); });
+        }
+
+        /* ---- Animated counters ---- */
+        var counters = $$('[data-count]');
+        function runCounter(el) {
+          var end = parseFloat(el.getAttribute('data-count')) || 0, suf = el.getAttribute('data-suffix') || '';
+          var start = null, dur = 1400;
+          function step(t) {
+            if (start === null) { start = t; }
+            var p = Math.min(1, (t - start) / dur), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(end * e) + suf;
+            if (p < 1) { window.requestAnimationFrame(step); }
+          }
+          window.requestAnimationFrame(step);
+        }
+        if (counters.length && 'IntersectionObserver' in window && !reduceMotion) {
+          var cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) { runCounter(en.target); cio.unobserve(en.target); } });
+          }, { threshold: 0.6 });
+          counters.forEach(function (el) { el.textContent = '0' + (el.getAttribute('data-suffix') || ''); cio.observe(el); });
+        }
+
+        /* ---- Marquee: duplicate track for seamless loop ---- */
+        $$('.marquee-track').forEach(function (tr) {
+          if (tr.getAttribute('data-cloned')) { return; }
+          var kids = Array.prototype.slice.call(tr.children);
+          kids.forEach(function (k) { var c = k.cloneNode(true); c.setAttribute('aria-hidden', 'true'); tr.appendChild(c); });
+          tr.setAttribute('data-cloned', '1');
+        });
+
+        /* ---- Topic chips from the Blogger feed ---- */
+        var chips = $('#topic-chips');
+        if (chips && window.fetch) {
+          fetch('/feeds/posts/summary?alt=json&max-results=0').then(function (r) { return r.json(); }).then(function (j) {
+            var cats = (j.feed && j.feed.category) || [];
+            if (!cats.length) { return; }
+            var cur = ''; try { cur = decodeURIComponent(location.pathname); } catch (x) { cur = location.pathname; }
+            var all = d.createElement('a'); all.href = '/'; all.textContent = 'All'; if (cur === '/' || cur === '') { all.className = 'active'; } chips.appendChild(all);
+            cats.slice(0, 10).forEach(function (c) {
+              var a = d.createElement('a'); a.href = '/search/label/' + encodeURIComponent(c.term); a.textContent = c.term;
+              if (cur.indexOf('/search/label/' + c.term) === 0) { a.className = 'active'; } chips.appendChild(a);
+            });
+          }).catch(function () {});
+        }
+
+        /* ---- Live search (Ctrl/Cmd+K to open) ---- */
+        var sres = $('#search-results'), sinput = $('#search-input'), stimer, sctl;
+        function clearRes() { if (sres) { sres.textContent = ''; } }
+        function activeItems() { return sres ? $$('.sr-item', sres) : []; }
+        function moveActive(dir) {
+          var items = activeItems(); if (!items.length) { return false; }
+          var i = items.findIndex(function (x) { return x.classList.contains('is-active'); });
+          if (i > -1) { items[i].classList.remove('is-active'); }
+          i = (i + dir + items.length) % items.length; items[i].classList.add('is-active'); items[i].scrollIntoView({ block: 'nearest' });
+          return true;
+        }
+        if (sres && sinput && window.fetch) {
+          sinput.addEventListener('input', function () {
+            clearTimeout(stimer);
+            var q = sinput.value.trim();
+            if (q.length < 2) { clearRes(); return; }
+            stimer = setTimeout(function () {
+              if (sctl && sctl.abort) { sctl.abort(); }
+              sctl = window.AbortController ? new AbortController() : null;
+              fetch('/feeds/posts/summary?alt=json&max-results=6&q=' + encodeURIComponent(q), sctl ? { signal: sctl.signal } : {})
+                .then(function (r) { return r.json(); })
+                .then(function (j) {
+                  clearRes();
+                  var items = (j.feed && j.feed.entry) || [];
+                  if (!items.length) { var p = d.createElement('p'); p.className = 'sr-empty'; p.textContent = 'No articles match “' + q + '”.'; sres.appendChild(p); return; }
+                  items.forEach(function (e) {
+                    var link = (e.link || []).filter(function (l) { return l.rel === 'alternate'; })[0]; if (!link) { return; }
+                    var a = d.createElement('a'); a.className = 'sr-item'; a.href = link.href;
+                    if (e['media$thumbnail']) { var im = d.createElement('img'); im.alt = ''; im.loading = 'lazy'; im.src = e['media$thumbnail'].url.replace(/\/s\d+(-c)?\//, '/w112-h80-c/'); a.appendChild(im); }
+                    var w = d.createElement('div'), st = d.createElement('strong'), sm2 = d.createElement('small');
+                    st.textContent = e.title.$t; sm2.textContent = new Date(e.published.$t).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+                    w.appendChild(st); w.appendChild(sm2); a.appendChild(w); sres.appendChild(a);
+                  });
+                  var all = d.createElement('a'); all.className = 'sr-all'; all.href = '/search?q=' + encodeURIComponent(q); all.textContent = 'See all results →'; sres.appendChild(all);
+                }).catch(function () {});
+            }, 220);
+          });
+          sinput.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown') { if (moveActive(1)) { e.preventDefault(); } }
+            else if (e.key === 'ArrowUp') { if (moveActive(-1)) { e.preventDefault(); } }
+            else if (e.key === 'Enter') { var a = $('.sr-item.is-active', sres); if (a) { e.preventDefault(); location.href = a.href; } }
+          });
+        }
+        d.addEventListener('keydown', function (e) {
+          if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); if (sb) { sb.click(); } }
+        });
+
+        /* ---- Cookie / privacy notice (informational) ---- */
+        var ck = $('#cookie'), ckBtn = $('#cookie-ok');
+        if (ck && ckBtn) {
+          if (!store('cookie-ok')) { setTimeout(function () { ck.classList.add('show'); }, 1200); }
+          ckBtn.addEventListener('click', function () { ck.classList.remove('show'); store('cookie-ok', '1'); });
+        }
+
+        /* ---- FAQ structured data ---- */
+        var faqs = $$('.faq-item');
+        if (faqs.length) {
+          addLD({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(function (f) {
+            return { '@type': 'Question', name: (f.querySelector('summary') || {}).textContent || '', acceptedAnswer: { '@type': 'Answer', text: (f.querySelector('p') || {}).textContent || '' } };
+          }) });
+        }
+
+        /* ================= Single post features ================= */
+        var body = $('.post-detail .post-body');
+        if (!body) { return; }
+
+        /* Reading time */
+        var words = (body.textContent || '').trim().split(/\s+/).length;
+        var rt = $('.reading-time');
+        if (rt) { rt.textContent = Math.max(1, Math.round(words / 200)) + ' min read'; }
+
+        /* Author initial */
+        var an = $('.author-name'), ai = $('#author-initial');
+        if (an && ai) { ai.textContent = (an.textContent.trim().charAt(0) || 'A').toUpperCase(); }
+
+        /* Table of contents */
+        var heads = $$('h2, h3', body);
+        if (heads.length >= 3) {
+          var toc = d.createElement('details'); toc.className = 'toc'; toc.open = true;
+          var sm = d.createElement('summary'); sm.textContent = 'Table of contents'; toc.appendChild(sm);
+          var ol = d.createElement('ol');
+          heads.forEach(function (h, i) {
+            if (!h.id) { h.id = 'sec-' + (i + 1); }
+            var li = d.createElement('li'); if (h.tagName === 'H3') { li.className = 'l3'; }
+            var a = d.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent; li.appendChild(a); ol.appendChild(li);
+          });
+          toc.appendChild(ol); body.insertBefore(toc, body.firstChild);
+        }
+
+        /* External links + lazy media */
+        $$('a[href^="http"]', body).forEach(function (a) {
+          if (a.hostname && a.hostname !== location.hostname && !a.querySelector('img')) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+        });
+        $$('img, iframe', body).forEach(function (el, i) { if (i > 0 && !el.getAttribute('loading')) { el.setAttribute('loading', 'lazy'); } });
+
+        /* Share buttons */
+        var url = encodeURIComponent(location.href.split('#')[0]), ttl = encodeURIComponent(d.title);
+        var map = {
+          facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+          x: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + ttl,
+          whatsapp: 'https://wa.me/?text=' + ttl + '%20' + url,
+          linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url
+        };
+        $$('[data-share]').forEach(function (a) { a.href = map[a.getAttribute('data-share')] || '#'; });
+        var cp = $('#copy-link');
+        if (cp) {
+          cp.addEventListener('click', function () {
+            var done = function () { cp.textContent = 'Copied \u2713'; setTimeout(function () { cp.textContent = 'Copy link'; }, 1800); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(location.href).then(done, function () { window.prompt('Copy link:', location.href); }); }
+            else { window.prompt('Copy link:', location.href); }
+          });
+        }
+
+        /* Breadcrumb structured data is rendered server-side (see postMetadataJSON). */
+
+        /* ================= v2: single-post extras ================= */
+        /* Heading anchors */
+        $$('h2[id], h3[id]', body).forEach(function (h) {
+          var a = d.createElement('a'); a.className = 'h-anchor'; a.href = '#' + h.id; a.setAttribute('aria-label', 'Link to this section'); a.textContent = '#';
+          h.insertBefore(a, h.firstChild);
+        });
+
+        /* TOC: highlight current section */
+        var tocLinks = $$('.toc a');
+        if (tocLinks.length && 'IntersectionObserver' in window) {
+          var byId = {}; tocLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+          var tio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting && byId[en.target.id]) { tocLinks.forEach(function (a) { a.classList.remove('is-current'); }); byId[en.target.id].classList.add('is-current'); }
+            });
+          }, { rootMargin: '-10% 0px -80% 0px' });
+          $$('h2[id], h3[id]', body).forEach(function (h) { if (byId[h.id]) { tio.observe(h); } });
+        }
+
+        /* Code copy buttons */
+        $$('pre', body).forEach(function (pre) {
+          var txt = pre.textContent;
+          var b = d.createElement('button'); b.type = 'button'; b.className = 'code-copy'; b.textContent = 'Copy';
+          b.addEventListener('click', function () {
+            var ok = function () { b.textContent = 'Copied'; toast('Code copied'); setTimeout(function () { b.textContent = 'Copy'; }, 1500); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(ok, function () {}); }
+          });
+          pre.appendChild(b);
+        });
+
+        /* Image lightbox */
+        var lb = $('#lightbox'), lbImg = lb ? lb.querySelector('img') : null;
+        function closeLb() { lb.classList.remove('is-open'); lb.setAttribute('aria-hidden', 'true'); }
+        if (lb && lbImg) {
+          $$('img', body).forEach(function (im) {
+            var a = im.closest('a'), href = a ? (a.getAttribute('href') || '') : '';
+            if (a && !/\.(png|jpe?g|gif|webp|avif|svg)(\?|$)/i.test(href) && href.indexOf('blogger.googleusercontent') < 0 && href.indexOf('bp.blogspot') < 0) { im.style.cursor = 'pointer'; return; }
+            im.addEventListener('click', function (e) {
+              e.preventDefault(); lbImg.src = (a && href) ? href : im.currentSrc || im.src; lbImg.alt = im.alt || '';
+              lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false');
+            });
+          });
+          lb.addEventListener('click', closeLb);
+          d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeLb(); } });
+        }
+
+        /* Native share sheet (mobile) */
+        var ns = $('#native-share');
+        if (ns && navigator.share) {
+          ns.hidden = false;
+          ns.addEventListener('click', function () { navigator.share({ title: d.title, url: location.href.split('#')[0] }).catch(function () {}); });
+        }
+        var cpBtn = $('#copy-link');
+        if (cpBtn) { cpBtn.addEventListener('click', function () { toast('Link copied'); }); }
+
+        /* Related posts (same first label) via Blogger feed */
+        var rel = $('#related-posts');
+        if (rel && rel.getAttribute('data-label') && window.fetch) {
+          fetch('/feeds/posts/summary/-/' + encodeURIComponent(rel.getAttribute('data-label')) + '?alt=json&max-results=8')
+            .then(function (r) { return r.json(); })
+            .then(function (j) {
+              var items = (j.feed && j.feed.entry) || [], cur = location.pathname, shown = 0;
+              var grid = d.createElement('div'); grid.className = 'related-grid';
+              items.forEach(function (e) {
+                if (shown >= 3) { return; }
+                var link = (e.link || []).filter(function (l) { return l.rel === 'alternate'; })[0];
+                if (!link) { return; }
+                var u; try { u = new URL(link.href); } catch (x) { return; }
+                if (u.pathname === cur) { return; }
+                var a = d.createElement('a'); a.className = 'related-card'; a.href = link.href;
+                if (e['media$thumbnail']) {
+                  var im = d.createElement('img'); im.loading = 'lazy'; im.alt = '';
+                  im.src = e['media$thumbnail'].url.replace(/\/s\d+(-c)?\//, '/w480-h270-c/'); a.appendChild(im);
+                }
+                var sp = d.createElement('span'); sp.textContent = e.title.$t; a.appendChild(sp);
+                grid.appendChild(a); shown++;
+              });
+              if (shown) {
+                var h3 = d.createElement('h3'); h3.textContent = 'You might also like';
+                rel.appendChild(h3); rel.appendChild(grid);
+              }
+            })
+            .catch(function () {});
+        }
+      });
+    })();
+    //]]>
+    </script>
+
+
+    <!-- MOTION SYSTEM JAVASCRIPT (v3) -->
+    <script>
+    //<![CDATA[
+    (function () {
+      'use strict';
+      var d = document, root = d.documentElement;
+      var $ = function (s, c) { return (c || d).querySelector(s); };
+      var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasIO = 'IntersectionObserver' in window;
+      var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
+      function ready(fn) { if (d.readyState !== 'loading') { fn(); } else { d.addEventListener('DOMContentLoaded', fn); } }
+
+      ready(function () {
+        if (reduce || !hasIO) { root.classList.add('no-reveal'); }
+
+        /* ---- 1. Wrap trailing arrows so they can slide on hover ---- */
+        $$('.btn, .read-more, .post-nav a').forEach(function (el) {
+          if (el.querySelector('.arr')) { return; }
+          var walker = d.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), n, nodes = [];
+          while ((n = walker.nextNode())) { nodes.push(n); }
+          nodes.forEach(function (t) {
+            var m = t.nodeValue.match(/^([\s\S]*?)([→←])(\s*)$/) || t.nodeValue.match(/^()([→←])(\s[\s\S]*)$/);
+            if (!m) { return; }
+            var sp = d.createElement('span'); sp.className = 'arr'; sp.textContent = m[2]; sp.setAttribute('aria-hidden', 'true');
+            var parent = t.parentNode;
+            if (t.nodeValue.charAt(0) === m[2]) { parent.insertBefore(sp, t); t.nodeValue = m[3]; }
+            else { t.nodeValue = m[1]; parent.insertBefore(sp, t.nextSibling); }
+          });
+        });
+
+        /* ---- 2. Click ripple on buttons ---- */
+        if (!reduce) {
+          d.addEventListener('pointerdown', function (e) {
+            var b = e.target.closest ? e.target.closest('.btn, .icon-btn, .share-btn, .to-top') : null;
+            if (!b) { return; }
+            var r = b.getBoundingClientRect(), s = Math.max(r.width, r.height) * 2;
+            var dot = d.createElement('span'); dot.className = 'ripple-dot';
+            dot.style.width = dot.style.height = s + 'px';
+            dot.style.left = (e.clientX - r.left - s / 2) + 'px';
+            dot.style.top = (e.clientY - r.top - s / 2) + 'px';
+            b.appendChild(dot);
+            setTimeout(function () { if (dot.parentNode) { dot.parentNode.removeChild(dot); } }, 700);
+          }, { passive: true });
+        }
+
+        /* ---- 3. Magnetic hero / CTA buttons ---- */
+        if (!reduce && canHover) {
+          $$('.hero-cta .btn, .cta-buttons .btn, .nav-cta').forEach(function (b) {
+            b.classList.add('magnetic');
+            b.addEventListener('mousemove', function (e) {
+              var r = b.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2;
+              b.style.transform = 'translate(' + (x * 0.18) + 'px,' + (y * 0.25 - 3) + 'px)';
+            });
+            b.addEventListener('mouseleave', function () { b.style.transform = ''; });
+          });
+        }
+
+        /* ---- 4. Post card pointer glow ---- */
+        if (canHover) {
+          d.addEventListener('mousemove', function (e) {
+            var c = e.target.closest ? e.target.closest('.post-card') : null;
+            if (!c) { return; }
+            var r = c.getBoundingClientRect();
+            c.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+            c.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+          }, { passive: true });
+        }
+
+        /* ---- 5. Single post: slide each content block in ---- */
+        var body = $('.post-detail .post-body');
+        if (body && hasIO && !reduce) {
+          var blocks = Array.prototype.slice.call(body.children).filter(function (el) { return !el.classList.contains('toc'); });
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+          }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+          blocks.forEach(function (el, i) {
+            el.classList.add('mo');
+            if (/^H[23]$/.test(el.tagName)) { el.classList.add('mo-l'); }
+            else if (el.tagName === 'BLOCKQUOTE') { el.classList.add('mo-r'); }
+            else if (el.querySelector && el.querySelector('img') && !el.textContent.trim()) { el.classList.add(i % 2 ? 'mo-r' : 'mo-l'); }
+            el.style.setProperty('--d', '0s');
+            io.observe(el);
+          });
+          var toc = $('.toc', body); if (toc) { toc.classList.add('mo'); io.observe(toc); }
+          $$('.share-bar, .author-box, .post-nav .prev, .post-nav .next, .related, .comments').forEach(function (el) {
+            el.classList.add('mo');
+            if (el.classList.contains('prev')) { el.classList.add('mo-l'); }
+            if (el.classList.contains('next')) { el.classList.add('mo-r'); }
+            io.observe(el);
+          });
+          $$('.share-bar .share-btn').forEach(function (b, i) { b.style.animation = 'moPop .5s var(--ease-spring) ' + (0.1 * i + 0.1) + 's both'; });
+        }
+
+        /* ---- 6. Stagger cards that sit in the same row ---- */
+        $$('.posts-wrapper').forEach(function (w) {
+          Array.prototype.forEach.call(w.querySelectorAll('.post-card'), function (c, i) {
+            c.style.setProperty('--d', ((i % 3) * 0.1) + 's');
+          });
+        });
+
+        /* ---- 7. Smooth anchor offset + section underline fallback ---- */
+        $$('.section-header').forEach(function (h) { if (!hasIO || reduce) { h.classList.add('in'); } });
+      });
+    })();
+    //]]>
+    </script>
+
+  </body>
+</html>
